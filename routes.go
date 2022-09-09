@@ -50,7 +50,7 @@ func NewRouter() *http.Server {
 
 	r.Group(func(r chi.Router) {
 		r.Get("/tribes", getListedTribes)
-		r.Put("/tribes/{uuid}", updateTribePreview)
+		r.Get("/tribes/{uuid}", getTribe)
 		r.Get("/tribe_by_un/{un}", getTribeByUniqueName)
 
 		r.Get("/tribes_by_owner/{pubkey}", getTribesByOwner)
@@ -88,7 +88,7 @@ func NewRouter() *http.Server {
 		r.Use(PubKeyContext)
 		r.Post("/channel", createChannel)
 		r.Put("/tribe", createOrEditTribe)
-		r.Get("/tribes/{uuid}", getTribe)
+		r.Put("/tribe_preview/{uuid}", updateTribePreview)
 		r.Put("/tribestats", putTribeStats)
 		r.Delete("/tribe/{uuid}", deleteTribe)
 		r.Put("/tribeactivity/{uuid}", putTribeActivity)
@@ -294,7 +294,7 @@ func updateTribePreview(w http.ResponseWriter, r *http.Request) {
 	cachePubKey := os.Getenv("CACHE_PUBKEY")
 	cacheContact := os.Getenv("CACHE_CONTACT_KEY")
 
-	if cacheHost == "" && cachePubKey == "" && cacheContact == "" {
+	if cacheHost == "" || cachePubKey == "" || cacheContact == "" {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
