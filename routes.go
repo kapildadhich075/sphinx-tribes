@@ -50,7 +50,7 @@ func NewRouter() *http.Server {
 
 	r.Group(func(r chi.Router) {
 		r.Get("/tribes", getListedTribes)
-		r.Get("/tribes/{uuid}", getTribe)
+		r.Put("/tribes/{uuid}", updateTribePreview)
 		r.Get("/tribe_by_un/{un}", getTribeByUniqueName)
 
 		r.Get("/tribes_by_owner/{pubkey}", getTribesByOwner)
@@ -88,6 +88,7 @@ func NewRouter() *http.Server {
 		r.Use(PubKeyContext)
 		r.Post("/channel", createChannel)
 		r.Put("/tribe", createOrEditTribe)
+		r.Get("/tribes/{uuid}", getTribe)
 		r.Put("/tribestats", putTribeStats)
 		r.Delete("/tribe/{uuid}", deleteTribe)
 		r.Put("/tribeactivity/{uuid}", putTribeActivity)
@@ -274,6 +275,30 @@ func getTribe(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(theTribe)
+}
+
+func updateTribePreview(w http.ResponseWriter, r *http.Request) {
+	uuid := chi.URLParam(r, "uuid")
+
+	cacheHost := os.Getenv("CACHE_HOST")
+	cachePubKey := os.Getenv("CACHE_PUBKEY")
+	cacheContact := os.Getenv("CACHE_CONTACT_KEY")
+
+	if cacheHost == "" && cachePubKey == "" && cacheContact == "" {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	DB.updateTribePreview(uuid)
+
+	var caheValues = map[string]interface{}{
+		"cache_host":        cacheHost,
+		"cache_pub_key":     cachePubKey,
+		"cache_contact_key": cacheContact,
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(caheValues)
 }
 
 func getTribeByUniqueName(w http.ResponseWriter, r *http.Request) {

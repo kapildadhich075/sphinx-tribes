@@ -245,6 +245,18 @@ func (db database) updateTribe(uuid string, u map[string]interface{}) bool {
 	return true
 }
 
+func (db database) updateTribePreview(uuid string) bool {
+	cacheHost := os.Getenv("CACHE_HOST")
+	if uuid == "" || cacheHost == "" {
+		return false
+	}
+
+	u := map[string]interface{}{"preview": cacheHost}
+
+	db.db.Model(&Tribe{}).Where("uuid = ?", uuid).Updates(u)
+	return true
+}
+
 func (db database) updateChannel(id uint, u map[string]interface{}) bool {
 	if id == 0 {
 		return false
