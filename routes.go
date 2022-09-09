@@ -278,7 +278,17 @@ func getTribe(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateTribePreview(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	pubKeyFromAuth, _ := ctx.Value(ContextKey).(string)
+
+	//check that the tribe has the same pubKeyFromAuth
 	uuid := chi.URLParam(r, "uuid")
+
+	tribe := DB.getTribe(uuid)
+	if tribe.OwnerPubKey != pubKeyFromAuth {
+		w.WriteHeader(http.StatusNotAcceptable)
+		return
+	}
 
 	cacheHost := os.Getenv("CACHE_HOST")
 	cachePubKey := os.Getenv("CACHE_PUBKEY")
@@ -289,7 +299,7 @@ func updateTribePreview(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	DB.updateTribePreview(uuid)
+	DB.updateTribePreview(uuid, cacheHost)
 
 	var caheValues = map[string]interface{}{
 		"cache_host":        cacheHost,

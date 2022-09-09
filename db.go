@@ -245,8 +245,7 @@ func (db database) updateTribe(uuid string, u map[string]interface{}) bool {
 	return true
 }
 
-func (db database) updateTribePreview(uuid string) bool {
-	cacheHost := os.Getenv("CACHE_HOST")
+func (db database) updateTribePreview(uuid string, cacheHost string) bool {
 	if uuid == "" || cacheHost == "" {
 		return false
 	}
