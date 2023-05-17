@@ -298,6 +298,19 @@ type InvoiceStatus struct {
 	Status          bool   `json:"Status"`
 }
 
+type InvoiceResult struct {
+	Success  bool                 `json:"success"`
+	Response InvoiceCheckResponse `json:"response"`
+}
+
+type InvoiceCheckResponse struct {
+	Settled         bool   `json:"settled"`
+	Payment_request string `json:"payment_request"`
+	Payment_hash    string `json:"payment_hash"`
+	Preimage        string `json:"preimage"`
+	Amount          uint   `json:"amount"`
+}
+
 type KeysendPayment struct {
 	Amount          string `json:"amount"`
 	Destination_key string `json:"destination_key"`

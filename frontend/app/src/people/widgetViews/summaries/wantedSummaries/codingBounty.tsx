@@ -104,6 +104,7 @@ function MobileView(props: CodingBountiesProps) {
       user_pubkey: assignee.owner_pubkey,
       created: created ? created?.toString() : '',
     });
+
     await pollLnInvoice(pollCount);
   }
 
@@ -396,7 +397,7 @@ function MobileView(props: CodingBountiesProps) {
                      * which make them so long
                      * A non LNAUTh user alias is shorter
                      */}
-                    {!main.lnInvoiceStatus && assignee.owner_alias.length < 30 &&
+                    {!main.lnInvoiceStatus && !main.lnInvoice && assignee.owner_alias.length < 30 &&
                       (
                         <Button
                           iconSize={14}
@@ -893,6 +894,35 @@ function MobileView(props: CodingBountiesProps) {
                       margin: 0
                     }}
                   />
+
+                  {
+                    main.lnInvoice && pollCount < 30 &&
+                    (
+                      <Invoice
+                        startDate={new Date(moment().add(1, "minutes").format().toString())}
+                        count={pollCount}
+                        dataStatus={invoiceData.invoiceStatus}
+                      />
+                    )
+                  }
+                  {/**
+                     * LNURL AUTH users alias are their public keys
+                     * which make them so long
+                     * A non LNAUTh user alias is shorter
+                     */}
+                  {!main.lnInvoiceStatus && !main.lnInvoice && assignee.owner_alias.length < 30 &&
+                    (
+                      <Button
+                        iconSize={14}
+                        width={220}
+                        height={48}
+                        onClick={getLnInvoice}
+                        style={{ marginTop: '30px', marginBottom: '-20px', textAlign: 'left' }}
+                        text="Pay Bounty"
+                        ButtonTextStyle={{ padding: 0 }}
+                      />
+                    )
+                  }
                 </BountyPriceContainer>
                 <ButtonSet
                   showGithubBtn={!!ticketUrl}
