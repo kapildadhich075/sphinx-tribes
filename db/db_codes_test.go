@@ -6,8 +6,9 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/jinzhu/gorm"
 	"github.com/stretchr/testify/assert"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var now = time.Now()
@@ -27,7 +28,12 @@ func TestCodeGet(t *testing.T) {
 	}
 	defer db.Close()
 
-	gorm.Open("postgres", db)
+	gorm.Open(postgres.New(postgres.Config{
+		DSN:                  "sqlmock_db_0",
+		DriverName:           "postgres",
+		Conn:                 db,
+		PreferSimpleProtocol: true,
+	}), &gorm.Config{})
 
 	rows := sqlmock.NewRows([]string{"connection_string", "date_created", "is_used", "date_created"}).AddRow(code.ID, code.ConnectionString, code.IsUsed, code.DateCreated)
 
