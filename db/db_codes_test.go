@@ -20,6 +20,32 @@ var code = ConnectionCodes{
 	DateCreated:      &now,
 }
 
+func TestCodeInsert(t *testing.T) {
+	db, mock, err := sqlmock.New()
+
+	if err != nil {
+		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+	}
+	defer db.Close()
+
+	gorm.Open(postgres.New(postgres.Config{
+		DSN:                  "sqlmock_db",
+		DriverName:           "postgres",
+		Conn:                 db,
+		PreferSimpleProtocol: true,
+	}), &gorm.Config{})
+
+	prep := mock.ExpectPrepare("^INSERT INTO connectioncodes*")
+
+	prep.ExpectExec().
+		WithArgs(code.ID, code.ConnectionString, code.IsUsed, code.DateCreated).
+		WillReturnResult(sqlmock.NewResult(int64(code.ID), 1))
+
+	mock.ExpectCommit()
+
+	assert.Nil(t, err)
+}
+
 func TestCodeGet(t *testing.T) {
 	db, mock, err := sqlmock.New()
 
