@@ -27,15 +27,17 @@ const Context = React.createContext({
 });
 
 export function WithStores({ children }) {
-  return <Context.Provider
-    value={{
-      ui: uiStore,
-      main: mainStore,
-      modals: modalsVisibilityStore,
-      leaderboard: leaderboardStore
-    }}
-         >
-    {children}
-         </Context.Provider>
+  return (
+    <Context.Provider
+      value={{
+        ui: uiStore,
+        main: mainStore,
+        modals: modalsVisibilityStore,
+        leaderboard: leaderboardStore
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
 }
 export const useStores = () => React.useContext(Context);

@@ -9,7 +9,7 @@ import BountyPrice from '../../bounties/bounty_price';
 import BountyProfileView from '../../bounties/bounty_profile_view';
 import IconButton from '../../components/common/icon_button';
 import StartUpModal from './start_up_modal';
-import ConnectCard from "./connectCard";
+import ConnectCard from './connectCard';
 import { useStores } from '../../store';
 
 function Bounties(props: BountiesProps) {

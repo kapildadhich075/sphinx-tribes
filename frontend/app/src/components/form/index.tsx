@@ -83,7 +83,6 @@ function Form(props: FormProps) {
         setSchemaData(BountyDetailsCreationData.step_5);
         break;
       default:
-        
     }
   }, [stepTracker]);
 
@@ -223,94 +222,94 @@ function Form(props: FormProps) {
           >
             {props.isFirstTimeScreen && schema ? (
               <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    width: '100%'
-                  }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  width: '100%'
+                }}
               >
-                  <div style={{ marginRight: '40px' }}>
-                    {schema
-                      .filter((item: FormField) => item.type === 'img')
-                      .map((item: FormField) => (
-                        <Input
-                          {...item}
-                          key={item.name}
-                          values={values}
-                          errors={errors}
-                          scrollToTop={scrollToTop}
-                          value={values[item.name]}
-                          error={errors[item.name]}
-                          initialValues={initialValues}
-                          deleteErrors={() => {
-                            if (errors[item.name]) delete errors[item.name];
-                          }}
-                          handleChange={(e: any) => {
-                            setFieldValue(item.name, e);
-                          }}
-                          setFieldValue={(e, f) => {
-                            setFieldValue(e, f);
-                          }}
-                          setFieldTouched={setFieldTouched}
-                          handleBlur={() => setFieldTouched(item.name, false)}
-                          handleFocus={() => setFieldTouched(item.name, true)}
-                          setDisableFormButtons={setDisableFormButtons}
-                          extraHTML={
-                            (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
-                          }
-                          borderType="bottom"
-                          imageIcon
-                          style={
-                            item.name === 'github_description' && !values.ticketUrl
-                              ? {
-                                  display: 'none'
-                                }
-                              : undefined
-                          }
-                        />
-                      ))}
-                  </div>
+                <div style={{ marginRight: '40px' }}>
+                  {schema
+                    .filter((item: FormField) => item.type === 'img')
+                    .map((item: FormField) => (
+                      <Input
+                        {...item}
+                        key={item.name}
+                        values={values}
+                        errors={errors}
+                        scrollToTop={scrollToTop}
+                        value={values[item.name]}
+                        error={errors[item.name]}
+                        initialValues={initialValues}
+                        deleteErrors={() => {
+                          if (errors[item.name]) delete errors[item.name];
+                        }}
+                        handleChange={(e: any) => {
+                          setFieldValue(item.name, e);
+                        }}
+                        setFieldValue={(e, f) => {
+                          setFieldValue(e, f);
+                        }}
+                        setFieldTouched={setFieldTouched}
+                        handleBlur={() => setFieldTouched(item.name, false)}
+                        handleFocus={() => setFieldTouched(item.name, true)}
+                        setDisableFormButtons={setDisableFormButtons}
+                        extraHTML={
+                          (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
+                        }
+                        borderType="bottom"
+                        imageIcon
+                        style={
+                          item.name === 'github_description' && !values.ticketUrl
+                            ? {
+                                display: 'none'
+                              }
+                            : undefined
+                        }
+                      />
+                    ))}
+                </div>
 
-                  <div style={{ width: '100%' }}>
-                    {schema
-                      .filter((item: FormField) => item.type !== 'img')
-                      .map((item: FormField) => (
-                        <Input
-                          {...item}
-                          key={item.name}
-                          values={values}
-                          errors={errors}
-                          scrollToTop={scrollToTop}
-                          value={values[item.name]}
-                          error={errors[item.name]}
-                          initialValues={initialValues}
-                          deleteErrors={() => {
-                            if (errors[item.name]) delete errors[item.name];
-                          }}
-                          handleChange={(e: any) => {
-                            setFieldValue(item.name, e);
-                          }}
-                          setFieldValue={(e, f) => {
-                            setFieldValue(e, f);
-                          }}
-                          setFieldTouched={setFieldTouched}
-                          handleBlur={() => setFieldTouched(item.name, false)}
-                          handleFocus={() => setFieldTouched(item.name, true)}
-                          setDisableFormButtons={setDisableFormButtons}
-                          extraHTML={
-                            (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
-                          }
-                          borderType="bottom"
-                          style={
-                            item.name === 'github_description' && !values.ticketUrl
-                              ? {
-                                  display: 'none'
-                                }
-                              : undefined
-                          }
-                        />
-                      ))}
-                  </div>
+                <div style={{ width: '100%' }}>
+                  {schema
+                    .filter((item: FormField) => item.type !== 'img')
+                    .map((item: FormField) => (
+                      <Input
+                        {...item}
+                        key={item.name}
+                        values={values}
+                        errors={errors}
+                        scrollToTop={scrollToTop}
+                        value={values[item.name]}
+                        error={errors[item.name]}
+                        initialValues={initialValues}
+                        deleteErrors={() => {
+                          if (errors[item.name]) delete errors[item.name];
+                        }}
+                        handleChange={(e: any) => {
+                          setFieldValue(item.name, e);
+                        }}
+                        setFieldValue={(e, f) => {
+                          setFieldValue(e, f);
+                        }}
+                        setFieldTouched={setFieldTouched}
+                        handleBlur={() => setFieldTouched(item.name, false)}
+                        handleFocus={() => setFieldTouched(item.name, true)}
+                        setDisableFormButtons={setDisableFormButtons}
+                        extraHTML={
+                          (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
+                        }
+                        borderType="bottom"
+                        style={
+                          item.name === 'github_description' && !values.ticketUrl
+                            ? {
+                                display: 'none'
+                              }
+                            : undefined
+                        }
+                      />
+                    ))}
+                </div>
               </div>
             ) : props?.newDesign ? (
               <>
@@ -544,8 +543,8 @@ function Form(props: FormProps) {
                                   setAssigneeName('a');
                                 }
                               } else if (valid) {
-                                  NextStepHandler();
-                                }
+                                NextStepHandler();
+                              }
                             }}
                             style={{
                               width:
@@ -567,15 +566,15 @@ function Form(props: FormProps) {
                         )}
                         {schemaData.step > 1 && (
                           <ImageButton
-                              buttonText="Back"
-                              ButtonContainerStyle={{
-                                width: '120px',
-                                height: '42px'
-                              }}
-                              buttonAction={() => {
-                                PreviousStepHandler();
-                                setAssigneeName('');
-                              }}
+                            buttonText="Back"
+                            ButtonContainerStyle={{
+                              width: '120px',
+                              height: '42px'
+                            }}
+                            buttonAction={() => {
+                              PreviousStepHandler();
+                              setAssigneeName('');
+                            }}
                           />
                         )}
                       </div>

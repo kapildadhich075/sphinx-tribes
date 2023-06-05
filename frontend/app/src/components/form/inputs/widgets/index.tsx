@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Widget from './widget';
 import FocusedWidget from './focusedWidget';
@@ -50,7 +50,7 @@ export default function Widgets(props: any) {
       </FadeLeft>
 
       <FadeLeft isMounted={showFocused} dismountCallback={() => setSelected(null)}>
-          <FocusedWidget {...props} setShowFocused={setShowFocused} item={selected} />
+        <FocusedWidget {...props} setShowFocused={setShowFocused} item={selected} />
       </FadeLeft>
     </Wrap>
   );

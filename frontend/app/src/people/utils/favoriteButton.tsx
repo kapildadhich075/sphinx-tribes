@@ -12,13 +12,12 @@ export default function Heart() {
 
   if (loading) {
     return <EuiLoadingSpinner />;
-  } 
-    return (
-      <MaterialIcon
-        onClick={clickIt}
-        style={{ color: '#B0B7BC', cursor: 'pointer', userSelect: 'none' }}
-        icon={selected ? 'favorite' : 'favorite_outline'}
-      />
-    );
-  
+  }
+  return (
+    <MaterialIcon
+      onClick={clickIt}
+      style={{ color: '#B0B7BC', cursor: 'pointer', userSelect: 'none' }}
+      icon={selected ? 'favorite' : 'favorite_outline'}
+    />
+  );
 }

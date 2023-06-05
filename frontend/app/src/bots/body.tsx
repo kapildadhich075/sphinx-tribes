@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { EuiLoadingSpinner , EuiGlobalToastList } from '@elastic/eui';
+import { EuiLoadingSpinner, EuiGlobalToastList } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
 import { observer } from 'mobx-react-lite';
 import NoneSpace from '../people/utils/noneSpace';
 import { Button, Modal, SearchTextInput, Divider } from '../components/common';
 import { useStores } from '../store';
-import { useFuse, useScroll , useIsMobile } from '../hooks';
+import { useFuse, useScroll, useIsMobile } from '../hooks';
 import { colors } from '../config/colors';
 import FadeLeft from '../components/animated/fadeLeft';
 import Bot from './bot';
@@ -78,20 +78,20 @@ function BotBody() {
       // edit
       alert('Bot content cannot be updated right now. Coming soon.');
       return;
-    } 
-      // create
-      try {
-        b = await main.makeBot(v);
-        if (b) {
-          setShowSecret(b.secret);
-          setEditThisBot(b);
-        }
-        setShowCreate(false);
-      } catch (e) {
-        console.error('e', e);
-        alert('Bot could not be saved.');
+    }
+    // create
+    try {
+      b = await main.makeBot(v);
+      if (b) {
+        setShowSecret(b.secret);
+        setEditThisBot(b);
       }
-    
+      setShowCreate(false);
+    } catch (e) {
+      console.error('e', e);
+      alert('Bot could not be saved.');
+    }
+
     loadBots();
   }
 

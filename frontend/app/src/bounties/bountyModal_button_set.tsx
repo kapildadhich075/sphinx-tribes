@@ -83,12 +83,7 @@ function ButtonSet({ showGithubBtn, ...props }) {
               marginRight: '12px'
             }}
           >
-            <img
-              src="/static/tribe_demo.svg"
-              alt="github_ticket"
-              height="32px"
-              width="32px"
-            />
+            <img src="/static/tribe_demo.svg" alt="github_ticket" height="32px" width="32px" />
           </div>
           <EuiText className="ButtonText">
             {props.tribe.slice(0, 14)} {props.tribe.length > 14 && '...'}

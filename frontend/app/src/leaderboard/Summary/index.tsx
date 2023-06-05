@@ -13,22 +13,26 @@ export function Summary({
   bounties: number;
   className?: string;
 }) {
-  return <SummaryContainer className={className}>
-    <EuiStat
-      className="stats"
-      title={`${DollarConverter(sats)}`}
-      titleSize="s"
-      titleColor={colors.light.black500}
-      description={<EuiTextColor color={colors.light.black500}>Total sats earned</EuiTextColor>}
-    />
-    <EuiStat
-      title={bounties}
-      className="stats"
-      titleSize="s"
-      titleColor={colors.light.black500}
-      description={<EuiTextColor color={colors.light.black500}>Total tasks completed</EuiTextColor>}
-    />
-         </SummaryContainer>
+  return (
+    <SummaryContainer className={className}>
+      <EuiStat
+        className="stats"
+        title={`${DollarConverter(sats)}`}
+        titleSize="s"
+        titleColor={colors.light.black500}
+        description={<EuiTextColor color={colors.light.black500}>Total sats earned</EuiTextColor>}
+      />
+      <EuiStat
+        title={bounties}
+        className="stats"
+        titleSize="s"
+        titleColor={colors.light.black500}
+        description={
+          <EuiTextColor color={colors.light.black500}>Total tasks completed</EuiTextColor>
+        }
+      />
+    </SummaryContainer>
+  );
 }
 
 const SummaryContainer = styled.div`

@@ -324,7 +324,8 @@ function FocusedView(props: FocusViewProps) {
   function getExtras(): any {
     if (main.personAssignedWanteds.length) {
       return main.peopleWanteds[selectedIndex].body;
-    } if (person?.extras && main.peopleWanteds) {
+    }
+    if (person?.extras && main.peopleWanteds) {
       return main.peopleWanteds[selectedIndex].body;
     }
 

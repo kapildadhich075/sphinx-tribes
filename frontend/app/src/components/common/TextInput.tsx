@@ -17,19 +17,19 @@ export default function TextInput({
   const color = colors.light;
   return (
     <F label={label}>
-        <R>
-          <FieldText
-            color={color}
-            name="first"
-            value={value || ''}
-            readOnly={readOnly || false}
-            onChange={(e) => onChange(e.target.value)}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            prepend={prepend}
-            style={style}
-          />
-        </R>
+      <R>
+        <FieldText
+          color={color}
+          name="first"
+          value={value || ''}
+          readOnly={readOnly || false}
+          onChange={(e) => onChange(e.target.value)}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          prepend={prepend}
+          style={style}
+        />
+      </R>
     </F>
   );
 }

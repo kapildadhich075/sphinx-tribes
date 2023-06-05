@@ -74,14 +74,14 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
       }}
     >
       <H
-          style={{
-            fontSize: '40px',
-            fontFamily: 'Barlow'
-          }}
+        style={{
+          fontSize: '40px',
+          fontFamily: 'Barlow'
+        }}
       >
-          {props.text}
+        {props.text}
       </H>
-        <C>{props.sub}</C>
+      <C>{props.sub}</C>
       <ButtonContainerMobile>
         {props.buttonText1 && (
           <IconButton

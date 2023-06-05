@@ -5,12 +5,13 @@ import { useStores } from 'store';
 
 export const GetWorkStartupModal = observer(() => {
   const { modals } = useStores();
-				if(modals.startupModal){
-  return (
-        <StartUpModal
-          closeModal={() => modals.setStartupModal(false)}
-          dataObject="getWork"
-          buttonColor="primary"
-        />)
-      }
+  if (modals.startupModal) {
+    return (
+      <StartUpModal
+        closeModal={() => modals.setStartupModal(false)}
+        dataObject="getWork"
+        buttonColor="primary"
+      />
+    );
+  }
 });

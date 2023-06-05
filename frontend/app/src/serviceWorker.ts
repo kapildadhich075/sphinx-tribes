@@ -45,8 +45,7 @@ export function register(config?: Config) {
         // service worker/PWA documentation.
         // This web app is being served cache-first by a service
         // worker. To learn more, visit https://bit.ly/CRA-PWA'
-        navigator.serviceWorker.ready.then(() => {
-        });
+        navigator.serviceWorker.ready.then(() => {});
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);

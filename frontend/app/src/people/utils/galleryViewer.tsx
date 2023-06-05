@@ -27,40 +27,37 @@ export default function GalleryViewer(props) {
   }
 
   return (
-    <Gallery
-        style={{ width: big || wrap ? '100%' : 'fit-content', ...style }}
-        ref={props.innerRef}
-    >
-        {showAll ? (
-          <div style={{ textAlign: 'center' }}>
-            {g.map((ga, i) => (
-              <BigImg big={big} src={ga} cover={cover} key={i} />
-            ))}
-          </div>
-        ) : (
-          <>
-            <Img big={big} src={g[selectedImage]} cover={cover} />
-            {showNav && (
-              <L>
-                <Circ>
-                  <IconButton iconStyle={{ color: '#000' }} icon="chevron_left" onClick={prev} />
-                </Circ>
-              </L>
-            )}
+    <Gallery style={{ width: big || wrap ? '100%' : 'fit-content', ...style }} ref={props.innerRef}>
+      {showAll ? (
+        <div style={{ textAlign: 'center' }}>
+          {g.map((ga, i) => (
+            <BigImg big={big} src={ga} cover={cover} key={i} />
+          ))}
+        </div>
+      ) : (
+        <>
+          <Img big={big} src={g[selectedImage]} cover={cover} />
+          {showNav && (
+            <L>
+              <Circ>
+                <IconButton iconStyle={{ color: '#000' }} icon="chevron_left" onClick={prev} />
+              </Circ>
+            </L>
+          )}
 
-            {showNav && (
-              <R>
-                <Circ>
-                  <IconButton icon="chevron_right" iconStyle={{ color: '#000' }} onClick={next} />
-                </Circ>
-              </R>
-            )}
+          {showNav && (
+            <R>
+              <Circ>
+                <IconButton icon="chevron_right" iconStyle={{ color: '#000' }} onClick={next} />
+              </Circ>
+            </R>
+          )}
 
-            <Label>
-              {selectedImage + 1} / {g.length}
-            </Label>
-          </>
-        )}
+          <Label>
+            {selectedImage + 1} / {g.length}
+          </Label>
+        </>
+      )}
     </Gallery>
   );
 }

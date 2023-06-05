@@ -4,7 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 function DeleteTicketModal({ closeModal, confirmDelete }: DeleteTicketModalProps) {
-  return <EuiOverlayMask>
+  return (
+    <EuiOverlayMask>
       <EuiModal
         onClose={closeModal}
         style={{
@@ -35,7 +36,8 @@ function DeleteTicketModal({ closeModal, confirmDelete }: DeleteTicketModalProps
           </EuiButton>
         </ModalButtonContainer>
       </EuiModal>
-         </EuiOverlayMask>
+    </EuiOverlayMask>
+  );
 }
 
 export default DeleteTicketModal;

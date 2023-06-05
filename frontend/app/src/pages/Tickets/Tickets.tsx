@@ -189,38 +189,38 @@ function BodyComponent() {
         checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
       />
 
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          flexWrap: 'wrap',
+          height: '100%',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          padding: '0px 20px 20px 20px'
+        }}
+      >
+        <PageLoadSpinner show={loadingTop} />
         <div
           style={{
             width: '100%',
             display: 'flex',
-            flexWrap: 'wrap',
-            height: '100%',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-            padding: '0px 20px 20px 20px'
+            flexDirection: 'column',
+            alignItems: 'center',
+            height: '100%'
           }}
         >
-          <PageLoadSpinner show={loadingTop} />
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              height: '100%'
-            }}
-          >
-            <WidgetSwitchViewer
-              checkboxIdToSelectedMap={checkboxIdToSelectedMap}
-              checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
-              onPanelClick={onPanelClick}
-              fromBountyPage
-              selectedWidget={selectedWidget}
-              loading={loading}
-            />
-          </div>
-          <PageLoadSpinner noAnimate show={loadingBottom} />
+          <WidgetSwitchViewer
+            checkboxIdToSelectedMap={checkboxIdToSelectedMap}
+            checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
+            onPanelClick={onPanelClick}
+            fromBountyPage
+            selectedWidget={selectedWidget}
+            loading={loading}
+          />
         </div>
+        <PageLoadSpinner noAnimate show={loadingBottom} />
+      </div>
       {toastsEl}
     </Body>
   );

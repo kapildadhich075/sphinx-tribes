@@ -16,27 +16,29 @@ type Props = LeaderItem & {
 
 const color = colors.light;
 export function LeaerboardItem({ owner_pubkey, total_sats_earned, position }: Props) {
-  return <ItemContainer>
-    <EuiText color={colors.light.text2} className="position">
-      #{position}
-    </EuiText>
-    <UserInfo id={owner_pubkey} />
-    <div className="userSummary">
-      <div className="sats">
-        <PriceOuterContainer
-          price_Text_Color={color.primaryColor.P300}
-          priceBackground={color.primaryColor.P100}
-        >
-          <div className="Price_inner_Container">
-            <EuiText className="Price_Dynamic_Text">{DollarConverter(total_sats_earned)}</EuiText>
-          </div>
-          <div className="Price_SAT_Container">
-            <EuiText className="Price_SAT_Text">SAT</EuiText>
-          </div>
-        </PriceOuterContainer>
+  return (
+    <ItemContainer>
+      <EuiText color={colors.light.text2} className="position">
+        #{position}
+      </EuiText>
+      <UserInfo id={owner_pubkey} />
+      <div className="userSummary">
+        <div className="sats">
+          <PriceOuterContainer
+            price_Text_Color={color.primaryColor.P300}
+            priceBackground={color.primaryColor.P100}
+          >
+            <div className="Price_inner_Container">
+              <EuiText className="Price_Dynamic_Text">{DollarConverter(total_sats_earned)}</EuiText>
+            </div>
+            <div className="Price_SAT_Container">
+              <EuiText className="Price_SAT_Text">SAT</EuiText>
+            </div>
+          </PriceOuterContainer>
+        </div>
       </div>
-    </div>
-         </ItemContainer>
+    </ItemContainer>
+  );
 }
 
 const ItemContainer = styled.div`

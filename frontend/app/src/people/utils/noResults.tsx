@@ -24,9 +24,8 @@ function NoResults() {
         <H>No results</H>
       </div>
     );
-  } 
-    return <PageLoadSpinner show />;
-  
+  }
+  return <PageLoadSpinner show />;
 }
 
 const H = styled.div`

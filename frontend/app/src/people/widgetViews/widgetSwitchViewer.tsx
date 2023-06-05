@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
-import OfferView from "./offerView";
-import WantedView from "./wantedView";
-import PostView from "./postView";
+import OfferView from './offerView';
+import WantedView from './wantedView';
+import PostView from './postView';
 import { useIsMobile } from '../../hooks';
 import { useStores } from '../../store';
 import { widgetConfigs } from '../utils/constants';

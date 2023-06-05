@@ -39,84 +39,84 @@ function BountyDescription(props: BountiesDescriptionProps) {
 
   return (
     <BountyDescriptionContainer style={{ ...props.style }}>
-        <Header>
-          <div className="NameContainer">
-            <NameTag
-              {...props}
-              iconSize={32}
-              owner_pubkey={props.owner_pubkey}
-              img={props.img}
-              id={props.id}
-              widget={props.widget}
-              owner_alias={props.owner_alias}
-              isPaid={props?.isPaid}
-            />
-          </div>
-        </Header>
-        <Description isPaid={props?.isPaid} color={color}>
-          <div
-            className="DescriptionContainer"
+      <Header>
+        <div className="NameContainer">
+          <NameTag
+            {...props}
+            iconSize={32}
+            owner_pubkey={props.owner_pubkey}
+            img={props.img}
+            id={props.id}
+            widget={props.widget}
+            owner_alias={props.owner_alias}
+            isPaid={props?.isPaid}
+          />
+        </div>
+      </Header>
+      <Description isPaid={props?.isPaid} color={color}>
+        <div
+          className="DescriptionContainer"
+          style={{
+            width: descriptionImage ? '334px' : '481px'
+          }}
+        >
+          <EuiText
+            className="DescriptionTitle"
             style={{
-              width: descriptionImage ? '334px' : '481px'
+              color: props.isPaid ? color.grayish.G50 : color.grayish.G10
             }}
           >
-            <EuiText
-              className="DescriptionTitle"
-              style={{
-                color: props.isPaid ? color.grayish.G50 : color.grayish.G10
-              }}
-            >
-              {props.title?.slice(0, descriptionImage ? 80 : 120)}
-              {props.title?.length > 80 ? '...' : ''}
-            </EuiText>
+            {props.title?.slice(0, descriptionImage ? 80 : 120)}
+            {props.title?.length > 80 ? '...' : ''}
+          </EuiText>
+        </div>
+        {descriptionImage && (
+          <div className="DescriptionImage">
+            <img
+              src={descriptionImage}
+              alt="desc"
+              style={{ objectFit: 'cover' }}
+              height="100%"
+              width="100%"
+            />
           </div>
-          {descriptionImage && (
-            <div className="DescriptionImage">
+        )}
+      </Description>
+      <LanguageContainer>
+        {replitLink && (
+          <div onClick={() => window.open(replitLink[0])} style={{ display: 'flex' }}>
+            <CodingLabels
+              key={0}
+              border={`1px solid ${color.grayish.G06}`}
+              LabelColor={color.grayish.G300}
+              background={color.pureWhite}
+              color={color}
+            >
               <img
-                src={descriptionImage}
-                alt="desc"
-                style={{ objectFit: 'cover' }}
-                height="100%"
-                width="100%"
+                style={{ marginRight: '5px' }}
+                src="/static/replit.png"
+                alt="replit_image"
+                height="15px"
+                width="15px"
               />
-            </div>
-          )}
-        </Description>
-        <LanguageContainer>
-          {replitLink && (
-            <div onClick={() => window.open(replitLink[0])} style={{ display: 'flex' }}>
-              <CodingLabels
-                key={0}
-                border={`1px solid ${color.grayish.G06}`}
-                LabelColor={color.grayish.G300}
-                background={color.pureWhite}
-                color={color}
-              >
-                <img
-                  style={{ marginRight: '5px' }}
-                  src="/static/replit.png"
-                  alt="replit_image"
-                  height="15px"
-                  width="15px"
-                />
-                <EuiText className="LanguageText">Replit</EuiText>
-              </CodingLabels>
-            </div>
-          )}
-          {dataValue &&
-            dataValue?.length > 0 &&
-            dataValue?.map((lang: any, index) => (
-              <CodingLabels
-                key={index}
-                border={props.isPaid ? `1px solid ${color.grayish.G06}` : lang?.border}
-                LabelColor={props.isPaid ? color.grayish.G300 : lang?.color}
-                background={props.isPaid ? color.grayish.G800 : lang?.background}
-                color={color}
-              >
-                <EuiText className="LanguageText">{lang?.label}</EuiText>
-              </CodingLabels>
-            ))}
-        </LanguageContainer>
+              <EuiText className="LanguageText">Replit</EuiText>
+            </CodingLabels>
+          </div>
+        )}
+        {dataValue &&
+          dataValue?.length > 0 &&
+          dataValue?.map((lang: any, index) => (
+            <CodingLabels
+              key={index}
+              border={props.isPaid ? `1px solid ${color.grayish.G06}` : lang?.border}
+              LabelColor={props.isPaid ? color.grayish.G300 : lang?.color}
+              background={props.isPaid ? color.grayish.G800 : lang?.background}
+              color={color}
+            >
+              <EuiText className="LanguageText">{lang?.label}</EuiText>
+            </CodingLabels>
+          ))}
+      </LanguageContainer>
     </BountyDescriptionContainer>
   );
 }

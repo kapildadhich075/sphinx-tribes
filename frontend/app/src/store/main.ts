@@ -355,7 +355,6 @@ export class MainStore {
     await api.post('save', payload, {
       'Content-Type': 'application/json'
     });
-    
   }
 
   async getTorSaveURL(method: string, path: string, body: any): Promise<string> {
@@ -627,9 +626,8 @@ export class MainStore {
       if (queryParams.search) {
         // if search and no results, return nothing
         return [];
-      } 
-        return currentList;
-      
+      }
+      return currentList;
     }
 
     if (queryParams && queryParams.resetPage) {
@@ -668,9 +666,8 @@ export class MainStore {
           const admin_keys = response?.pubkeys;
           if (admin_keys !== null) {
             return !!admin_keys.find((value) => value === self.owner_pubkey);
-          } 
-            return false;
-          
+          }
+          return false;
         } catch (error) {
           return false;
         }
@@ -828,28 +825,27 @@ export class MainStore {
       });
 
       return [response, error];
-    } 
-      // fork between tor users non authentiacted and not
-      if (this.isTorSave() || info.url.startsWith('http://')) {
-        this.submitFormViaApp(method, path, body);
-        return [null, null];
+    }
+    // fork between tor users non authentiacted and not
+    if (this.isTorSave() || info.url.startsWith('http://')) {
+      this.submitFormViaApp(method, path, body);
+      return [null, null];
+    }
+
+    const response = await fetch(`${URL}/${path}`, {
+      method,
+      body: JSON.stringify({
+        // use docker host (tribes.sphinx), because relay will post to it
+        host: getHostIncludingDockerHosts(),
+        ...body
+      }),
+      headers: {
+        'x-jwt': info.jwt,
+        'Content-Type': 'application/json'
       }
+    });
 
-      const response = await fetch(`${URL}/${path}`, {
-        method,
-        body: JSON.stringify({
-          // use docker host (tribes.sphinx), because relay will post to it
-          host: getHostIncludingDockerHosts(),
-          ...body
-        }),
-        headers: {
-          'x-jwt': info.jwt,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      return [response, error];
-    
+    return [response, error];
   }
 
   async submitFormViaApp(method: string, path: string, body: any) {

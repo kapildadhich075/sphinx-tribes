@@ -168,7 +168,7 @@ function RenderWidgets({ widget }: RenderWidgetsProps) {
         />
       );
 
-      return {panels};
+      return { panels };
     }
 
     switch (selectedWidget) {

@@ -39,79 +39,79 @@ function BountyPrice(props: BountiesPriceProps) {
 
   return (
     <PriceContainer
-        style={{
-          ...props.style
-        }}
+      style={{
+        ...props.style
+      }}
     >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
-          <div className="PriceStaticTextContainer">
-            <EuiText className="PriceStaticText">$@</EuiText>
-          </div>
-          {props.priceMin ? (
-            <PriceOuterContainer
-              price_Text_Color={color.primaryColor.P300}
-              priceBackground={color.primaryColor.P100}
-            >
-              <div className="Price_inner_Container">
-                <EuiText className="Price_Dynamic_Text">{DollarConverter(props?.priceMin)}</EuiText>
-              </div>
-              <div className="Price_SAT_Container">
-                <EuiText className="Price_SAT_Text">SAT</EuiText>
-              </div>
-            </PriceOuterContainer>
-          ) : (
-            <PriceOuterContainer
-              price_Text_Color={color.primaryColor.P300}
-              priceBackground={color.primaryColor.P100}
-            >
-              <div className="Price_inner_Container">
-                <EuiText className="Price_Dynamic_Text">{DollarConverter(props?.price)}</EuiText>
-              </div>
-
-              <div className="Price_SAT_Container">
-                <EuiText className="Price_SAT_Text">SAT</EuiText>
-              </div>
-            </PriceOuterContainer>
-          )}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        <div className="PriceStaticTextContainer">
+          <EuiText className="PriceStaticText">$@</EuiText>
         </div>
-        <USDContainer>
-          {props.priceMin ? (
-            <EuiText className="USD_Price">
-              {satToUsd(props?.priceMin)}
-              USD
-            </EuiText>
-          ) : (
-            <EuiText className="USD_Price">{satToUsd(props?.price)} USD </EuiText>
-          )}
-        </USDContainer>
-        {session && (
-          <SessionContainer session_text_color={color.grayish.G10}>
-            <EuiText className="Session_Text">
-              <span
-                className="EST_Text"
-                style={{
-                  color: color.grayish.G100
-                }}
-              >
-                Est:
-              </span>{' '}
-              &nbsp;&nbsp;&nbsp;
-              {session.value === 'Not Sure' ? (
-                <span>{session.value}</span>
-              ) : (
-                <span>
-                  <span className="EST_Value">{session.value.slice(0, 1)}</span>
-                  {session.value.slice(1)}
-                </span>
-              )}
-            </EuiText>
-          </SessionContainer>
+        {props.priceMin ? (
+          <PriceOuterContainer
+            price_Text_Color={color.primaryColor.P300}
+            priceBackground={color.primaryColor.P100}
+          >
+            <div className="Price_inner_Container">
+              <EuiText className="Price_Dynamic_Text">{DollarConverter(props?.priceMin)}</EuiText>
+            </div>
+            <div className="Price_SAT_Container">
+              <EuiText className="Price_SAT_Text">SAT</EuiText>
+            </div>
+          </PriceOuterContainer>
+        ) : (
+          <PriceOuterContainer
+            price_Text_Color={color.primaryColor.P300}
+            priceBackground={color.primaryColor.P100}
+          >
+            <div className="Price_inner_Container">
+              <EuiText className="Price_Dynamic_Text">{DollarConverter(props?.price)}</EuiText>
+            </div>
+
+            <div className="Price_SAT_Container">
+              <EuiText className="Price_SAT_Text">SAT</EuiText>
+            </div>
+          </PriceOuterContainer>
         )}
+      </div>
+      <USDContainer>
+        {props.priceMin ? (
+          <EuiText className="USD_Price">
+            {satToUsd(props?.priceMin)}
+            USD
+          </EuiText>
+        ) : (
+          <EuiText className="USD_Price">{satToUsd(props?.price)} USD </EuiText>
+        )}
+      </USDContainer>
+      {session && (
+        <SessionContainer session_text_color={color.grayish.G10}>
+          <EuiText className="Session_Text">
+            <span
+              className="EST_Text"
+              style={{
+                color: color.grayish.G100
+              }}
+            >
+              Est:
+            </span>{' '}
+            &nbsp;&nbsp;&nbsp;
+            {session.value === 'Not Sure' ? (
+              <span>{session.value}</span>
+            ) : (
+              <span>
+                <span className="EST_Value">{session.value.slice(0, 1)}</span>
+                {session.value.slice(1)}
+              </span>
+            )}
+          </EuiText>
+        </SessionContainer>
+      )}
     </PriceContainer>
   );
 }

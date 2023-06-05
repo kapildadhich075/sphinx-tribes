@@ -63,209 +63,65 @@ function BountyHeader({
     );
   }, [checkboxIdToSelectedMapLanguage, checkboxIdToSelectedMap]);
 
-				if(!isMobile){
-  return (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-            minHeight: '80px',
-            alignItems: 'center',
-            position: 'sticky',
-            top: 0,
-            zIndex: 1,
-            background: 'inherit',
-            boxShadow: scrollValue ? `0px 1px 6px ${color.black100}` : '',
-            borderBottom: scrollValue
-              ? `1px solid ${color.grayish.G600}`
-              : `0px solid ${color.grayish.G600}`
-          }}
-        >
-          <BountyHeaderDesk>
-            <B>
-              <PostBounty widget={selectedWidget} />
-              <IconButton
-                width={150}
-                height={isMobile ? 36 : 48}
-                text="Leaderboard"
-                onClick={() => {
-                  history.push('/leaderboard');
-                }}
-                style={{
-                  marginLeft: '10px'
-                }}
-              />
-              <SearchBar
-                name="search"
-                type="search"
-                placeholder={`Search across ${activeBounty} Bounties`}
-                value={ui.searchText}
-                style={{
-                  width: 298,
-                  height: 48,
-                  background: color.grayish.G600,
-                  marginLeft: '16px',
-                  fontFamily: 'Barlow',
-                  color: color.text2
-                }}
-                onChange={(e) => {
-                  ui.setSearchText(e);
-                }}
-                iconStyle={{
-                  top: '13px'
-                }}
-                TextColor={color.grayish.G100}
-                TextColorHover={color.grayish.G50}
-                border={`1px solid ${color.grayish.G600}`}
-                borderHover={`1px solid ${color.grayish.G400}`}
-                borderActive={`1px solid ${color.light_blue100}`}
-                iconColor={color.grayish.G300}
-                iconColorHover={color.grayish.G50}
-              />
-
-              <EuiPopover
-                button={
-                  <FilterContainer onClick={onButtonClick} color={color}>
-                    <div className="filterImageContainer">
-                      <MaterialIcon
-                        className="materialIconImage"
-                        icon="tune"
-                        style={{
-                          color: isPopoverOpen ? color.grayish.G10 : ''
-                        }}
-                      />
-                    </div>
-                    <EuiText
-                      className="filterText"
-                      style={{
-                        color: isPopoverOpen ? color.grayish.G10 : ''
-                      }}
-                    >
-                      Filter
-                    </EuiText>
-                  </FilterContainer>
-                }
-                panelStyle={{
-                  border: 'none',
-                  boxShadow: `0px 1px 20px ${color.black90}`,
-                  background: `${color.pureWhite}`,
-                  borderRadius: '6px',
-                  minWidth: '432px',
-                  minHeight: '304px',
-                  marginTop: '0px',
-                  marginLeft: '20px'
-                }}
-                isOpen={isPopoverOpen}
-                closePopover={closePopover}
-                panelClassName="yourClassNameHere"
-                panelPaddingSize="none"
-                anchorPosition="downLeft"
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row'
-                  }}
-                >
-                  <EuiPopOverCheckboxLeft className="CheckboxOuter" color={color}>
-                    <EuiText className="leftBoxHeading">STATUS</EuiText>
-                    <EuiCheckboxGroup
-                      options={Status}
-                      idToSelectedMap={checkboxIdToSelectedMap}
-                      onChange={(id) => {
-                        onChangeStatus(id);
-                      }}
-                    />
-                  </EuiPopOverCheckboxLeft>
-                  <PopOverRightBox color={color}>
-                    <EuiText className="rightBoxHeading">Tags</EuiText>
-                    <EuiPopOverCheckboxRight className="CheckboxOuter" color={color}>
-                      <EuiCheckboxGroup
-                        options={Coding_Languages}
-                        idToSelectedMap={checkboxIdToSelectedMapLanguage}
-                        onChange={(id) => {
-                          onChangeLanguage(id);
-                        }}
-                      />
-                    </EuiPopOverCheckboxRight>
-                  </PopOverRightBox>
-                </div>
-              </EuiPopover>
-              {filterCountNumber > 0 && (
-                <FilterCount color={color}>
-                  <EuiText className="filterCountText">{filterCountNumber}</EuiText>
-                </FilterCount>
-              )}
-            </B>
-            <D color={color}>
-              <EuiText className="DText" color={color.grayish.G200}>
-                Developers
-              </EuiText>
-              <div className="ImageOuterContainer">
-                {peopleList &&
-                  peopleList?.slice(0, 3).map((val, index) => (
-                    <DevelopersImageContainer
-                      color={color}
-                      key={index}
-                      style={{
-                        zIndex: 3 - index,
-                        marginLeft: index > 0 ? '-14px' : '',
-                        objectFit: 'cover'
-                      }}
-                    >
-                      <img
-                        height="23px"
-                        width="23px"
-                        src={val?.img || '/static/person_placeholder.png'}
-                        alt=""
-                        style={{
-                          borderRadius: '50%'
-                        }}
-                      />
-                    </DevelopersImageContainer>
-                  ))}
-              </div>
-              <EuiText
-                style={{
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  fontFamily: 'Barlow',
-                  color: color.black400
-                }}
-              >
-                {developerCount}
-              </EuiText>
-            </D>
-          </BountyHeaderDesk>
-        </div>)
-} return( 
-        <BountyHeaderMobile>
-          <LargeActionContainer>
+  if (!isMobile) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          minHeight: '80px',
+          alignItems: 'center',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          background: 'inherit',
+          boxShadow: scrollValue ? `0px 1px 6px ${color.black100}` : '',
+          borderBottom: scrollValue
+            ? `1px solid ${color.grayish.G600}`
+            : `0px solid ${color.grayish.G600}`
+        }}
+      >
+        <BountyHeaderDesk>
+          <B>
+            <PostBounty widget={selectedWidget} />
+            <IconButton
+              width={150}
+              height={isMobile ? 36 : 48}
+              text="Leaderboard"
+              onClick={() => {
+                history.push('/leaderboard');
+              }}
+              style={{
+                marginLeft: '10px'
+              }}
+            />
             <SearchBar
               name="search"
               type="search"
               placeholder={`Search across ${activeBounty} Bounties`}
               value={ui.searchText}
               style={{
-                width: 240,
-                height: 32,
-                background: 'transparent',
-                fontFamily: 'Barlow'
+                width: 298,
+                height: 48,
+                background: color.grayish.G600,
+                marginLeft: '16px',
+                fontFamily: 'Barlow',
+                color: color.text2
               }}
               onChange={(e) => {
                 ui.setSearchText(e);
               }}
               iconStyle={{
-                top: '4px'
+                top: '13px'
               }}
-              TextColor={color.grayish.G400}
-              TextColorHover={color.grayish.G100}
-              border={`1px solid ${color.grayish.G500}`}
+              TextColor={color.grayish.G100}
+              TextColorHover={color.grayish.G50}
+              border={`1px solid ${color.grayish.G600}`}
               borderHover={`1px solid ${color.grayish.G400}`}
               borderActive={`1px solid ${color.light_blue100}`}
               iconColor={color.grayish.G300}
-              iconColorHover={color.grayish.G100}
+              iconColorHover={color.grayish.G50}
             />
 
             <EuiPopover
@@ -336,35 +192,31 @@ function BountyHeader({
                 </PopOverRightBox>
               </div>
             </EuiPopover>
-          </LargeActionContainer>
-          <ShortActionContainer>
-            <PostBounty widget={selectedWidget} />
-            <IconButton
-              width={150}
-              height={isMobile ? 36 : 48}
-              text="Leaderboard"
-              onClick={() => {
-                history.push('/leaderboard');
-              }}
-              style={{
-                marginLeft: '10px',
-                marginRight: 'auto'
-              }}
-            />
-            <DevelopersContainerMobile>
+            {filterCountNumber > 0 && (
+              <FilterCount color={color}>
+                <EuiText className="filterCountText">{filterCountNumber}</EuiText>
+              </FilterCount>
+            )}
+          </B>
+          <D color={color}>
+            <EuiText className="DText" color={color.grayish.G200}>
+              Developers
+            </EuiText>
+            <div className="ImageOuterContainer">
               {peopleList &&
                 peopleList?.slice(0, 3).map((val, index) => (
                   <DevelopersImageContainer
-                    key={index}
                     color={color}
+                    key={index}
                     style={{
                       zIndex: 3 - index,
-                      marginLeft: index > 0 ? '-14px' : ''
+                      marginLeft: index > 0 ? '-14px' : '',
+                      objectFit: 'cover'
                     }}
                   >
                     <img
-                      height="20px"
-                      width="20px"
+                      height="23px"
+                      width="23px"
                       src={val?.img || '/static/person_placeholder.png'}
                       alt=""
                       style={{
@@ -373,22 +225,170 @@ function BountyHeader({
                     />
                   </DevelopersImageContainer>
                 ))}
+            </div>
+            <EuiText
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                fontFamily: 'Barlow',
+                color: color.black400
+              }}
+            >
+              {developerCount}
+            </EuiText>
+          </D>
+        </BountyHeaderDesk>
+      </div>
+    );
+  }
+  return (
+    <BountyHeaderMobile>
+      <LargeActionContainer>
+        <SearchBar
+          name="search"
+          type="search"
+          placeholder={`Search across ${activeBounty} Bounties`}
+          value={ui.searchText}
+          style={{
+            width: 240,
+            height: 32,
+            background: 'transparent',
+            fontFamily: 'Barlow'
+          }}
+          onChange={(e) => {
+            ui.setSearchText(e);
+          }}
+          iconStyle={{
+            top: '4px'
+          }}
+          TextColor={color.grayish.G400}
+          TextColorHover={color.grayish.G100}
+          border={`1px solid ${color.grayish.G500}`}
+          borderHover={`1px solid ${color.grayish.G400}`}
+          borderActive={`1px solid ${color.light_blue100}`}
+          iconColor={color.grayish.G300}
+          iconColorHover={color.grayish.G100}
+        />
+
+        <EuiPopover
+          button={
+            <FilterContainer onClick={onButtonClick} color={color}>
+              <div className="filterImageContainer">
+                <MaterialIcon
+                  className="materialIconImage"
+                  icon="tune"
+                  style={{
+                    color: isPopoverOpen ? color.grayish.G10 : ''
+                  }}
+                />
+              </div>
               <EuiText
+                className="filterText"
                 style={{
-                  fontSize: '14px',
-                  fontFamily: 'Barlow',
-                  fontWeight: 500,
-                  color: color.black400
+                  color: isPopoverOpen ? color.grayish.G10 : ''
                 }}
               >
-                {developerCount}
+                Filter
               </EuiText>
-            </DevelopersContainerMobile>
-          </ShortActionContainer>
-        </BountyHeaderMobile>
-      
+            </FilterContainer>
+          }
+          panelStyle={{
+            border: 'none',
+            boxShadow: `0px 1px 20px ${color.black90}`,
+            background: `${color.pureWhite}`,
+            borderRadius: '6px',
+            minWidth: '432px',
+            minHeight: '304px',
+            marginTop: '0px',
+            marginLeft: '20px'
+          }}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          panelClassName="yourClassNameHere"
+          panelPaddingSize="none"
+          anchorPosition="downLeft"
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row'
+            }}
+          >
+            <EuiPopOverCheckboxLeft className="CheckboxOuter" color={color}>
+              <EuiText className="leftBoxHeading">STATUS</EuiText>
+              <EuiCheckboxGroup
+                options={Status}
+                idToSelectedMap={checkboxIdToSelectedMap}
+                onChange={(id) => {
+                  onChangeStatus(id);
+                }}
+              />
+            </EuiPopOverCheckboxLeft>
+            <PopOverRightBox color={color}>
+              <EuiText className="rightBoxHeading">Tags</EuiText>
+              <EuiPopOverCheckboxRight className="CheckboxOuter" color={color}>
+                <EuiCheckboxGroup
+                  options={Coding_Languages}
+                  idToSelectedMap={checkboxIdToSelectedMapLanguage}
+                  onChange={(id) => {
+                    onChangeLanguage(id);
+                  }}
+                />
+              </EuiPopOverCheckboxRight>
+            </PopOverRightBox>
+          </div>
+        </EuiPopover>
+      </LargeActionContainer>
+      <ShortActionContainer>
+        <PostBounty widget={selectedWidget} />
+        <IconButton
+          width={150}
+          height={isMobile ? 36 : 48}
+          text="Leaderboard"
+          onClick={() => {
+            history.push('/leaderboard');
+          }}
+          style={{
+            marginLeft: '10px',
+            marginRight: 'auto'
+          }}
+        />
+        <DevelopersContainerMobile>
+          {peopleList &&
+            peopleList?.slice(0, 3).map((val, index) => (
+              <DevelopersImageContainer
+                key={index}
+                color={color}
+                style={{
+                  zIndex: 3 - index,
+                  marginLeft: index > 0 ? '-14px' : ''
+                }}
+              >
+                <img
+                  height="20px"
+                  width="20px"
+                  src={val?.img || '/static/person_placeholder.png'}
+                  alt=""
+                  style={{
+                    borderRadius: '50%'
+                  }}
+                />
+              </DevelopersImageContainer>
+            ))}
+          <EuiText
+            style={{
+              fontSize: '14px',
+              fontFamily: 'Barlow',
+              fontWeight: 500,
+              color: color.black400
+            }}
+          >
+            {developerCount}
+          </EuiText>
+        </DevelopersContainerMobile>
+      </ShortActionContainer>
+    </BountyHeaderMobile>
   );
-
 }
 
 export default observer(BountyHeader);

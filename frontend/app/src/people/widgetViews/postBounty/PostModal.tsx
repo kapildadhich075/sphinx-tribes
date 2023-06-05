@@ -50,56 +50,55 @@ export const PostModal: FC<PostModalProps> = observer(
 
     if (isMobile && isOpen) {
       return (
-            <Modal visible={isOpen} fill>
-              <FocusedView
-                person={person}
-                canEdit={!canEdit}
-                selectedIndex={focusIndex}
-                config={config}
-                onSuccess={successHandler}
-                goBack={closeHandler}
-              />
-            </Modal>
+        <Modal visible={isOpen} fill>
+          <FocusedView
+            person={person}
+            canEdit={!canEdit}
+            selectedIndex={focusIndex}
+            config={config}
+            onSuccess={successHandler}
+            goBack={closeHandler}
+          />
+        </Modal>
       );
-          }
+    }
 
-					if(isOpen){
-    return (
-          <Modal
-            visible={isOpen}
-            style={{
-              height: '100%'
-            }}
-            envStyle={{
-              marginTop: isMobile ? 64 : 0,
-              background: color.pureWhite,
-              zIndex: 20,
-              ...(config?.modalStyle ?? {}),
-              maxHeight: '100%',
-              borderRadius: '10px'
-            }}
-            overlayClick={closeHandler}
-            bigCloseImage={closeHandler}
-            bigCloseImageStyle={{
-              top: '-18px',
-              right: '-18px',
-              background: '#000',
-              borderRadius: '50%'
-            }}
-          >
-            <FocusedView
-              ReCallBounties={ReCallBounties}
-              newDesign
-              person={person}
-              canEdit={!canEdit}
-              selectedIndex={focusIndex}
-              config={config}
-              onSuccess={successHandler}
-              goBack={closeHandler}
-            />
-          </Modal>
-        
-    );
+    if (isOpen) {
+      return (
+        <Modal
+          visible={isOpen}
+          style={{
+            height: '100%'
+          }}
+          envStyle={{
+            marginTop: isMobile ? 64 : 0,
+            background: color.pureWhite,
+            zIndex: 20,
+            ...(config?.modalStyle ?? {}),
+            maxHeight: '100%',
+            borderRadius: '10px'
+          }}
+          overlayClick={closeHandler}
+          bigCloseImage={closeHandler}
+          bigCloseImageStyle={{
+            top: '-18px',
+            right: '-18px',
+            background: '#000',
+            borderRadius: '50%'
+          }}
+        >
+          <FocusedView
+            ReCallBounties={ReCallBounties}
+            newDesign
+            person={person}
+            canEdit={!canEdit}
+            selectedIndex={focusIndex}
+            config={config}
+            onSuccess={successHandler}
+            goBack={closeHandler}
+          />
+        </Modal>
+      );
+    }
   }
-	}
 );

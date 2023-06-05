@@ -186,55 +186,55 @@ function MobileView(props: CodingBountiesProps) {
                 )}
                 {bountyPaid && (
                   <PaidStatusPopover
-                      color={color}
-                      isPaidStatusPopOver={isPaidStatusPopOver}
-                      isPaidStatusBadgeInfo={isPaidStatusBadgeInfo}
+                    color={color}
+                    isPaidStatusPopOver={isPaidStatusPopOver}
+                    isPaidStatusBadgeInfo={isPaidStatusBadgeInfo}
+                    style={{
+                      opacity: isPaidStatusPopOver ? 1 : 0,
+                      transition: 'all ease 1s'
+                    }}
+                  >
+                    <div
+                      className="PaidStatusContainer"
                       style={{
+                        borderRadius: isPaidStatusBadgeInfo ? '6px 6px 0px 0px' : '6px',
                         opacity: isPaidStatusPopOver ? 1 : 0,
                         transition: 'all ease 1s'
                       }}
-                  >
-                      <div
-                        className="PaidStatusContainer"
-                        style={{
-                          borderRadius: isPaidStatusBadgeInfo ? '6px 6px 0px 0px' : '6px',
-                          opacity: isPaidStatusPopOver ? 1 : 0,
-                          transition: 'all ease 1s'
-                        }}
-                      >
-                        <div className="imageContainer">
-                          <img
-                            src="/static/verified_check_icon.svg"
-                            alt="check icon"
-                            height="100%"
-                            width="100%"
-                          />
-                        </div>
-                        <EuiText className="PaidStatus">Bounty Paid</EuiText>
-                      </div>
-                      <div
-                        className="ExtraBadgeInfo"
-                        style={{
-                          opacity: isPaidStatusBadgeInfo ? 1 : 0,
-                          transition: 'all ease 1s'
-                        }}
-                      >
-                        <div className="imageContainer">
-                          <img
-                            src="/static/green_checked_icon.svg"
-                            alt=""
-                            height="100%"
-                            width="100%"
-                          />
-                        </div>
+                    >
+                      <div className="imageContainer">
                         <img
-                          src={awardDetails?.image !== '' && awardDetails.image}
-                          alt="award_icon"
-                          height="40px"
-                          width="40px"
+                          src="/static/verified_check_icon.svg"
+                          alt="check icon"
+                          height="100%"
+                          width="100%"
                         />
-                        <EuiText className="badgeText">Badge Awarded</EuiText>
                       </div>
+                      <EuiText className="PaidStatus">Bounty Paid</EuiText>
+                    </div>
+                    <div
+                      className="ExtraBadgeInfo"
+                      style={{
+                        opacity: isPaidStatusBadgeInfo ? 1 : 0,
+                        transition: 'all ease 1s'
+                      }}
+                    >
+                      <div className="imageContainer">
+                        <img
+                          src="/static/green_checked_icon.svg"
+                          alt=""
+                          height="100%"
+                          width="100%"
+                        />
+                      </div>
+                      <img
+                        src={awardDetails?.image !== '' && awardDetails.image}
+                        alt="award_icon"
+                        height="40px"
+                        width="40px"
+                      />
+                      <EuiText className="badgeText">Badge Awarded</EuiText>
+                    </div>
                   </PaidStatusPopover>
                 )}
 
@@ -968,12 +968,7 @@ function MobileView(props: CodingBountiesProps) {
                   color={color}
                 >
                   <div className="UnassignedPersonContainer">
-                    <img
-                      src="/static/unassigned_profile.svg"
-                      alt=""
-                      height="100%"
-                      width="100%"
-                    />
+                    <img src="/static/unassigned_profile.svg" alt="" height="100%" width="100%" />
                   </div>
                   <div className="UnassignedPersonalDetailContainer">
                     <IconButton

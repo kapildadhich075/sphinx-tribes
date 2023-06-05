@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { EuiButton } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
-import Input from "..";
+import Input from '..';
 import WidgetList from './widgetList';
 import { FocusedWidgetProps } from './interfaces';
 

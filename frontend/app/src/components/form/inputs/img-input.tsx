@@ -98,7 +98,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
                     <Image
                       style={{
                         backgroundImage: `url(${
-                          picsrc || (value || (uploading ? '' : defaultIcon))
+                          picsrc || value || (uploading ? '' : defaultIcon)
                         })`,
                         ...addedStyle
                       }}
@@ -138,7 +138,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
                     <Image
                       style={{
                         backgroundImage: `url(${
-                          picsrc || (value || (uploading ? '' : defaultIcon))
+                          picsrc || value || (uploading ? '' : defaultIcon)
                         })`,
                         ...addedStyle
                       }}

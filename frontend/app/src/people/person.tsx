@@ -60,14 +60,14 @@ export default function Person(props: PersonProps) {
                 <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                   {!hideActions && owner_pubkey ? (
                     <a href={qrString}>
-                        <Button
-                          text="Connect"
-                          color="white"
-                          leadingIcon="open_in_new"
-                          iconSize={16}
-                          style={{ marginTop: 12 }}
-                          onClick={(e) => e.stopPropagation()}
-                        />
+                      <Button
+                        text="Connect"
+                        color="white"
+                        leadingIcon="open_in_new"
+                        iconSize={16}
+                        style={{ marginTop: 12 }}
+                        onClick={(e) => e.stopPropagation()}
+                      />
                     </a>
                   ) : (
                     <div style={{ height: 30 }} />
@@ -100,16 +100,16 @@ export default function Person(props: PersonProps) {
           <Row style={{ justifyContent: 'space-between', alignItems: 'center', height: 50 }}>
             {owner_pubkey ? (
               <Button
-                  text="Connect"
-                  color="clear"
-                  iconStyle={{ color: '#B0B7BC' }}
-                  endingIcon="open_in_new"
-                  style={{ fontSize: 13, fontWeight: 500 }}
-                  iconSize={16}
-                  onClick={(e) => {
-                    setShowQR(true);
-                    e.stopPropagation();
-                  }}
+                text="Connect"
+                color="clear"
+                iconStyle={{ color: '#B0B7BC' }}
+                endingIcon="open_in_new"
+                style={{ fontSize: 13, fontWeight: 500 }}
+                iconSize={16}
+                onClick={(e) => {
+                  setShowQR(true);
+                  e.stopPropagation();
+                }}
               />
             ) : (
               <div />

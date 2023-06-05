@@ -143,27 +143,27 @@ export default function DesktopView(props: CodingViewProps) {
               {labels?.length > 0 &&
                 labels?.map((x: any) => (
                   <div
-                      style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        height: '22px',
-                        minWidth: 'fit-content',
-                        backgroundColor: color.grayish.G1000,
-                        border: `1px solid ${color.grayish.G70}`,
-                        padding: '3px 10px',
-                        borderRadius: '20px',
-                        marginRight: '3px',
-                        boxShadow: `1px 1px ${color.grayish.G70}`
-                      }}
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      height: '22px',
+                      minWidth: 'fit-content',
+                      backgroundColor: color.grayish.G1000,
+                      border: `1px solid ${color.grayish.G70}`,
+                      padding: '3px 10px',
+                      borderRadius: '20px',
+                      marginRight: '3px',
+                      boxShadow: `1px 1px ${color.grayish.G70}`
+                    }}
                   >
-                      <div
-                        style={{
-                          fontSize: '10px',
-                          color: color.black300
-                        }}
-                      >
-                        {x.label}
-                      </div>
+                    <div
+                      style={{
+                        fontSize: '10px',
+                        color: color.black300
+                      }}
+                    >
+                      {x.label}
+                    </div>
                   </div>
                 ))}
             </div>

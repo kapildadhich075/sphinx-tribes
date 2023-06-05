@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ModalProps } from 'components/interfaces';
 import FadeLeft from '../animated/fadeLeft';
-import { IconButton , Portal } from '.';
+import { IconButton, Portal } from '.';
 import { colors } from '../../config/colors';
 
 export default function Modal(props: ModalProps) {
@@ -58,12 +58,7 @@ export default function Modal(props: ModalProps) {
           overflowY: 'auto'
         }}
       >
-        <Env
-          role="alertdialog"
-          aria-modal
-          style={{ ...fillStyle, ...envStyle }}
-          color={color}
-        >
+        <Env role="alertdialog" aria-modal style={{ ...fillStyle, ...envStyle }} color={color}>
           {close && (
             <X color={color}>
               <IconButton onClick={close} size={20} icon="close" />

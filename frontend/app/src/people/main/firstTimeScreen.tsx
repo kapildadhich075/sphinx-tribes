@@ -51,8 +51,7 @@ export default function FirstTimeScreen() {
             submitText: 'Submit',
             schema: firstScreenSchema
           }}
-          onSuccess={() => {
-          }}
+          onSuccess={() => {}}
         />
       </div>
     </Modal>

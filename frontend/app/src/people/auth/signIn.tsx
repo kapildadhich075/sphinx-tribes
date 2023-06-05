@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useObserver , observer } from 'mobx-react-lite';
+import { useObserver, observer } from 'mobx-react-lite';
 import styled from 'styled-components';
 import { AuthProps } from 'people/interfaces';
 import { useStores } from '../../store';

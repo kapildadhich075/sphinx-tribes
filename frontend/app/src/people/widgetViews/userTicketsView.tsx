@@ -9,7 +9,7 @@ import { BountyModal } from 'people/main/BountyModal/BountyModal';
 import DeleteTicketModal from './deleteModal';
 import { colors } from '../../config/colors';
 import { bountyHeaderFilter, bountyHeaderLanguageFilter } from '../utils/filterValidation';
-import WantedView from "./wantedView";
+import WantedView from './wantedView';
 import history from '../../config/history';
 
 function UserTickets() {

@@ -7,7 +7,7 @@ import api from '../../../api';
 import { colors } from '../../../config/colors';
 import Form from '../../../components/form';
 import { sendBadgeSchema } from '../../../components/form/schema';
-import { extractGithubIssue, extractGithubIssueFromUrl , sendToRedirect } from '../../../helpers';
+import { extractGithubIssue, extractGithubIssueFromUrl, sendToRedirect } from '../../../helpers';
 import { useIsMobile } from '../../../hooks';
 import { Button } from '../../../components/common';
 import { useStores } from '../../../store';

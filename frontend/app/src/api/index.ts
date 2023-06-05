@@ -33,12 +33,12 @@ function addMethod(m: string): Function {
           headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
           opts.body = new URLSearchParams(data);
         } else if (
-            incomingHeaders &&
-            incomingHeaders['Content-Type'] &&
-            incomingHeaders['Content-Type'] === 'application/json'
-          ) {
-            opts.body = JSON.stringify(data);
-          }
+          incomingHeaders &&
+          incomingHeaders['Content-Type'] &&
+          incomingHeaders['Content-Type'] === 'application/json'
+        ) {
+          opts.body = JSON.stringify(data);
+        }
       }
       if (m === 'UPLOAD') {
         const file = data;

@@ -19,21 +19,21 @@ export default function SearchTextInput({
 
   return (
     <R>
-        <Text
-          color={color}
-          name="first"
-          value={value || ''}
-          readOnly={readOnly || false}
-          onChange={(e) => handleChange(e.target.value)}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          placeholder={placeholder || 'Search'}
-        />
-        {error && (
-          <E color={color}>
-            <EuiIcon type="alert" size="m" style={{ width: 20, height: 20 }} />
-          </E>
-        )}
+      <Text
+        color={color}
+        name="first"
+        value={value || ''}
+        readOnly={readOnly || false}
+        onChange={(e) => handleChange(e.target.value)}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        placeholder={placeholder || 'Search'}
+      />
+      {error && (
+        <E color={color}>
+          <EuiIcon type="alert" size="m" style={{ width: 20, height: 20 }} />
+        </E>
+      )}
     </R>
   );
 }

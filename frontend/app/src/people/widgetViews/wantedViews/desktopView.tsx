@@ -162,34 +162,34 @@ function DesktopView(props: WantedViewsProps) {
             {labels && labels.length > 0 ? (
               labels.map((x: any) => (
                 <div
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      height: 'fit-content',
-                      width: 'fit-content',
-                      backgroundColor: color.grayish.G1000,
-                      border: `1px solid ${color.grayish.G70}`,
-                      padding: '0px 14px',
-                      borderRadius: '20px',
-                      marginRight: '3px',
-                      marginBottom: '3px'
-                    }}
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    height: 'fit-content',
+                    width: 'fit-content',
+                    backgroundColor: color.grayish.G1000,
+                    border: `1px solid ${color.grayish.G70}`,
+                    padding: '0px 14px',
+                    borderRadius: '20px',
+                    marginRight: '3px',
+                    marginBottom: '3px'
+                  }}
                 >
-                    <div
-                      style={{
-                        fontSize: '10px',
-                        color: color.black300
-                      }}
-                    >
-                      {x.label}
-                    </div>
+                  <div
+                    style={{
+                      fontSize: '10px',
+                      color: color.black300
+                    }}
+                  >
+                    {x.label}
+                  </div>
                 </div>
               ))
             ) : (
               <div
-                  style={{
-                    minHeight: '50px'
-                  }}
+                style={{
+                  minHeight: '50px'
+                }}
               />
             )}
           </div>

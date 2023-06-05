@@ -7,14 +7,14 @@ export default function LoomVideoInput({ value, handleChange, handleBlur, handle
   const color = colors.light;
   return (
     <LoomViewerRecorder
-        name="loomVideo"
-        onChange={(e) => {
-          handleChange(e);
-        }}
-        loomEmbedUrl={value}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        style={{ marginBottom: 10 }}
+      name="loomVideo"
+      onChange={(e) => {
+        handleChange(e);
+      }}
+      loomEmbedUrl={value}
+      onBlur={handleBlur}
+      onFocus={handleFocus}
+      style={{ marginBottom: 10 }}
     />
   );
 }

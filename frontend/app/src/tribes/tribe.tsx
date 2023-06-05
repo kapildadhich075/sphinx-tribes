@@ -83,7 +83,7 @@ export default function Tribe({
                 <div className="lighter-color">{lastActive}</div>
               </div>
               <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                {(!!member_count) && (
+                {!!member_count && (
                   <>
                     <div className="uppercase">Members:</div>
                     <div className="lighter-color">{member_count}</div>

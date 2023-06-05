@@ -9,49 +9,71 @@ function BountyProfileView(props: BountiesProfileProps) {
   const color = colors.light;
   return (
     <UserProfileContainer
-        style={{
-          ...props?.UserProfileContainerStyle
-        }}
+      style={{
+        ...props?.UserProfileContainerStyle
+      }}
     >
-        <UserImage
+      <UserImage
+        style={{
+          ...props.UserImageStyle
+        }}
+      >
+        <img
+          width="100%"
+          height="100%"
+          style={{ objectFit: 'cover' }}
+          src={
+            { ...props.assignee }.owner_alias
+              ? {
+                  ...props.assignee
+                }.img || '/static/person_placeholder.png'
+              : '/static/default_profile_image.svg'
+          }
+          alt="assigned_person"
+        />
+      </UserImage>
+      <UserInfo
+        style={{
+          ...props.userInfoStyle
+        }}
+      >
+        <Status
           style={{
-            ...props.UserImageStyle
+            ...props?.statusStyle
           }}
         >
-          <img
-            width="100%"
-            height="100%"
-            style={{ objectFit: 'cover' }}
-            src={
-              { ...props.assignee }.owner_alias
-                ? {
+          <EuiText className="statusText">{props?.status}</EuiText>
+        </Status>
+        <NameContainer
+          name_text_color={color.grayish.G10}
+          style={{
+            cursor: props.isNameClickable ? 'pointer' : '',
+            ...props.NameContainerStyle
+          }}
+          onClick={(e) => {
+            if (props.isNameClickable && { ...props.assignee }.owner_alias) {
+              e.stopPropagation();
+              window.open(
+                `/p/${
+                  {
                     ...props.assignee
-                  }.img || '/static/person_placeholder.png'
-                : '/static/default_profile_image.svg'
+                  }.owner_pubkey
+                }?widget=wanted`,
+                '_blank'
+              );
             }
-            alt="assigned_person"
-          />
-        </UserImage>
-        <UserInfo
-          style={{
-            ...props.userInfoStyle
           }}
         >
-          <Status
-            style={{
-              ...props?.statusStyle
-            }}
-          >
-            <EuiText className="statusText">{props?.status}</EuiText>
-          </Status>
-          <NameContainer
-            name_text_color={color.grayish.G10}
-            style={{
-              cursor: props.isNameClickable ? 'pointer' : '',
-              ...props.NameContainerStyle
-            }}
+          <EuiText className="Name_Text">
+            {{ ...props.assignee }.owner_alias || 'Guest Developer  '}
+          </EuiText>
+        </NameContainer>
+        {props.canViewProfile && (
+          <ViewProfileButton
+            View_profile_text_color={color.grayish.G300}
+            View_profile_icon_color={color.grayish.G300}
             onClick={(e) => {
-              if (props.isNameClickable && { ...props.assignee }.owner_alias) {
+              if ({ ...props.assignee }.owner_alias) {
                 e.stopPropagation();
                 window.open(
                   `/p/${
@@ -64,35 +86,13 @@ function BountyProfileView(props: BountiesProfileProps) {
               }
             }}
           >
-            <EuiText className="Name_Text">
-              {{ ...props.assignee }.owner_alias || 'Guest Developer  '}
-            </EuiText>
-          </NameContainer>
-          {props.canViewProfile && (
-            <ViewProfileButton
-              View_profile_text_color={color.grayish.G300}
-              View_profile_icon_color={color.grayish.G300}
-              onClick={(e) => {
-                if ({ ...props.assignee }.owner_alias) {
-                  e.stopPropagation();
-                  window.open(
-                    `/p/${
-                      {
-                        ...props.assignee
-                      }.owner_pubkey
-                    }?widget=wanted`,
-                    '_blank'
-                  );
-                }
-              }}
-            >
-              <EuiText className="text">View Profile</EuiText>
-              <div className="Icon_Container">
-                <MaterialIcon icon="arrow_forward" className="MaterialIcon" />
-              </div>
-            </ViewProfileButton>
-          )}
-        </UserInfo>
+            <EuiText className="text">View Profile</EuiText>
+            <div className="Icon_Container">
+              <MaterialIcon icon="arrow_forward" className="MaterialIcon" />
+            </div>
+          </ViewProfileButton>
+        )}
+      </UserInfo>
     </UserProfileContainer>
   );
 }

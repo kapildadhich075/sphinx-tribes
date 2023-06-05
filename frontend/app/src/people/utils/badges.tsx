@@ -33,19 +33,16 @@ function Badges(props: BadgesProps) {
     main.getBadgeList();
   }, [main]);
 
-  const getBadges = useCallback(
-    async () => {
-      setLoading(true);
-      setSelectedBadge(null);
-      setBadgeToPush(null);
-      if (person?.owner_pubkey) {
-        const b = await main.getBalances(person?.owner_pubkey);
-        setBalancesTxns(b);
-      }
-      setLoading(false);
-    },
-    [main, person?.owner_pubkey]
-  );
+  const getBadges = useCallback(async () => {
+    setLoading(true);
+    setSelectedBadge(null);
+    setBadgeToPush(null);
+    if (person?.owner_pubkey) {
+      const b = await main.getBalances(person?.owner_pubkey);
+      setBalancesTxns(b);
+    }
+    setLoading(false);
+  }, [main, person?.owner_pubkey]);
 
   useEffect(() => {
     getBadges();
@@ -358,26 +355,26 @@ function Badges(props: BadgesProps) {
           }}
         >
           <TextInput
-              style={{ width: 240 }}
-              label="Liquid Address"
-              value={liquidAddress}
-              onChange={(e) => setLiquidAddress(e)}
+            style={{ width: 240 }}
+            label="Liquid Address"
+            value={liquidAddress}
+            onChange={(e) => setLiquidAddress(e)}
           />
 
-            <TextInput
-              style={{ width: 240 }}
-              label="Memo (optional)"
-              value={memo}
-              onChange={(e) => setMemo(e)}
-            />
+          <TextInput
+            style={{ width: 240 }}
+            label="Memo (optional)"
+            value={memo}
+            onChange={(e) => setMemo(e)}
+          />
 
-            <Button
-              color="primary"
-              text="Claim on Liquid"
-              loading={claiming}
-              disabled={!liquidAddress || claiming}
-              onClick={() => claimBadge()}
-            />
+          <Button
+            color="primary"
+            text="Claim on Liquid"
+            loading={claiming}
+            disabled={!liquidAddress || claiming}
+            onClick={() => claimBadge()}
+          />
         </div>
       </Modal>
     </Wrap>

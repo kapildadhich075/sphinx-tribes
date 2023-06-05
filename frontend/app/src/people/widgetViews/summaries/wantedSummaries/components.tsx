@@ -5,7 +5,7 @@ import { Button } from '../../../../components/common';
 import { sendToRedirect } from '../../../../helpers';
 
 export function Heart() {
-  return <FavoriteButton />
+  return <FavoriteButton />;
 }
 
 export function AddToFavorites(props: any) {
@@ -28,7 +28,6 @@ export function AddToFavorites(props: any) {
       />
     );
   }
-  
 }
 
 export function ViewGithub(props: any) {
@@ -49,8 +48,6 @@ export function ViewGithub(props: any) {
       />
     );
   }
-
-  
 }
 
 export function CopyLink(props: any) {
@@ -122,6 +119,4 @@ export function ViewTribe(props: any) {
       />
     );
   }
-
-  
 }
