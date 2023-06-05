@@ -1,6 +1,8 @@
 /* eslint-disable func-style */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { WantedViews2Props } from 'people/interfaces';
 import { useIsMobile } from '../../hooks';
 import { extractGithubIssue, extractGithubIssueFromUrl } from '../../helpers';
 import { useStores } from '../../store';
@@ -9,8 +11,6 @@ import Bounties from '../utils/assigned_unassigned_bounties';
 import { colors } from '../../config/colors';
 import MobileView from './wantedViews/mobileView';
 import DesktopView from './wantedViews/desktopView';
-import { observer } from 'mobx-react-lite';
-import { WantedViews2Props } from 'people/interfaces';
 
 export default observer(WantedView);
 
@@ -42,7 +42,7 @@ function WantedView(props: WantedViews2Props) {
   const [saving, setSaving] = useState(false);
   const [labels, setLabels] = useState<[{ [key: string]: string }]>([{}]);
   const { peopleWanteds } = main;
-  const color = colors['light'];
+  const color = colors.light;
   const isMine = ui.meInfo?.owner_pubkey === person?.owner_pubkey;
 
   async function setExtrasPropertyAndSave(propertyName: string) {
@@ -71,14 +71,14 @@ function WantedView(props: WantedViews2Props) {
             peopleWantedsClone.splice(indexFromPeopleWanted, 1);
           } else {
             peopleWantedsClone[indexFromPeopleWanted] = {
-              person: person,
+              person,
               body: clonedEx[targetIndex]
             };
           }
           main.setPeopleWanteds(peopleWantedsClone);
         }
       } catch (e) {
-        console.log('e', e);
+        console.error('e', e);
       }
 
       setSaving(false);
@@ -97,7 +97,7 @@ function WantedView(props: WantedViews2Props) {
       ? extractGithubIssueFromUrl(person, ticketUrl)
       : extractGithubIssue(person, repo ?? '', issue ?? '');
 
-    const isClosed = status === 'closed' || paid ? true : false;
+    const isClosed = !!(status === 'closed' || paid);
 
     const isCodingTask =
       type === 'coding_task' || type === 'wanted_coding_task' || type === 'freelance_job_request';

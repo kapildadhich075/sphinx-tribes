@@ -287,7 +287,7 @@ export interface CodingViewProps {
   paid?: boolean;
   titleString: string;
   labels?: { [key: string]: any };
-  price?: Number;
+  price?: number;
   description?: string;
   envHeight?: string;
   estimate_session_length?: string;

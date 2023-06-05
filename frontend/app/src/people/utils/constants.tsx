@@ -8,7 +8,7 @@ import {
   wantedOtherSchema
 } from '../../components/form/schema';
 
-const MAX_UPLOAD_SIZE = 10194304; //10MB
+const MAX_UPLOAD_SIZE = 10194304; // 10MB
 
 const widgetConfigs = {
   about: {

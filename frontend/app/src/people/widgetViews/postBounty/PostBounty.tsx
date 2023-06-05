@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 import { colors } from '../../../config/colors';
 import { useIsMobile } from '../../../hooks';
 import IconButton from '../../../components/common/icon_button';
 import { useStores } from '../../../store';
 import StartUpModal from '../../utils/start_up_modal';
 import { PostModal, PostModalProps } from './PostModal';
-import { observer } from 'mobx-react-lite';
 
 interface Props extends Omit<PostModalProps, 'onClose' | 'isOpen'> {
   title?: string;
@@ -17,7 +17,7 @@ interface Props extends Omit<PostModalProps, 'onClose' | 'isOpen'> {
   };
 }
 
-const color = colors['light'];
+const color = colors.light;
 
 const mapBtnColorProps = {
   primary: {
@@ -95,8 +95,8 @@ export const PostBounty: FC<Props> = observer(
         {isOpenStartUpModel && (
           <StartUpModal
             closeModal={() => setIsOpenStartupModal(false)}
-            dataObject={'createWork'}
-            buttonColor={'success'}
+            dataObject="createWork"
+            buttonColor="success"
           />
         )}
       </>

@@ -5,8 +5,8 @@ import { UserInfoMobileView } from './UserInfoMobileView';
 
 type UserInfoProps = { setShowSupport };
 
-export const UserInfo = (props: UserInfoProps) => {
+export function UserInfo(props: UserInfoProps) {
   const isMobile = useIsMobile();
 
   return isMobile ? <UserInfoMobileView {...props} /> : <UserInfoDesktopView {...props} />;
-};
+}

@@ -12,7 +12,7 @@ export const MainLayout: FC<MainLayotProps> = ({
   header: JSX.Element;
   children?: React.ReactNode;
 }) => {
-  const c = colors['light'];
+  const c = colors.light;
   return (
     <div className="app" style={{ background: c.background }}>
       {header}

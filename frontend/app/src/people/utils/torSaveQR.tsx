@@ -26,11 +26,11 @@ export default function TorSaveQR(props: TorSaveQRProps) {
       <QR size={220} value={url} />
 
       <Button
-        text={'Open Sphinx App'}
+        text="Open Sphinx App"
         height={60}
         style={{ marginTop: 30 }}
-        width={'100%'}
-        color={'primary'}
+        width="100%"
+        color="primary"
         onClick={() => {
           const el = document.createElement('a');
           el.href = url;
@@ -39,11 +39,11 @@ export default function TorSaveQR(props: TorSaveQRProps) {
       />
 
       <Button
-        text={'Cancel'}
+        text="Cancel"
         height={60}
         style={{ marginTop: 20 }}
-        width={'100%'}
-        color={'action'}
+        width="100%"
+        color="action"
         onClick={() => {
           goBack();
         }}

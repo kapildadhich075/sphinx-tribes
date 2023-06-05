@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EuiGlobalToastList } from '@elastic/eui';
 import { Button } from '../../components/common';
+
 export default function BotBar(props: { value: string }) {
   const { value } = props;
   const [toasts, setToasts]: any = useState([]);
@@ -33,12 +34,12 @@ export default function BotBar(props: { value: string }) {
     <>
       <Button
         text={`/bot install ${value}`}
-        wideButton={true}
-        icon={'content_copy'}
+        wideButton
+        icon="content_copy"
         iconStyle={{ color: '#fff', fontSize: 20 }}
         iconSize={20}
-        color={'primary'}
-        width={'100%'}
+        color="primary"
+        width="100%"
         height={50}
         style={{ width: '100%', padding: '0 5px' }}
         onClick={() => copyToClipboard(`/bot install ${value}`)}

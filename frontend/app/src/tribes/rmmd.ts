@@ -59,7 +59,6 @@ export default function rmmd(md: string) {
       // Replace two or more newlines with exactly two? Not entirely sure this belongs here...
       .replace(/\n{2,}/g, '\n\n');
   } catch (e) {
-    console.error(e);
     return md;
   }
   return output;

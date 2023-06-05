@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ConnectCardProps } from 'people/interfaces';
 import { Button, Modal } from '../../components/common';
 import QR from './QR';
 import QrBar from './QrBar';
 import AssignBounty from './assignBounty';
 import { makeConnectQR } from '../../helpers';
 import { colors } from '../../config/colors';
-import { ConnectCardProps } from 'people/interfaces';
 
 export default function ConnectCard(props: ConnectCardProps) {
-  const color = colors['light'];
+  const color = colors.light;
   const { visible, created, person } = props;
 
   const [openAssignModal, setAssignModal] = useState<boolean>(false);
@@ -41,30 +41,30 @@ export default function ConnectCard(props: ConnectCardProps) {
               <B>{person?.owner_alias} </B>
             </D>
 
-            <QR value={qrString} size={210} type={'connect'} />
+            <QR value={qrString} size={210} type="connect" />
 
             <QrBar value={person?.owner_pubkey} simple style={{ marginTop: 11 }} />
 
             <Button
-              text={'Assign to self'}
-              color={'primary'}
+              text="Assign to self"
+              color="primary"
               style={{ paddingLeft: 25, margin: '12px 0 10px' }}
-              img={'sphinx_white.png'}
+              img="sphinx_white.png"
               imgSize={27}
               height={48}
-              width={'100%'}
+              width="100%"
               onClick={showAssignModal}
             />
 
             <a href={qrString}>
               <Button
-                text={'Connect with Sphinx'}
-                color={'primary'}
+                text="Connect with Sphinx"
+                color="primary"
                 style={{ paddingLeft: 25, margin: '12px 0 40px' }}
-                img={'sphinx_white.png'}
+                img="sphinx_white.png"
                 imgSize={27}
                 height={48}
-                width={'100%'}
+                width="100%"
               />
             </a>
           </div>

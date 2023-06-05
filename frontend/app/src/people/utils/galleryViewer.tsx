@@ -8,7 +8,7 @@ export default function GalleryViewer(props) {
   const g = gallery;
 
   if (!g || !g.length) return <div />;
-  //<Square big={big} />
+  // <Square big={big} />
 
   const showNav = g.length > 1;
 
@@ -27,11 +27,10 @@ export default function GalleryViewer(props) {
   }
 
   return (
-    <>
-      <Gallery
+    <Gallery
         style={{ width: big || wrap ? '100%' : 'fit-content', ...style }}
         ref={props.innerRef}
-      >
+    >
         {showAll ? (
           <div style={{ textAlign: 'center' }}>
             {g.map((ga, i) => (
@@ -44,7 +43,7 @@ export default function GalleryViewer(props) {
             {showNav && (
               <L>
                 <Circ>
-                  <IconButton iconStyle={{ color: '#000' }} icon={'chevron_left'} onClick={prev} />
+                  <IconButton iconStyle={{ color: '#000' }} icon="chevron_left" onClick={prev} />
                 </Circ>
               </L>
             )}
@@ -52,7 +51,7 @@ export default function GalleryViewer(props) {
             {showNav && (
               <R>
                 <Circ>
-                  <IconButton icon={'chevron_right'} iconStyle={{ color: '#000' }} onClick={next} />
+                  <IconButton icon="chevron_right" iconStyle={{ color: '#000' }} onClick={next} />
                 </Circ>
               </R>
             )}
@@ -62,8 +61,7 @@ export default function GalleryViewer(props) {
             </Label>
           </>
         )}
-      </Gallery>
-    </>
+    </Gallery>
   );
 }
 

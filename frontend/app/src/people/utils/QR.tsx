@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { QRCode } from 'react-qr-svg';
 import MaterialIcon from '@material/react-material-icon';
-import { colors } from '../../config/colors';
 import { QRProps } from 'people/interfaces';
+import { colors } from '../../config/colors';
 
 export default function QR(props: QRProps) {
   const { type } = props;
-  const color = colors['light'];
+  const color = colors.light;
 
   const centerIcon =
     type === 'connect' ? (
       <Icon>
-        <MaterialIcon icon={'person_add'} style={{ fontSize: 36, marginLeft: 7 }} />
+        <MaterialIcon icon="person_add" style={{ fontSize: 36, marginLeft: 7 }} />
       </Icon>
     ) : (
-      <Img src={'/static/sphinx.png'} />
+      <Img src="/static/sphinx.png" />
     );
 
   return (
@@ -23,7 +23,7 @@ export default function QR(props: QRProps) {
       <QRCode
         bgColor={color.pureWhite}
         fgColor={color.pureBlack}
-        level={'Q'}
+        level="Q"
         style={{ width: props.size }}
         value={props.value}
       />

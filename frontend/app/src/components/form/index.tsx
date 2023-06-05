@@ -46,7 +46,7 @@ function Form(props: FormProps) {
   const [assigneeName, setAssigneeName] = useState<string>('');
   const refBody: any = useRef(null);
   const { main, ui } = useStores();
-  const color = colors['light'];
+  const color = colors.light;
   const [isFocused, setIsFocused] = useState({});
 
   const [schemaData, setSchemaData] = useState(BountyDetailsCreationData.step_1);
@@ -83,7 +83,7 @@ function Form(props: FormProps) {
         setSchemaData(BountyDetailsCreationData.step_5);
         break;
       default:
-        return;
+        
     }
   }, [stepTracker]);
 
@@ -93,7 +93,7 @@ function Form(props: FormProps) {
         const response = await api.get(`people?page=1&search=&sortBy=last_login&limit=100`);
         setPeopleList(response);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, []);
@@ -174,7 +174,7 @@ function Form(props: FormProps) {
 
   const buttonStyle = buttonsOnBottom ? { width: '80%', height: 48 } : {};
 
-  const isAboutMeForm = schema?.find((f) => f.name === 'owner_alias') ? true : false;
+  const isAboutMeForm = !!schema?.find((f) => f.name === 'owner_alias');
 
   const dynamicFormOptions =
     (props.schema && props.schema[0] && formDropdownOptions[props.schema[0].dropdownOptions]) || [];
@@ -222,14 +222,13 @@ function Form(props: FormProps) {
             newDesign={props?.newDesign}
           >
             {props.isFirstTimeScreen && schema ? (
-              <>
-                <div
+              <div
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     width: '100%'
                   }}
-                >
+              >
                   <div style={{ marginRight: '40px' }}>
                     {schema
                       .filter((item: FormField) => item.type === 'img')
@@ -259,8 +258,8 @@ function Form(props: FormProps) {
                           extraHTML={
                             (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
                           }
-                          borderType={'bottom'}
-                          imageIcon={true}
+                          borderType="bottom"
+                          imageIcon
                           style={
                             item.name === 'github_description' && !values.ticketUrl
                               ? {
@@ -301,7 +300,7 @@ function Form(props: FormProps) {
                           extraHTML={
                             (props.extraHTML && props.extraHTML[item.name]) || item.extraHTML
                           }
-                          borderType={'bottom'}
+                          borderType="bottom"
                           style={
                             item.name === 'github_description' && !values.ticketUrl
                               ? {
@@ -312,8 +311,7 @@ function Form(props: FormProps) {
                         />
                       ))}
                   </div>
-                </div>
-              </>
+              </div>
             ) : props?.newDesign ? (
               <>
                 <CreateBountyHeaderContainer color={color}>
@@ -334,7 +332,7 @@ function Form(props: FormProps) {
                       <BountyContainer
                         key={v.label}
                         color={color}
-                        show={v.value === 'freelance_job_request' ? true : false}
+                        show={v.value === 'freelance_job_request'}
                       >
                         <div className="freelancerContainer">
                           <div
@@ -364,8 +362,8 @@ function Form(props: FormProps) {
                                     : '/static/live_help.svg'
                                 }
                                 alt="select_type"
-                                height={'114%'}
-                                width={'114%'}
+                                height="114%"
+                                width="114%"
                                 style={{
                                   position: 'absolute',
                                   top: '32px'
@@ -425,7 +423,7 @@ function Form(props: FormProps) {
                             <Input
                               {...item}
                               key={item.name}
-                              newDesign={true}
+                              newDesign
                               values={values}
                               setAssigneefunction={item.name === 'assignee' && setAssigneeName}
                               peopleList={peopleList}
@@ -474,7 +472,7 @@ function Form(props: FormProps) {
                             <Input
                               {...item}
                               peopleList={peopleList}
-                              newDesign={true}
+                              newDesign
                               key={item.name}
                               values={values}
                               testId={item.label}
@@ -545,11 +543,9 @@ function Form(props: FormProps) {
                                 } else {
                                   setAssigneeName('a');
                                 }
-                              } else {
-                                if (valid) {
+                              } else if (valid) {
                                   NextStepHandler();
                                 }
-                              }
                             }}
                             style={{
                               width:
@@ -570,9 +566,8 @@ function Form(props: FormProps) {
                           </div>
                         )}
                         {schemaData.step > 1 && (
-                          <>
-                            <ImageButton
-                              buttonText={'Back'}
+                          <ImageButton
+                              buttonText="Back"
                               ButtonContainerStyle={{
                                 width: '120px',
                                 height: '42px'
@@ -581,8 +576,7 @@ function Form(props: FormProps) {
                                 PreviousStepHandler();
                                 setAssigneeName('');
                               }}
-                            />
-                          </>
+                          />
                         )}
                       </div>
                     </BottomContainer>
@@ -647,8 +641,8 @@ function Form(props: FormProps) {
                       if (props.close) props.close();
                     }}
                     style={{ ...buttonStyle, marginRight: 10, width: '140px' }}
-                    color={'white'}
-                    text={'Cancel'}
+                    color="white"
+                    text="Cancel"
                   />
                 ) : (
                   <IconButton
@@ -675,8 +669,8 @@ function Form(props: FormProps) {
                       }}
                       loading={props.loading}
                       style={{ ...buttonStyle, width: '140px' }}
-                      color={'primary'}
-                      text={'Save'}
+                      color="primary"
+                      text="Save"
                     />
 
                     {props.delete && (
@@ -685,10 +679,10 @@ function Form(props: FormProps) {
                         onClick={() => {
                           if (props.delete) props.delete();
                         }}
-                        icon={'delete'}
+                        icon="delete"
                         loading={props.loading}
                         style={{ marginLeft: 10 }}
-                        color={'clear'}
+                        color="clear"
                       />
                     )}
                   </div>
@@ -717,8 +711,8 @@ function Form(props: FormProps) {
                   <SchemaOuterContainer>
                     <div style={{ minHeight: 50, height: 50 }} className="SchemaInnerContainer">
                       <Button
-                        text={'Delete my account'}
-                        color={'link2'}
+                        text="Delete my account"
+                        color="link2"
                         width="fit-content"
                         onClick={() => setShowDeleteWarn(true)}
                       />
@@ -744,8 +738,8 @@ function Form(props: FormProps) {
                       }}
                     >
                       <Button
-                        text={'Nevermind'}
-                        color={'white'}
+                        text="Nevermind"
+                        color="white"
                         onClick={() => {
                           setShowSettings(false);
                           setShowDeleteWarn(false);
@@ -753,8 +747,8 @@ function Form(props: FormProps) {
                       />
                       <div style={{ height: 20 }} />
                       <Button
-                        text={'Delete everything'}
-                        color={'danger'}
+                        text="Delete everything"
+                        color="danger"
                         onClick={() => main.deleteProfile()}
                       />
                     </div>

@@ -20,7 +20,7 @@ export const UserInfo = observer(({ id }: { id: string }) => {
   if (!person) {
     return (
       <UserItemContainer>
-        <EuiAvatar size="xl" name={''} imageUrl={'/static/person_placeholder.png'} />
+        <EuiAvatar size="xl" name="" imageUrl="/static/person_placeholder.png" />
       </UserItemContainer>
     );
   }

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import WantedView from '../widgetViews/wantedView';
 import { Route, Switch, useParams, useRouteMatch, Router } from 'react-router-dom';
 import { useStores } from 'store';
-import { bountyHeaderFilter, bountyHeaderLanguageFilter } from '../utils/filterValidation';
 import NoResults from 'people/utils/userNoResults';
 import { useIsMobile } from 'hooks';
-import { colors } from '../../config/colors';
-import DeleteTicketModal from './deleteModal';
 import { Spacer } from 'people/main/body';
 import styled from 'styled-components';
 import { BountyModal } from 'people/main/BountyModal/BountyModal';
+import DeleteTicketModal from './deleteModal';
+import { colors } from '../../config/colors';
+import { bountyHeaderFilter, bountyHeaderLanguageFilter } from '../utils/filterValidation';
+import WantedView from "./wantedView";
 import history from '../../config/history';
 
-const UserTickets = () => {
-  const color = colors['light'];
+function UserTickets() {
+  const color = colors.light;
   const { personPubkey } = useParams<{ personPubkey: string }>();
   const { main, ui } = useStores();
   const isMobile = useIsMobile();
@@ -61,7 +61,7 @@ const UserTickets = () => {
         await deleteTicket(deletePayload);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     closeModal();
   };
@@ -79,7 +79,7 @@ const UserTickets = () => {
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -106,7 +106,7 @@ const UserTickets = () => {
               setDeletePayload={setDeletePayload}
               fromBountyPage={false}
               {...body}
-              show={true}
+              show
             />
           </Panel>
         );
@@ -126,14 +126,14 @@ const UserTickets = () => {
           </Switch>
         </Router>
         {listItems}
-        <Spacer key={'spacer2'} />
+        <Spacer key="spacer2" />
         {showDeleteModal && (
           <DeleteTicketModal closeModal={closeModal} confirmDelete={confirmDelete} />
         )}
       </Container>
     </div>
   );
-};
+}
 
 export default UserTickets;
 

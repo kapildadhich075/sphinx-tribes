@@ -14,7 +14,7 @@ export default function TextAreaInputNew({
 }: Props) {
   let labeltext = label;
   if (error) labeltext = `${labeltext}*`;
-  const color = colors['light'];
+  const color = colors.light;
   const [isError, setIsError] = useState<boolean>(false);
   const [textValue, setTextValue] = useState(value);
 
@@ -28,7 +28,7 @@ export default function TextAreaInputNew({
     <InputOuterBox color={color} borderColor={isError ? color.red2 : color.grayish.G600}>
       <textarea
         className="inputText"
-        id={'text'}
+        id="text"
         value={textValue}
         onFocus={handleFocus}
         onBlur={() => {
@@ -46,7 +46,7 @@ export default function TextAreaInputNew({
         }}
       />
       <label
-        htmlFor={'text'}
+        htmlFor="text"
         className="text"
         onClick={handleFocus}
         style={{

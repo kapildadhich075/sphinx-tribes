@@ -1,12 +1,13 @@
 /* eslint-disable func-style */
 import React, { useCallback, useEffect, useState } from 'react';
-import { ButtonRow, Img, Assignee } from './wantedSummaries/style';
 import { useLocation } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { ButtonRow, Img, Assignee } from './wantedSummaries/style';
 import api from '../../../api';
 import { colors } from '../../../config/colors';
 import Form from '../../../components/form';
 import { sendBadgeSchema } from '../../../components/form/schema';
-import { extractGithubIssue, extractGithubIssueFromUrl } from '../../../helpers';
+import { extractGithubIssue, extractGithubIssueFromUrl , sendToRedirect } from '../../../helpers';
 import { useIsMobile } from '../../../hooks';
 import { Button } from '../../../components/common';
 import { useStores } from '../../../store';
@@ -15,8 +16,6 @@ import NameTag from '../../utils/nameTag';
 import CodingMobile from './wantedSummaries/codingMobile';
 import CodingBounty from './wantedSummaries/codingBounty';
 import CodingDesktop from './wantedSummaries/codingDesktop';
-import { sendToRedirect } from '../../../helpers';
-import { observer } from 'mobx-react-lite';
 import { WantedSummaryProps } from '../../interfaces';
 
 function useQuery() {
@@ -58,7 +57,7 @@ function WantedSummary(props: WantedSummaryProps) {
   const isMobile = useIsMobile();
   const { main, ui } = useStores();
   const { peopleWanteds } = main;
-  const color = colors['light'];
+  const color = colors.light;
 
   const [assigneeInfo, setAssigneeInfo]: any = useState(null);
   const [saving, setSaving]: any = useState('');
@@ -126,7 +125,7 @@ function WantedSummary(props: WantedSummaryProps) {
         const response = await api.get(`people?page=1&search=&sortBy=last_login&limit=100`);
         setPeopleList(response);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, []);
@@ -138,12 +137,12 @@ function WantedSummary(props: WantedSummaryProps) {
       assigneeHandlerOpen();
       const newValue = {
         title: titleString,
-        wanted_type: wanted_type,
-        one_sentence_summary: one_sentence_summary,
-        ticketUrl: ticketUrl,
-        github_description: github_description,
-        description: description,
-        price: price,
+        wanted_type,
+        one_sentence_summary,
+        ticketUrl,
+        github_description,
+        description,
+        price,
         assignee: {
           owner_alias: value?.owner_alias || '',
           owner_pubkey: value?.owner_pubkey || '',
@@ -152,10 +151,10 @@ function WantedSummary(props: WantedSummaryProps) {
           label: `${value.owner_alias} (${value.owner_alias.toLowerCase().replace(' ', '')})` || ''
         },
         codingLanguage: codingLanguage?.map((x) => ({ ...x })),
-        estimate_session_length: estimate_session_length,
-        show: show,
-        type: type,
-        created: created
+        estimate_session_length,
+        show,
+        type,
+        created
       };
       formSubmit && formSubmit(newValue);
     },
@@ -187,7 +186,7 @@ function WantedSummary(props: WantedSummaryProps) {
           const p = await main.getPersonByPubkey(props.assignee.owner_pubkey);
           setAssigneeInfo(p);
         } catch (e) {
-          console.log('e', e);
+          console.error('e', e);
         }
       }
     })();
@@ -246,7 +245,7 @@ function WantedSummary(props: WantedSummaryProps) {
           } else {
             // gotta update person extras! this is what is used for summary viewer
             const personClone: any = person;
-            personClone.extras['wanted'][targetIndex] = clonedEx[targetIndex];
+            personClone.extras.wanted[targetIndex] = clonedEx[targetIndex];
 
             peopleWantedsClone[indexFromPeopleWanted] = {
               person: personClone,
@@ -256,7 +255,7 @@ function WantedSummary(props: WantedSummaryProps) {
           main.setPeopleWanteds(peopleWantedsClone);
         }
       } catch (e) {
-        console.log('e', e);
+        console.error('e', e);
       }
 
       setSaving('');
@@ -288,7 +287,7 @@ function WantedSummary(props: WantedSummaryProps) {
           } else {
             // gotta update person extras! this is what is used for summary viewer
             const personClone: any = person;
-            personClone.extras['wanted'][targetIndex] = clonedEx[targetIndex];
+            personClone.extras.wanted[targetIndex] = clonedEx[targetIndex];
 
             peopleWantedsClone[indexFromPeopleWanted] = {
               person: personClone,
@@ -299,7 +298,7 @@ function WantedSummary(props: WantedSummaryProps) {
           main.setPeopleWanteds(peopleWantedsClone);
         }
       } catch (e) {
-        console.log('e', e);
+        console.error('e', e);
       }
 
       setIsMarkPaidSaved(false);
@@ -370,7 +369,7 @@ function WantedSummary(props: WantedSummaryProps) {
         throw new Error(r.statusText);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
 
     setSaving('');
@@ -379,10 +378,10 @@ function WantedSummary(props: WantedSummaryProps) {
   //  if my own, show this option to show/hide
   const markPaidButton = (
     <Button
-      color={'primary'}
+      color="primary"
       iconSize={14}
       style={{ fontSize: 14, height: 48, width: '100%', marginBottom: 20 }}
-      endingIcon={'paid'}
+      endingIcon="paid"
       text={paid ? 'Mark Unpaid' : 'Mark Paid'}
       loading={saving === 'paid'}
       onClick={(e) => {
@@ -394,12 +393,12 @@ function WantedSummary(props: WantedSummaryProps) {
 
   const awardBadgeButton = !badgeRecipient && (
     <Button
-      color={'primary'}
+      color="primary"
       iconSize={14}
-      endingIcon={'offline_bolt'}
+      endingIcon="offline_bolt"
       style={{ fontSize: 14, height: 48, width: '100%', marginBottom: 20 }}
       text={badgeRecipient ? 'Badge Awarded' : 'Award Badge'}
-      disabled={badgeRecipient ? true : false}
+      disabled={!!badgeRecipient}
       loading={saving === 'badgeRecipient'}
       onClick={(e) => {
         e.stopPropagation();
@@ -423,7 +422,7 @@ function WantedSummary(props: WantedSummaryProps) {
             onSubmit={(e) => {
               sendBadge(e);
             }}
-            submitText={'Send Badge'}
+            submitText="Send Badge"
             schema={sendBadgeSchema}
           />
           <div style={{ height: 100 }} />
@@ -444,7 +443,7 @@ function WantedSummary(props: WantedSummaryProps) {
       style={{ marginBottom: 10 }}
       {...person}
       created={created}
-      widget={'wanted'}
+      widget="wanted"
     />
   );
 

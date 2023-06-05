@@ -3,13 +3,13 @@ import { ImageButtonProps } from 'components/interfaces';
 import React from 'react';
 import styled from 'styled-components';
 
-const ImageButton = (props: ImageButtonProps) => (
-  <ButtonContainer
+function ImageButton(props: ImageButtonProps) {
+  return <ButtonContainer
     onClick={props?.buttonAction}
     style={{
       ...props.ButtonContainerStyle
     }}
-  >
+         >
     {props.leadingImageSrc && (
       <div
         className="leadingImageContainer"
@@ -20,9 +20,9 @@ const ImageButton = (props: ImageButtonProps) => (
         <img
           className="buttonImage"
           src={props.leadingImageSrc}
-          alt={''}
-          height={'14px'}
-          width={'14px'}
+          alt=""
+          height="14px"
+          width="14px"
         />
       </div>
     )}
@@ -44,14 +44,14 @@ const ImageButton = (props: ImageButtonProps) => (
         <img
           className="buttonImage"
           src={props.endImageSrc}
-          alt={'button_end_icon'}
-          height={'12px'}
-          width={'12px'}
+          alt="button_end_icon"
+          height="12px"
+          width="12px"
         />
       </div>
     )}
-  </ButtonContainer>
-);
+         </ButtonContainer>
+}
 
 export default ImageButton;
 

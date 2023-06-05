@@ -15,11 +15,10 @@ export default function SearchTextInput({
 }: any) {
   let labeltext = label;
   if (error) labeltext = `${labeltext} (${error})`;
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
-    <>
-      <R>
+    <R>
         <Text
           color={color}
           name="first"
@@ -35,8 +34,7 @@ export default function SearchTextInput({
             <EuiIcon type="alert" size="m" style={{ width: 20, height: 20 }} />
           </E>
         )}
-      </R>
-    </>
+    </R>
   );
 }
 

@@ -14,7 +14,7 @@ export default function TextInputNew({
 }: Props) {
   let labeltext = label;
   if (error) labeltext = `${labeltext}*`;
-  const color = colors['light'];
+  const color = colors.light;
   const [isError, setIsError] = useState<boolean>(false);
   const [textValue, setTextValue] = useState(value);
 
@@ -28,8 +28,8 @@ export default function TextInputNew({
     <InputOuterBox color={color} borderColor={isError ? color.red2 : color.grayish.G600}>
       <input
         className="inputText"
-        id={'text'}
-        type={'text'}
+        id="text"
+        type="text"
         value={textValue}
         onFocus={handleFocus}
         onBlur={() => {
@@ -44,7 +44,7 @@ export default function TextInputNew({
         }}
       />
       <label
-        htmlFor={'text'}
+        htmlFor="text"
         className="text"
         onClick={handleFocus}
         style={{

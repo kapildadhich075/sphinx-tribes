@@ -35,7 +35,7 @@ export const Wanted = observer(() => {
                 leadingIcon: config.noneSpace.me.buttonIcon,
                 color: 'secondary'
               }}
-              widget={'wanted'}
+              widget="wanted"
               onSucces={() => {
                 history.goBack();
                 window.location.reload();

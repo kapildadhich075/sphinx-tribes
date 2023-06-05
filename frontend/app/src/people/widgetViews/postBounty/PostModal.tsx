@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 import { colors } from '../../../config/colors';
 import { useIsMobile } from '../../../hooks';
 import { Modal } from '../../../components/common';
@@ -7,9 +8,8 @@ import { useStores } from '../../../store';
 import FocusedView from '../../main/focusView';
 import { Widget } from '../../main/types';
 import { widgetConfigs } from '../../utils/constants';
-import { observer } from 'mobx-react-lite';
 
-const color = colors['light'];
+const color = colors.light;
 export interface PostModalProps {
   isOpen: boolean;
   widget: Widget;
@@ -48,11 +48,9 @@ export const PostModal: FC<PostModalProps> = observer(
       onSucces && onSucces();
     };
 
-    if (isMobile) {
+    if (isMobile && isOpen) {
       return (
-        <>
-          {isOpen && (
-            <Modal visible={isOpen} fill={true}>
+            <Modal visible={isOpen} fill>
               <FocusedView
                 person={person}
                 canEdit={!canEdit}
@@ -62,14 +60,11 @@ export const PostModal: FC<PostModalProps> = observer(
                 goBack={closeHandler}
               />
             </Modal>
-          )}
-        </>
       );
-    }
+          }
+
+					if(isOpen){
     return (
-      <>
-        {' '}
-        {isOpen && (
           <Modal
             visible={isOpen}
             style={{
@@ -94,7 +89,7 @@ export const PostModal: FC<PostModalProps> = observer(
           >
             <FocusedView
               ReCallBounties={ReCallBounties}
-              newDesign={true}
+              newDesign
               person={person}
               canEdit={!canEdit}
               selectedIndex={focusIndex}
@@ -103,8 +98,8 @@ export const PostModal: FC<PostModalProps> = observer(
               goBack={closeHandler}
             />
           </Modal>
-        )}
-      </>
+        
     );
   }
+	}
 );

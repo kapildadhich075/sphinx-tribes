@@ -7,9 +7,13 @@ class API {
     this.put = addMethod('PUT');
     this.del = addMethod('DELETE');
   }
+
   get: Function;
+
   post: Function;
+
   put: Function;
+
   del: Function;
 }
 
@@ -28,15 +32,13 @@ function addMethod(m: string): Function {
         if (!incomingHeaders) {
           headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
           opts.body = new URLSearchParams(data);
-        } else {
-          if (
+        } else if (
             incomingHeaders &&
             incomingHeaders['Content-Type'] &&
             incomingHeaders['Content-Type'] === 'application/json'
           ) {
             opts.body = JSON.stringify(data);
           }
-        }
       }
       if (m === 'UPLOAD') {
         const file = data;

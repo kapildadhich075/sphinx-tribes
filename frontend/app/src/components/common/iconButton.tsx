@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { EuiButton } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
-import { colors } from '../../config/colors';
 import { IconButtonProps } from 'components/interfaces';
+import { colors } from '../../config/colors';
 
 export default function IconButton(props: IconButtonProps) {
-  const color = colors['light'];
+  const color = colors.light;
   const ButtonColors = {
     primary: {
       background: color.blue1,

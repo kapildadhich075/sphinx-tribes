@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
+import { EuiLoadingSpinner } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
 import avatarIcon from '../../../public/static/profile_avatar.svg';
 import backgroundIcon from '../../../public/static/background_icon.svg';
 
 import type { Props } from './propsType';
-import { EuiLoadingSpinner } from '@elastic/eui';
 import { useStores } from '../../../store';
 import { Button, Modal } from '../../common';
 import { MAX_UPLOAD_SIZE } from '../../../people/utils/constants';
 import { Note } from './index';
 import { colors } from '../../../config/colors';
-import { observer } from 'mobx-react-lite';
 
 export default observer(ImageInput);
 
 function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Props) {
-  const color = colors['light'];
+  const color = colors.light;
   const { ui } = useStores();
   const [uploading, setUploading] = useState(false);
   const [showError, setShowError] = useState('');
@@ -48,7 +48,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
         handleChange(j.response.img);
       }
     } catch (e) {
-      console.log('ERROR UPLOADING IMAGE', e);
+      console.error('ERROR UPLOADING IMAGE', e);
     }
   }
 
@@ -64,7 +64,6 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
           }
         });
       });
-      console.log('upload error');
       return;
     }
 
@@ -99,7 +98,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
                     <Image
                       style={{
                         backgroundImage: `url(${
-                          picsrc ? picsrc : value ? value : uploading ? '' : defaultIcon
+                          picsrc || (value || (uploading ? '' : defaultIcon))
                         })`,
                         ...addedStyle
                       }}
@@ -120,8 +119,8 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
                 >
                   <img
                     src="/static/badges/Camera.png"
-                    height={'100%'}
-                    width={'100%'}
+                    height="100%"
+                    width="100%"
                     alt="camera_icon"
                   />
                 </div>
@@ -139,7 +138,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
                     <Image
                       style={{
                         backgroundImage: `url(${
-                          picsrc ? picsrc : value ? value : uploading ? '' : defaultIcon
+                          picsrc || (value || (uploading ? '' : defaultIcon))
                         })`,
                         ...addedStyle
                       }}
@@ -154,7 +153,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
         )}
       </Dropzone>
 
-      <Modal visible={showError ? true : false}>
+      <Modal visible={!!showError}>
         <div
           style={{
             display: 'flex',
@@ -165,7 +164,7 @@ function ImageInput({ note, value, handleChange, notProfilePic, imageIcon }: Pro
           }}
         >
           <div style={{ marginBottom: 20 }}>{showError}</div>
-          <Button onClick={() => setShowError('')} text={'Okay'} color={'primary'} />
+          <Button onClick={() => setShowError('')} text="Okay" color="primary" />
         </div>
       </Modal>
 

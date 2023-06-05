@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useStores } from '../store';
 import {
   EuiFormFieldset,
   EuiLoadingSpinner,
@@ -9,6 +8,8 @@ import {
   EuiButton,
   EuiHighlight
 } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
+import { useStores } from '../store';
 import Tribe from './tribe';
 import { useIsMobile, usePageScroll } from '../hooks';
 import { SearchTextInput } from '../components/common';
@@ -17,7 +18,6 @@ import tags from './tags';
 import NoResults from '../people/utils/noResults';
 import PageLoadSpinner from '../people/utils/pageLoadSpinner';
 import { colors } from '../config/colors';
-import { observer } from 'mobx-react-lite';
 
 export default observer(BodyComponent);
 
@@ -34,7 +34,7 @@ function BodyComponent() {
   const isMobile = useIsMobile();
 
   const selectedTags = tagOptions.filter((t) => t.checked === 'on');
-  const showTagCount = selectedTags.length > 0 ? true : false;
+  const showTagCount = selectedTags.length > 0;
 
   function selectTribe(uuid: string, unique_name: string) {
     setSelected(uuid);
@@ -55,7 +55,7 @@ function BodyComponent() {
     try {
       await main.getTribes({ page: newPage });
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 

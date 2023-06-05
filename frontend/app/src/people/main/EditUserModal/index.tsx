@@ -13,5 +13,5 @@ export const EditUserModal = observer(() => {
     return null;
   }
 
-  return <>{isMobile ? <EditUserMobileView /> : <EditUserDesktopView />}</>;
+  return isMobile ? <EditUserMobileView /> : <EditUserDesktopView />;
 });

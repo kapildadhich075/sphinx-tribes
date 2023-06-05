@@ -1,12 +1,12 @@
 import { EuiText } from '@elastic/eui';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { AutoCompleteProps } from 'components/interfaces';
 import { colors } from '../../config/colors';
 import ImageButton from './Image_button';
-import { AutoCompleteProps } from 'components/interfaces';
 
-const AutoComplete = (props: AutoCompleteProps) => {
-  const color = colors['light'];
+function AutoComplete(props: AutoCompleteProps) {
+  const color = colors.light;
   const [searchValue, setSearchValue] = useState<string>('');
   const [peopleData, setPeopleData] = useState<any>(props.peopleList);
 
@@ -29,7 +29,7 @@ const AutoComplete = (props: AutoCompleteProps) => {
       <input
         className="SearchInput"
         onChange={handler}
-        placeholder={'Search'}
+        placeholder="Search"
         style={{
           background: color.pureWhite,
           color: color.text1,
@@ -43,15 +43,15 @@ const AutoComplete = (props: AutoCompleteProps) => {
               <div className="ImageContainer">
                 <img
                   src={value.img || '/static/person_placeholder.png'}
-                  alt={'user-image'}
-                  height={'100%'}
-                  width={'100%'}
+                  alt="user-image"
+                  height="100%"
+                  width="100%"
                 />
               </div>
               <EuiText className="PeopleName">{value.owner_alias}</EuiText>
             </div>
             <ImageButton
-              buttonText={'Assign'}
+              buttonText="Assign"
               ButtonContainerStyle={{
                 width: '74.58px',
                 height: '32px'
@@ -65,7 +65,7 @@ const AutoComplete = (props: AutoCompleteProps) => {
       </div>
     </SearchOuterContainer>
   );
-};
+}
 
 export default AutoComplete;
 

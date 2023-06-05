@@ -45,7 +45,7 @@ export default function QrBar(props: QRBarProps) {
       >
         {!simple && (
           <MaterialIcon
-            icon={'qr_code_2'}
+            icon="qr_code_2"
             style={{ fontSize: 20, color: '#B0B7BC', marginRight: 10 }}
           />
         )}

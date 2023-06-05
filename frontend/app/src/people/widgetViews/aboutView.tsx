@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Divider } from '../../components/common';
-import QrBar from '../utils/QrBar';
 import { useHistory } from 'react-router-dom';
-import { renderMarkdown } from '../utils/renderMarkdown';
 import { observer } from 'mobx-react-lite';
 import { AboutViewProps } from 'people/interfaces';
+import { Divider } from '../../components/common';
+import QrBar from '../utils/QrBar';
+import { renderMarkdown } from '../utils/renderMarkdown';
 
 export const AboutView = observer((props: AboutViewProps) => {
   const history = useHistory();
@@ -63,7 +63,7 @@ export const AboutView = observer((props: AboutViewProps) => {
           <Row>
             <I>
               <div style={{ width: 4 }} />
-              <Icon source={`/static/twitter2.png`} />
+              <Icon source="/static/twitter2.png" />
               <Tag>@{tag}</Tag>
               {twitter_confirmed ? (
                 <Badge>VERIFIED</Badge>
@@ -81,7 +81,7 @@ export const AboutView = observer((props: AboutViewProps) => {
           <Row>
             <I>
               <div style={{ width: 4 }} />
-              <Icon source={`/static/email.png`} />
+              <Icon source="/static/email.png" />
               <Tag>{emailAddress}</Tag>
             </I>
           </Row>
@@ -93,7 +93,7 @@ export const AboutView = observer((props: AboutViewProps) => {
           <Divider />
 
           <Row style={{ justifyContent: 'flex-start', fontSize: 14 }}>
-            <Img src={'/static/github_logo.png'} />
+            <Img src="/static/github_logo.png" />
             <a href={`https://github.com/${githubTag}`} target="_blank" rel="noreferrer">
               {githubTag}
             </a>
@@ -119,7 +119,7 @@ export const AboutView = observer((props: AboutViewProps) => {
           <Grow>
             {repos.map((r, i) => (
               <ItemRow key={`${i}myrepo`} style={{ width: 'fit-content' }}>
-                <Img src={'/static/github_logo.png'} style={{ opacity: 0.6 }} />
+                <Img src="/static/github_logo.png" style={{ opacity: 0.6 }} />
                 <a href={`https://github.com/${r?.label}`} target="_blank" rel="noreferrer">
                   {r?.label}
                 </a>

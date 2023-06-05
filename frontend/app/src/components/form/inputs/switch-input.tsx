@@ -22,7 +22,7 @@ export default function SwitchInput({
     if (name === 'show' && value === undefined) handleChange(true);
   }, [handleChange, name, value]);
 
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <>

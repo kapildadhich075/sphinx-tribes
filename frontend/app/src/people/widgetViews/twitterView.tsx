@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function TwitterView(props: { handle: string }) {
   return (
     <Wrap>
-      <Icon source={`/static/twitter.png`} />
+      <Icon source="/static/twitter.png" />
       <div>@{props.handle}</div>
     </Wrap>
   );

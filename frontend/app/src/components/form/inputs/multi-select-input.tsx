@@ -18,7 +18,7 @@ export default function MultiSelectInput({
 }: Props) {
   let labeltext = label;
   if (error) labeltext = `${labeltext} (${error})`;
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <>

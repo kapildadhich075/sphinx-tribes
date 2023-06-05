@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import { colors } from '../../config/colors';
 
 export function renderMarkdown(markdown: any) {
-  const color = colors['light'];
+  const color = colors.light;
   return (
     <ReactMarkdown
       children={markdown}
@@ -22,7 +22,7 @@ export function renderMarkdown(markdown: any) {
         img({ className, ...props }) {
           return (
             <img
-              alt={'Markodown image'}
+              alt="Markodown image"
               className={className}
               style={{
                 width: '100%',

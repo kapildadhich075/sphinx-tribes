@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EuiGlobalToastList } from '@elastic/eui';
-import { Button } from '../../components/common';
-import { useStores } from '../../store';
 import { observer } from 'mobx-react-lite';
 import { BotSecretProps } from 'bots/interfaces';
+import { Button } from '../../components/common';
+import { useStores } from '../../store';
 
 export default observer(BotSecret);
 
@@ -75,12 +75,12 @@ function BotSecret(props: BotSecretProps) {
 
         <Button
           text={value}
-          wideButton={true}
-          icon={'content_copy'}
+          wideButton
+          icon="content_copy"
           iconStyle={{ color: '#fff', fontSize: 20 }}
           iconSize={20}
-          color={'widget'}
-          width={'100%'}
+          color="widget"
+          width="100%"
           height={50}
           style={{ width: '100%', padding: '0 5px', fontSize: 12 }}
           onClick={() => copyToClipboard(value)}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { setup, isSupported } from '@loomhq/record-sdk';
-import { Button, IconButton } from '../../components/common';
 import { LoomViewProps } from 'people/interfaces';
+import { Button, IconButton } from '../../components/common';
 
 const PUBLIC_APP_ID = 'ded90c8e-92ed-496d-bfe3-f742d7fa9785';
 
@@ -60,11 +60,11 @@ export default function LoomViewerRecorder(props: LoomViewProps) {
     <div style={style}>
       {!readOnly && (
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-          <Button text={'Record Loom Video'} color={'primary'} id={BUTTON_ID} />
+          <Button text="Record Loom Video" color="primary" id={BUTTON_ID} />
           {videoUrl ? (
             <IconButton
-              color={'widget'}
-              icon={'close'}
+              color="widget"
+              icon="close"
               // text={'Delete Video'}
               onClick={() => {
                 setVideoUrl('');

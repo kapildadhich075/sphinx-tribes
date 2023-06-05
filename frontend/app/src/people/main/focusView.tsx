@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
+import styled, { css } from 'styled-components';
+import moment from 'moment';
+import { cloneDeep } from 'lodash';
+import { observer } from 'mobx-react-lite';
+import { FocusViewProps } from 'people/interfaces';
 import { useStores } from '../../store';
 import Form from '../../components/form';
-import styled, { css } from 'styled-components';
 import { Button, IconButton } from '../../components/common';
-import moment from 'moment';
 import WantedSummary from '../widgetViews/summaries/wantedSummary';
 import { useIsMobile } from '../../hooks';
 import { dynamicSchemasByType } from '../../components/form/schema';
 import { extractRepoAndIssueFromIssueUrl } from '../../helpers';
-import { cloneDeep } from 'lodash';
-import { observer } from 'mobx-react-lite';
-import { FocusViewProps } from 'people/interfaces';
 
 // this is where we see others posts (etc) and edit our own
 export default observer(FocusedView);
@@ -33,7 +33,7 @@ function FocusedView(props: FocusViewProps) {
   const { ui, main } = useStores();
   const { ownerTribes } = main;
 
-  const skipEditLayer = selectedIndex < 0 || config.skipEditLayer ? true : false;
+  const skipEditLayer = !!(selectedIndex < 0 || config.skipEditLayer);
 
   const [loading, setLoading] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -132,10 +132,10 @@ function FocusedView(props: FocusViewProps) {
         } else {
           // if creating new widget
           if (fullMeData.extras[config.name]) {
-            //if not first of its kind
+            // if not first of its kind
             fullMeData.extras[config.name].unshift(v);
           } else {
-            //if first of its kind
+            // if first of its kind
             fullMeData.extras[config.name] = [v];
           }
         }
@@ -152,7 +152,7 @@ function FocusedView(props: FocusViewProps) {
     body.extras[config.name].splice(selectedIndex, 1);
 
     const info = ui.meInfo as any;
-    if (!info) return console.log('no meInfo');
+    if (!info) return console.warn('no meInfo');
 
     setDeleting(true);
     try {
@@ -162,7 +162,7 @@ function FocusedView(props: FocusViewProps) {
 
       if (props?.deleteExtraFunction) props?.deleteExtraFunction();
     } catch (e) {
-      console.log('e', e);
+      console.error('e', e);
     }
     setDeleting(false);
     if (!isNotHttps(ui?.meInfo?.url) && props.ReCallBounties) props.ReCallBounties();
@@ -213,7 +213,7 @@ function FocusedView(props: FocusViewProps) {
     try {
       newBody = await preSubmitFunctions(newBody);
     } catch (e) {
-      console.log('e', e);
+      console.error('e', e);
       alert(e);
       return;
     }
@@ -222,7 +222,7 @@ function FocusedView(props: FocusViewProps) {
 
     if (!newBody) return; // avoid saving bad state
     const info = ui.meInfo as any;
-    if (!info) return console.log('no meInfo');
+    if (!info) return console.warn('no meInfo');
 
     const date = new Date();
     const unixTimestamp = Math.floor(date.getTime() / 1000);
@@ -244,7 +244,7 @@ function FocusedView(props: FocusViewProps) {
       await main.saveProfile(requestData);
       closeModal();
     } catch (e) {
-      console.log('e', e);
+      console.error('e', e);
     }
     if (props?.onSuccess) props.onSuccess();
     setLoading(false);
@@ -324,7 +324,7 @@ function FocusedView(props: FocusViewProps) {
   function getExtras(): any {
     if (main.personAssignedWanteds.length) {
       return main.peopleWanteds[selectedIndex].body;
-    } else if (person?.extras && main.peopleWanteds) {
+    } if (person?.extras && main.peopleWanteds) {
       return main.peopleWanteds[selectedIndex].body;
     }
 
@@ -401,18 +401,18 @@ function FocusedView(props: FocusViewProps) {
                 >
                   <Button
                     onClick={() => setEditMode(true)}
-                    color={'widget'}
-                    leadingIcon={'edit'}
+                    color="widget"
+                    leadingIcon="edit"
                     iconSize={18}
                     width={100}
-                    text={'Edit'}
+                    text="Edit"
                   />
                   <Button
                     onClick={() => deleteIt()}
-                    color={'white'}
+                    color="white"
                     loading={deleting}
-                    leadingIcon={'delete_outline'}
-                    text={'Delete'}
+                    leadingIcon="delete_outline"
+                    text="Delete"
                     style={{
                       marginLeft: 10
                     }}

@@ -4,7 +4,7 @@ import { DollarConverter } from 'helpers';
 import React from 'react';
 import styled from 'styled-components';
 
-export const Summary = ({
+export function Summary({
   sats,
   bounties,
   className = ''
@@ -12,8 +12,8 @@ export const Summary = ({
   sats: number;
   bounties: number;
   className?: string;
-}) => (
-  <SummaryContainer className={className}>
+}) {
+  return <SummaryContainer className={className}>
     <EuiStat
       className="stats"
       title={`${DollarConverter(sats)}`}
@@ -28,8 +28,8 @@ export const Summary = ({
       titleColor={colors.light.black500}
       description={<EuiTextColor color={colors.light.black500}>Total tasks completed</EuiTextColor>}
     />
-  </SummaryContainer>
-);
+         </SummaryContainer>
+}
 
 const SummaryContainer = styled.div`
   display: flex;

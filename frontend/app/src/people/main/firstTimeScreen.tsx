@@ -1,6 +1,6 @@
 import React from 'react';
-import { useStores } from '../../store';
 import styled from 'styled-components';
+import { useStores } from '../../store';
 import { Modal } from '../../components/common';
 import FocusedView from './focusView';
 import { firstScreenSchema } from '../../components/form/schema';
@@ -21,7 +21,7 @@ export default function FirstTimeScreen() {
 
   return (
     <Modal
-      visible={true}
+      visible
       envStyle={{
         height: 'fit-content',
         borderRadius: 8,
@@ -33,11 +33,11 @@ export default function FirstTimeScreen() {
       <div style={{ height: '100%', padding: 20, paddingTop: 0, width: '100%' }}>
         <FocusedView
           formHeader={formHeader}
-          isFirstTimeScreen={true}
-          buttonsOnBottom={true}
+          isFirstTimeScreen
+          buttonsOnBottom
           person={ui.meInfo}
-          canEdit={true}
-          manualGoBackOnly={true}
+          canEdit
+          manualGoBackOnly
           goBack={() => {
             ui.setMeInfo(null);
             main.getPeople();
@@ -52,7 +52,6 @@ export default function FirstTimeScreen() {
             schema: firstScreenSchema
           }}
           onSuccess={() => {
-            console.log('success');
           }}
         />
       </div>

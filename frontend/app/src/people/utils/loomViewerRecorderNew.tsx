@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { setup, isSupported } from '@loomhq/record-sdk';
-import { Button, IconButton } from '../../components/common';
 import styled from 'styled-components';
-import { colors } from '../../config/colors';
 import { EuiText } from '@elastic/eui';
 import { LoomViewProps } from 'people/interfaces';
+import { colors } from '../../config/colors';
+import { Button, IconButton } from '../../components/common';
 
 const PUBLIC_APP_DEVELOPMENT_ID = 'beec6b9b-d84c-44f4-ba70-f63f32f9e603';
 
@@ -15,7 +15,7 @@ const BUTTON_ID = 'loom-record-sdk-button';
 export default function LoomViewerRecorderNew(props: LoomViewProps) {
   const { loomEmbedUrl, onChange, readOnly, style, setIsVideo } = props;
   const [videoUrl, setVideoUrl] = useState(loomEmbedUrl || '');
-  const color = colors['light'];
+  const color = colors.light;
 
   useEffect(() => {
     async function setupLoom() {
@@ -68,8 +68,8 @@ export default function LoomViewerRecorderNew(props: LoomViewProps) {
       {!readOnly && (
         <ButtonContainer>
           <Button
-            text={'Record Loom Video'}
-            color={'white'}
+            text="Record Loom Video"
+            color="white"
             id={BUTTON_ID}
             style={{
               width: 214,
@@ -77,7 +77,7 @@ export default function LoomViewerRecorderNew(props: LoomViewProps) {
               display: 'flex',
               justifyContent: 'space-between'
             }}
-            img={'loom.png'}
+            img="loom.png"
             imgStyle={{
               height: 25,
               width: 25,
@@ -105,8 +105,8 @@ export default function LoomViewerRecorderNew(props: LoomViewProps) {
               color={color}
             >
               <IconButton
-                color={'widget'}
-                icon={'delete'}
+                color="widget"
+                icon="delete"
                 // text={'Delete Video'}
 
                 iconStyle={{

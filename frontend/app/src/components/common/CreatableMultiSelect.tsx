@@ -1,13 +1,13 @@
 import React from 'react';
 import CreatableSelect from 'react-select/creatable';
 import styled from 'styled-components';
+import { SelProps } from 'components/interfaces';
 import { colors } from '../../config/colors';
 import { colourOptions } from '../../people/utils/language_label_style';
-import { SelProps } from 'components/interfaces';
 
 export default function Sel(props: SelProps) {
   const { onChange, value, style, setIsTop } = props;
-  const color = colors['light'];
+  const color = colors.light;
 
   const opts =
     colourOptions.map((o) => ({
@@ -33,7 +33,7 @@ export default function Sel(props: SelProps) {
         onFocus={() => {
           if (setIsTop) setIsTop(true);
         }}
-        className={'multi-select-input'}
+        className="multi-select-input"
         styles={{
           control: (styles) => ({ ...styles, backgroundColor: 'white' }),
           option: (styles) => ({

@@ -1,15 +1,15 @@
 /* eslint-disable func-style */
 import React from 'react';
+import { EuiText } from '@elastic/eui';
+import { CodingViewProps } from 'people/interfaces';
 import { ButtonRow, Y, P, B, Img, Wrap, SectionPad, LoomIcon, GithubIcon } from './style';
 import { AddToFavorites, CopyLink, ShareOnTwitter, ViewTribe, ViewGithub } from './components';
 import { Divider, Paragraph, Title } from '../../../../components/common';
 import GithubStatusPill from '../../parts/statusPill';
-import { EuiText } from '@elastic/eui';
 import LoomViewerRecorder from '../../../utils/loomViewerRecorder';
 import { colors } from '../../../../config/colors';
 import { renderMarkdown } from '../../../utils/renderMarkdown';
 import { formatPrice, satToUsd } from '../../../../helpers';
-import { CodingViewProps } from 'people/interfaces';
 
 export default function DesktopView(props: CodingViewProps) {
   const {
@@ -28,13 +28,13 @@ export default function DesktopView(props: CodingViewProps) {
     actionButtons,
     status
   } = props;
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <>
       {paid && (
         <Img
-          src={'/static/paid_ribbon.svg'}
+          src="/static/paid_ribbon.svg"
           style={{
             position: 'absolute',
             top: -1,
@@ -67,7 +67,7 @@ export default function DesktopView(props: CodingViewProps) {
                     window.open(ticketUrl, '_blank');
                   }}
                 >
-                  <img height={'100%'} width={'100%'} src="/static/github_logo.png" alt="github" />
+                  <img height="100%" width="100%" src="/static/github_logo.png" alt="github" />
                 </GithubIcon>
               )}
               {loomEmbedUrl && (
@@ -77,7 +77,7 @@ export default function DesktopView(props: CodingViewProps) {
                     window.open(loomEmbedUrl, '_blank');
                   }}
                 >
-                  <img height={'100%'} width={'100%'} src="/static/loom.png" alt="loomVideo" />
+                  <img height="100%" width="100%" src="/static/loom.png" alt="loomVideo" />
                 </LoomIcon>
               )}
             </div>
@@ -142,8 +142,7 @@ export default function DesktopView(props: CodingViewProps) {
             >
               {labels?.length > 0 &&
                 labels?.map((x: any) => (
-                  <>
-                    <div
+                  <div
                       style={{
                         display: 'flex',
                         flexWrap: 'wrap',
@@ -156,7 +155,7 @@ export default function DesktopView(props: CodingViewProps) {
                         marginRight: '3px',
                         boxShadow: `1px 1px ${color.grayish.G70}`
                       }}
-                    >
+                  >
                       <div
                         style={{
                           fontSize: '10px',
@@ -165,8 +164,7 @@ export default function DesktopView(props: CodingViewProps) {
                       >
                         {x.label}
                       </div>
-                    </div>
-                  </>
+                  </div>
                 ))}
             </div>
           </SectionPad>

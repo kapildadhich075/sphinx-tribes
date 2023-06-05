@@ -15,8 +15,8 @@ import { InvitePeopleSearchProps } from './interfaces';
 
 const codingLanguages = GetValue(coding_languages);
 
-const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
-  const color = colors['light'];
+function InvitePeopleSearch(props: InvitePeopleSearchProps) {
+  const color = colors.light;
   const [searchValue, setSearchValue] = useState<string>('');
   const [peopleData, setPeopleData] = useState<any>(props?.peopleList);
   const [inviteNameId, setInviteNameId] = useState<number>(0);
@@ -98,7 +98,7 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
             onChange={(e) => {
               handler(e, '');
             }}
-            placeholder={'Type to search ...'}
+            placeholder="Type to search ..."
             style={{
               background: color.pureWhite,
               color: color.text1,
@@ -116,8 +116,8 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
                 className="crossImage"
                 src="/static/search_cross.svg"
                 alt="cross_icon"
-                height={'12px'}
-                width={'12px'}
+                height="12px"
+                width="12px"
               />
             </div>
           )}
@@ -137,7 +137,7 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
           }}
           button={
             <ImageButton
-              buttonText={'Skills'}
+              buttonText="Skills"
               ButtonContainerStyle={{
                 width: '102px',
                 height: '40px',
@@ -150,7 +150,7 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
                 marginRight: '1px',
                 marginTop: isPopoverOpen ? '0.9px' : '0px'
               }}
-              endImageSrc={'/static/Skill_drop_down.svg'}
+              endImageSrc="/static/Skill_drop_down.svg"
               endingImageContainerStyle={{
                 left: 60,
                 top: -2
@@ -202,11 +202,11 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
             >
               <EuiText className="labelText">{x.label}</EuiText>
               <SvgMask
-                src={'/static/label_cross.svg'}
+                src="/static/label_cross.svg"
                 bgcolor={x.color}
-                height={'23px'}
-                width={'16px'}
-                size={'8px'}
+                height="23px"
+                width="16px"
+                size="8px"
                 svgStyle={{
                   marginLeft: '2px',
                   marginTop: '1px'
@@ -224,9 +224,9 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
                 <div className="ImageContainer">
                   <img
                     src={value.img || '/static/person_placeholder.png'}
-                    alt={'user-image'}
-                    height={'100%'}
-                    width={'100%'}
+                    alt="user-image"
+                    height="100%"
+                    width="100%"
                     style={{
                       opacity: inviteNameId && inviteNameId !== value?.id ? '0.5' : ''
                     }}
@@ -312,7 +312,7 @@ const InvitePeopleSearch = (props: InvitePeopleSearchProps) => {
       </div>
     </SearchOuterContainer>
   );
-};
+}
 
 export default InvitePeopleSearch;
 

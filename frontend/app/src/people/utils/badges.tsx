@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import MaterialIcon from '@material/react-material-icon';
+import { observer } from 'mobx-react-lite';
+import { BadgesProps } from 'people/interfaces';
 import { useIsMobile } from '../../hooks';
 import { useStores } from '../../store';
 import PageLoadSpinner from './pageLoadSpinner';
 import { Modal, Button, Divider, TextInput } from '../../components/common';
-//import { ClaimOnLiquid } from '../../store/main';
-import MaterialIcon from '@material/react-material-icon';
-import { observer } from 'mobx-react-lite';
-import { BadgesProps } from 'people/interfaces';
+// import { ClaimOnLiquid } from '../../store/main';
 
 export default observer(Badges);
 
@@ -34,7 +34,7 @@ function Badges(props: BadgesProps) {
   }, [main]);
 
   const getBadges = useCallback(
-    async function () {
+    async () => {
       setLoading(true);
       setSelectedBadge(null);
       setBadgeToPush(null);
@@ -60,13 +60,13 @@ function Badges(props: BadgesProps) {
         to: liquidAddress,
         asset: badgeToPush.id,
         memo: memo
-      };*/
+      }; */
 
-      //const token = await main.claimBadgeOnLiquid(body);
+      // const token = await main.claimBadgeOnLiquid(body);
       // refresh badges
       getBadges();
     } catch (e) {
-      console.log('e', e);
+      console.error('e', e);
     }
 
     setClaiming(false);
@@ -106,7 +106,7 @@ function Badges(props: BadgesProps) {
       else if (intCount < 1001) flagColor = '#628afd';
     }
 
-    const showFlag = counter && parseInt(counter) < 1001 ? true : false;
+    const showFlag = !!(counter && parseInt(counter) < 1001);
 
     const packedBadge = {
       ...b,
@@ -177,10 +177,10 @@ function Badges(props: BadgesProps) {
               }}
               onClick={() => {
                 if (thisIsMe && !packedBadge.txid) {
-                  //user on own badge, off-chain
+                  // user on own badge, off-chain
                   setBadgeToPush(packedBadge);
                 } else if (packedBadge.txid) {
-                  //on-chain, click to see on blockstream
+                  // on-chain, click to see on blockstream
                   redirectToBlockstream(packedBadge.txid);
                 }
               }}
@@ -248,10 +248,10 @@ function Badges(props: BadgesProps) {
           style={{ pointerEvents: !thisIsMe && !packedBadge.txid ? 'none' : 'auto' }}
           onClick={() => {
             if (thisIsMe && !packedBadge.txid) {
-              //user on own badge, off-chain
+              // user on own badge, off-chain
               setBadgeToPush(packedBadge);
             } else if (packedBadge.txid) {
-              //on-chain, click to see on blockstream
+              // on-chain, click to see on blockstream
               redirectToBlockstream(packedBadge.txid);
             }
           }}
@@ -330,7 +330,7 @@ function Badges(props: BadgesProps) {
                     </div>
                   ) : (
                     <Status>
-                      <StatusText>{'Off-chain'}</StatusText>
+                      <StatusText>Off-chain</StatusText>
                     </Status>
                   )}
                 </div>
@@ -343,7 +343,7 @@ function Badges(props: BadgesProps) {
       )}
 
       <Modal
-        visible={badgeToPush ? true : false}
+        visible={!!badgeToPush}
         close={() => {
           setBadgeToPush(null);
         }}
@@ -357,17 +357,16 @@ function Badges(props: BadgesProps) {
             justifyContent: 'center'
           }}
         >
-          <>
-            <TextInput
+          <TextInput
               style={{ width: 240 }}
-              label={'Liquid Address'}
+              label="Liquid Address"
               value={liquidAddress}
               onChange={(e) => setLiquidAddress(e)}
-            />
+          />
 
             <TextInput
               style={{ width: 240 }}
-              label={'Memo (optional)'}
+              label="Memo (optional)"
               value={memo}
               onChange={(e) => setMemo(e)}
             />
@@ -379,7 +378,6 @@ function Badges(props: BadgesProps) {
               disabled={!liquidAddress || claiming}
               onClick={() => claimBadge()}
             />
-          </>
         </div>
       </Modal>
     </Wrap>

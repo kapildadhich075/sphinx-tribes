@@ -59,18 +59,16 @@ export default function Person(props: PersonProps) {
               {!hideActions && (
                 <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
                   {!hideActions && owner_pubkey ? (
-                    <>
-                      <a href={qrString}>
+                    <a href={qrString}>
                         <Button
                           text="Connect"
                           color="white"
-                          leadingIcon={'open_in_new'}
+                          leadingIcon="open_in_new"
                           iconSize={16}
                           style={{ marginTop: 12 }}
                           onClick={(e) => e.stopPropagation()}
                         />
-                      </a>
-                    </>
+                    </a>
                   ) : (
                     <div style={{ height: 30 }} />
                   )}
@@ -101,20 +99,18 @@ export default function Person(props: PersonProps) {
           <Divider />
           <Row style={{ justifyContent: 'space-between', alignItems: 'center', height: 50 }}>
             {owner_pubkey ? (
-              <>
-                <Button
+              <Button
                   text="Connect"
                   color="clear"
                   iconStyle={{ color: '#B0B7BC' }}
-                  endingIcon={'open_in_new'}
+                  endingIcon="open_in_new"
                   style={{ fontSize: 13, fontWeight: 500 }}
                   iconSize={16}
                   onClick={(e) => {
                     setShowQR(true);
                     e.stopPropagation();
                   }}
-                />
-              </>
+              />
             ) : (
               <div />
             )}

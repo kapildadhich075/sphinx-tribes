@@ -19,13 +19,13 @@ export default function SearchableSelect(props: SelProps) {
       <S
         options={opts}
         isLoading={loading}
-        placeholder={'Type to search...'}
-        isClearable={true}
-        isSearchable={true}
+        placeholder="Type to search..."
+        isClearable
+        isSearchable
         value={value}
         onChange={onChange}
         onInputChange={onInputChange}
-        className={'searchable-select-input'}
+        className="searchable-select-input"
       />
     </div>
   );

@@ -1,18 +1,18 @@
 import { EuiText } from '@elastic/eui';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { BountiesProps } from 'people/interfaces';
 import { colors } from '../../config/colors';
 import BountyDescription from '../../bounties/bounty_description';
 import BountyPrice from '../../bounties/bounty_price';
 import BountyProfileView from '../../bounties/bounty_profile_view';
 import IconButton from '../../components/common/icon_button';
 import StartUpModal from './start_up_modal';
-import ConnectCard from '../utils/connectCard';
+import ConnectCard from "./connectCard";
 import { useStores } from '../../store';
-import { observer } from 'mobx-react-lite';
-import { BountiesProps } from 'people/interfaces';
 
-const Bounties = (props: BountiesProps) => {
+function Bounties(props: BountiesProps) {
   const {
     assignee,
     price,
@@ -27,7 +27,7 @@ const Bounties = (props: BountiesProps) => {
     created
   } = props;
 
-  const color = colors['light'];
+  const color = colors.light;
   const [openStartUpModel, setOpenStartUpModel] = useState<boolean>(false);
   const closeModal = () => setOpenStartUpModel(false);
   const showModal = () => setOpenStartUpModel(true);
@@ -70,8 +70,8 @@ const Bounties = (props: BountiesProps) => {
             />
             <BountyProfileView
               assignee={assignee}
-              status={'ASSIGNED'}
-              canViewProfile={true}
+              status="ASSIGNED"
+              canViewProfile
               statusStyle={{
                 width: '55px',
                 height: '16px',
@@ -109,7 +109,7 @@ const Bounties = (props: BountiesProps) => {
               grayish_G200={color.grayish.G200}
             >
               <div className="UnassignedPersonContainer">
-                <img src="/static/unassigned_profile.svg" alt="" height={'100%'} width={'100%'} />
+                <img src="/static/unassigned_profile.svg" alt="" height="100%" width="100%" />
               </div>
               <div className="UnassignedPersonalDetailContainer">
                 <EuiText className="ProfileText">Do your skills match?</EuiText>
@@ -128,7 +128,7 @@ const Bounties = (props: BountiesProps) => {
                       showModal();
                     }
                   }}
-                  endingIcon={'arrow_forward'}
+                  endingIcon="arrow_forward"
                   width={166}
                   height={48}
                   style={{ marginTop: 20 }}
@@ -136,7 +136,7 @@ const Bounties = (props: BountiesProps) => {
                   hovercolor={color.button_secondary.hover}
                   activecolor={color.button_secondary.active}
                   shadowcolor={color.button_secondary.shadow}
-                  iconSize={'16px'}
+                  iconSize="16px"
                   iconStyle={{
                     top: '17px',
                     right: '14px'
@@ -154,7 +154,7 @@ const Bounties = (props: BountiesProps) => {
         </BountyContainer>
       )}
       {openStartUpModel && (
-        <StartUpModal closeModal={closeModal} dataObject={'getWork'} buttonColor={'primary'} />
+        <StartUpModal closeModal={closeModal} dataObject="getWork" buttonColor="primary" />
       )}
       <ConnectCard
         dismiss={() => closeConnectModal()}
@@ -165,7 +165,7 @@ const Bounties = (props: BountiesProps) => {
       />
     </>
   );
-};
+}
 
 export default observer(Bounties);
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { NoneSpaceProps } from 'people/interfaces';
 import { colors } from '../../config/colors';
 import { Button } from '../../components/common';
-import { NoneSpaceProps } from 'people/interfaces';
 
 export default function NoneSpace(props: NoneSpaceProps) {
-  const color = colors['light'];
+  const color = colors.light;
   if (props.banner) {
     return (
       <OuterContainer

@@ -13,7 +13,7 @@ export default function CheckBox({
   handleBlur,
   handleFocus
 }: Props) {
-  const color = colors['light'];
+  const color = colors.light;
   useEffect(() => {
     // if value not initiated, default value true
     if (name === 'show' && value === undefined) handleChange(true);

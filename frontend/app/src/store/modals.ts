@@ -6,13 +6,14 @@ class ModalsVisibilityStore {
   }
 
   userEditModal = false;
+
   setUserEditModal(v: boolean) {
     this.userEditModal = v;
   }
 
   startupModal = false;
+
   setStartupModal(v: boolean) {
-    console.log('teuaweawe');
     this.startupModal = v;
   }
 }

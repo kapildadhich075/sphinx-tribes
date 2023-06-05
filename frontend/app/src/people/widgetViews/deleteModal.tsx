@@ -3,9 +3,8 @@ import { DeleteTicketModalProps } from 'people/interfaces';
 import React from 'react';
 import styled from 'styled-components';
 
-const DeleteTicketModal = ({ closeModal, confirmDelete }: DeleteTicketModalProps) => (
-  <>
-    <EuiOverlayMask>
+function DeleteTicketModal({ closeModal, confirmDelete }: DeleteTicketModalProps) {
+  return <EuiOverlayMask>
       <EuiModal
         onClose={closeModal}
         style={{
@@ -36,9 +35,8 @@ const DeleteTicketModal = ({ closeModal, confirmDelete }: DeleteTicketModalProps
           </EuiButton>
         </ModalButtonContainer>
       </EuiModal>
-    </EuiOverlayMask>
-  </>
-);
+         </EuiOverlayMask>
+}
 
 export default DeleteTicketModal;
 

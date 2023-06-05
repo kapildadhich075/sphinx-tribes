@@ -1,11 +1,11 @@
 import { Button, IconButton } from 'components/common';
 import { AboutView } from 'people/widgetViews/aboutView';
 import React, { useState } from 'react';
-import { useUserInfo } from './hooks';
-import { AboutWrap, Head, Img, Name, RowWrap } from './styles';
 import ConnectCard from 'people/utils/connectCard';
 import { observer } from 'mobx-react-lite';
 import { UserInfoProps } from 'people/interfaces';
+import { AboutWrap, Head, Img, Name, RowWrap } from './styles';
+import { useUserInfo } from './hooks';
 
 export const UserInfoDesktopView = observer(({ setShowSupport }: UserInfoProps) => {
   const { canEdit, goBack, userImg, owner_alias, logout, person, onEdit } = useUserInfo();
@@ -67,7 +67,7 @@ export const UserInfoDesktopView = observer(({ setShowSupport }: UserInfoProps) 
               boxSizing: 'border-box',
               borderRadius: 4
             }}
-            icon={'qr_code_2'}
+            icon="qr_code_2"
             onClick={() => setShowQR(true)}
           />
         </Img>
@@ -91,7 +91,7 @@ export const UserInfoDesktopView = observer(({ setShowSupport }: UserInfoProps) 
               color="widget"
               height={42}
               style={{ fontSize: 13, background: '#f2f3f5' }}
-              leadingIcon={'edit'}
+              leadingIcon="edit"
               iconSize={15}
             />
             <Button

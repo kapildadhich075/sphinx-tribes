@@ -5,23 +5,22 @@ import styled from 'styled-components';
 import { colors } from '../config/colors';
 import { BountiesProfileProps } from './interfaces';
 
-const BountyProfileView = (props: BountiesProfileProps) => {
-  const color = colors['light'];
+function BountyProfileView(props: BountiesProfileProps) {
+  const color = colors.light;
   return (
-    <>
-      <UserProfileContainer
+    <UserProfileContainer
         style={{
           ...props?.UserProfileContainerStyle
         }}
-      >
+    >
         <UserImage
           style={{
             ...props.UserImageStyle
           }}
         >
           <img
-            width={'100%'}
-            height={'100%'}
+            width="100%"
+            height="100%"
             style={{ objectFit: 'cover' }}
             src={
               { ...props.assignee }.owner_alias
@@ -30,7 +29,7 @@ const BountyProfileView = (props: BountiesProfileProps) => {
                   }.img || '/static/person_placeholder.png'
                 : '/static/default_profile_image.svg'
             }
-            alt={'assigned_person'}
+            alt="assigned_person"
           />
         </UserImage>
         <UserInfo
@@ -89,15 +88,14 @@ const BountyProfileView = (props: BountiesProfileProps) => {
             >
               <EuiText className="text">View Profile</EuiText>
               <div className="Icon_Container">
-                <MaterialIcon icon={'arrow_forward'} className="MaterialIcon" />
+                <MaterialIcon icon="arrow_forward" className="MaterialIcon" />
               </div>
             </ViewProfileButton>
           )}
         </UserInfo>
-      </UserProfileContainer>
-    </>
+    </UserProfileContainer>
   );
-};
+}
 
 export default BountyProfileView;
 

@@ -15,8 +15,8 @@ type Props = LeaderItem & {
 };
 
 const color = colors.light;
-export const LeaerboardItem = ({ owner_pubkey, total_sats_earned, position }: Props) => (
-  <ItemContainer>
+export function LeaerboardItem({ owner_pubkey, total_sats_earned, position }: Props) {
+  return <ItemContainer>
     <EuiText color={colors.light.text2} className="position">
       #{position}
     </EuiText>
@@ -36,8 +36,8 @@ export const LeaerboardItem = ({ owner_pubkey, total_sats_earned, position }: Pr
         </PriceOuterContainer>
       </div>
     </div>
-  </ItemContainer>
-);
+         </ItemContainer>
+}
 
 const ItemContainer = styled.div`
   --position-gutter: 3rem;

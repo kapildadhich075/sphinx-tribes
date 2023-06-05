@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Input from '../../../form/inputs/';
 import { EuiButton } from '@elastic/eui';
-import WidgetList from './widgetList';
 import MaterialIcon from '@material/react-material-icon';
+import Input from "..";
+import WidgetList from './widgetList';
 import { FocusedWidgetProps } from './interfaces';
 
 export default function FocusedWidget(props: FocusedWidgetProps) {
@@ -131,7 +131,6 @@ export default function FocusedWidget(props: FocusedWidgetProps) {
     let value: any = '';
     if (type === 'number') value = 0;
     if (type === 'gallery') value = [];
-    console.log('getInitialValueByType', value);
     return value;
   }
 
@@ -154,7 +153,7 @@ export default function FocusedWidget(props: FocusedWidgetProps) {
     return valueToUpdate;
   }
 
-  const showingList = single ? false : selectedIndex > -1 ? false : true;
+  const showingList = single ? false : !(selectedIndex > -1);
 
   const widgetHeader = (
     <div
@@ -169,7 +168,7 @@ export default function FocusedWidget(props: FocusedWidgetProps) {
       }}
     >
       <div style={{ display: 'flex' }} onClick={() => cancel(true)}>
-        <MaterialIcon icon={'west'} />
+        <MaterialIcon icon="west" />
         <Icon source={`/static/${item.icon || 'sphinx'}.png`} style={{ marginLeft: 5 }} />
         <div style={{ marginLeft: 10 }}>{item.label}</div>
       </div>

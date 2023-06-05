@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button, Modal } from '../../components/common';
-import { colors } from '../../config/colors';
 import { ConnectCardProps } from 'people/interfaces';
 import { useStores } from 'store';
 import { EuiGlobalToastList } from '@elastic/eui';
-import Invoice from '../widgetViews/summaries/wantedSummaries/invoice';
 import moment from 'moment';
 import { invoicePollTarget } from 'config';
+import Invoice from '../widgetViews/summaries/wantedSummaries/invoice';
+import { colors } from '../../config/colors';
+import { Button, Modal } from '../../components/common';
 
 export default function AssignBounty(props: ConnectCardProps) {
-  const color = colors['light'];
+  const color = colors.light;
   const { visible, person, created } = props;
   const { main, ui } = useStores();
 
@@ -126,13 +126,13 @@ export default function AssignBounty(props: ConnectCardProps) {
                   />
                 </InvoiceForm>
                 <Button
-                  text={'Generate Invoice'}
-                  color={'primary'}
+                  text="Generate Invoice"
+                  color="primary"
                   style={{ paddingLeft: 25, margin: '12px 0 10px' }}
-                  img={'sphinx_white.png'}
+                  img="sphinx_white.png"
                   imgSize={27}
                   height={48}
-                  width={'100%'}
+                  width="100%"
                   onClick={generateInvoice}
                 />
               </>

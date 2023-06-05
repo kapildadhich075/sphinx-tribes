@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import { Button, Modal } from '../../components/common';
 import { useStores } from '../../store';
-import { observer } from 'mobx-react-lite';
 
 let timeout;
 
@@ -35,15 +35,13 @@ function TokenRefresh() {
   }, []);
 
   return (
-    <>
-      <Modal visible={show}>
+    <Modal visible={show}>
         <div style={{ display: 'flex', flexDirection: 'column', width: 250 }}>
           <div style={{ marginBottom: 20, textAlign: 'center' }}>
             Your session expired. Please log in again.
           </div>
-          <Button text={'OK'} color={'widget'} onClick={() => setShow(false)} />
+          <Button text="OK" color="widget" onClick={() => setShow(false)} />
         </div>
-      </Modal>
-    </>
+    </Modal>
   );
 }

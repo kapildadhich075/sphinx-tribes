@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { EuiFormRow, EuiTextArea, EuiFieldText } from '@elastic/eui';
 import TextInput from './text-input';
 import SearchTextInput from './search-text-input';
 import TextAreaInput from './text-area-input';
@@ -9,7 +10,6 @@ import NumberInput from './number-input';
 import Widgets from './widgets/index';
 import SwitchInput from './switch-input';
 import LoomVideoInput from './loom-video-input';
-import { EuiFormRow, EuiTextArea, EuiFieldText } from '@elastic/eui';
 import SelectInput from './select-input';
 import SearchableSelectInput from './searchable-select-input';
 import MultiSelectInput from './multi-select-input';
@@ -24,7 +24,7 @@ import TextAreaInputNew from './text-area-input-new';
 import CreatableMultiSelectInputNew from './creatable-multi-select-input-new';
 
 export default function Input(props: any) {
-  const color = colors['light'];
+  const color = colors.light;
   function getInput() {
     switch (props.type) {
       case 'space':
@@ -38,7 +38,7 @@ export default function Input(props: any) {
       case 'img':
         return <ImageInput {...props} />;
       case 'imgcanvas':
-        return <ImageInput notProfilePic={true} {...props} />;
+        return <ImageInput notProfilePic {...props} />;
       case 'gallery':
         return <GalleryInput {...props} />;
       case 'number':
@@ -68,9 +68,7 @@ export default function Input(props: any) {
       case 'date':
         return <Date {...props} />;
       case 'hidden':
-        return <></>;
       default:
-        return <></>;
     }
   }
 

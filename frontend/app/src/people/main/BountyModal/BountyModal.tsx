@@ -4,11 +4,11 @@ import { widgetConfigs } from 'people/utils/constants';
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useStores } from 'store';
-import FocusedView from '../focusView';
 import { BountyModalProps } from 'people/interfaces';
+import FocusedView from '../focusView';
 
 const config = widgetConfigs.wanted;
-export const BountyModal = ({ basePath }: BountyModalProps) => {
+export function BountyModal({ basePath }: BountyModalProps) {
   const history = useHistory();
   const { wantedId } = useParams<{ wantedId: string }>();
 
@@ -46,7 +46,7 @@ export const BountyModal = ({ basePath }: BountyModalProps) => {
 
   return (
     <Modal
-      visible={true}
+      visible
       style={{
         height: '100%'
       }}
@@ -80,4 +80,4 @@ export const BountyModal = ({ basePath }: BountyModalProps) => {
       />
     </Modal>
   );
-};
+}

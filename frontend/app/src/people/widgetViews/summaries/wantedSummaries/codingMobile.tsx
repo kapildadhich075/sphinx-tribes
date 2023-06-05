@@ -1,5 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react';
+import { EuiText } from '@elastic/eui';
+import { CodingViewProps } from 'people/interfaces';
 import { ButtonRow, Pad, GithubIconMobile, T, Y, P, D, B, LoomIconMobile } from './style';
 import {
   Heart,
@@ -10,13 +12,11 @@ import {
   ViewGithub
 } from './components';
 import GithubStatusPill from '../../parts/statusPill';
-import { EuiText } from '@elastic/eui';
 import { Divider } from '../../../../components/common';
 import LoomViewerRecorder from '../../../utils/loomViewerRecorder';
 import { colors } from '../../../../config/colors';
 import { renderMarkdown } from '../../../utils/renderMarkdown';
 import { formatPrice, satToUsd } from '../../../../helpers';
-import { CodingViewProps } from 'people/interfaces';
 
 export default function MobileView(props: CodingViewProps) {
   const {
@@ -33,7 +33,7 @@ export default function MobileView(props: CodingViewProps) {
     actionButtons,
     status
   } = props;
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <div style={{ padding: 20, overflow: 'auto' }}>
@@ -57,7 +57,7 @@ export default function MobileView(props: CodingViewProps) {
                 window.open(ticketUrl, '_blank');
               }}
             >
-              <img height={'100%'} width={'100%'} src="/static/github_logo.png" alt="github" />
+              <img height="100%" width="100%" src="/static/github_logo.png" alt="github" />
             </GithubIconMobile>
           )}
           {loomEmbedUrl && (
@@ -67,7 +67,7 @@ export default function MobileView(props: CodingViewProps) {
                 window.open(loomEmbedUrl, '_blank');
               }}
             >
-              <img height={'100%'} width={'100%'} src="/static/loom.png" alt="loomVideo" />
+              <img height="100%" width="100%" src="/static/loom.png" alt="loomVideo" />
             </LoomIconMobile>
           )}
         </div>
@@ -100,8 +100,7 @@ export default function MobileView(props: CodingViewProps) {
         >
           {labels?.length > 0 &&
             labels?.map((x: any) => (
-              <>
-                <div
+              <div
                   style={{
                     display: 'flex',
                     flexWrap: 'wrap',
@@ -114,7 +113,7 @@ export default function MobileView(props: CodingViewProps) {
                     marginRight: '3px',
                     boxShadow: `1px 1px ${color.grayish.G70}`
                   }}
-                >
+              >
                   <div
                     style={{
                       fontSize: '10px',
@@ -123,8 +122,7 @@ export default function MobileView(props: CodingViewProps) {
                   >
                     {x.label}
                   </div>
-                </div>
-              </>
+              </div>
             ))}
         </div>
 

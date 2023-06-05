@@ -18,7 +18,7 @@ export default function FadeLeft(props: FadeLeftProps) {
     overlayClick,
     noFade
   } = props;
-  const [translation, setTranslation] = useState(drift ? drift : -40);
+  const [translation, setTranslation] = useState(drift || -40);
   const [opacity, setOpacity] = useState(0);
   const [shouldRender, setShouldRender] = useState(false);
 
@@ -28,7 +28,7 @@ export default function FadeLeft(props: FadeLeftProps) {
   }
 
   const close = useCallback(() => {
-    setTranslation(drift ? drift : -40);
+    setTranslation(drift || -40);
     setOpacity(0);
   }, [drift]);
 

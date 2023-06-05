@@ -5,6 +5,6 @@ export default function CodingTask(props: any) {
   const { isMobile } = props;
 
   if (isMobile) {
-    return <></>;
+    
   }
 }

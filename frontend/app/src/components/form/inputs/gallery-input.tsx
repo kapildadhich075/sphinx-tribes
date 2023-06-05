@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropzone from 'react-dropzone';
+import MaterialIcon from '@material/react-material-icon';
+import { observer } from 'mobx-react-lite';
 import type { Props } from './propsType';
 import { useStores } from '../../../store';
-import MaterialIcon from '@material/react-material-icon';
 
 import { Button, Modal } from '../../common';
 import { MAX_UPLOAD_SIZE } from '../../../people/utils/constants';
 import { colors } from '../../../config/colors';
-import { observer } from 'mobx-react-lite';
 
 export default observer(GalleryInput);
 
 function GalleryInput({ value, handleChange }: Props) {
-  const color = colors['light'];
+  const color = colors.light;
   const { ui } = useStores();
   const [uploading, setUploading] = useState(false);
   const [showError, setShowError] = useState('');
@@ -42,7 +42,7 @@ function GalleryInput({ value, handleChange }: Props) {
         addImg(j.response.img);
       }
     } catch (e) {
-      console.log('ERROR UPLOADING IMAGE', e);
+      console.error('ERROR UPLOADING IMAGE', e);
     }
   }
 
@@ -58,7 +58,6 @@ function GalleryInput({ value, handleChange }: Props) {
           }
         });
       });
-      console.log('upload error');
       return;
     }
 
@@ -103,7 +102,7 @@ function GalleryInput({ value, handleChange }: Props) {
           picsrcArray.map((v, i) => (
             <ImageWrap key={i}>
               <Close onClick={() => deleteImg(i)}>
-                <MaterialIcon icon={'close'} style={{ color: color.pureBlack, fontSize: 12 }} />
+                <MaterialIcon icon="close" style={{ color: color.pureBlack, fontSize: 12 }} />
               </Close>
               <Sq>
                 <ImageCircle>
@@ -126,13 +125,13 @@ function GalleryInput({ value, handleChange }: Props) {
                 <input {...getInputProps()} />
                 <Button
                   {...getRootProps()}
-                  leadingIcon={'add'}
+                  leadingIcon="add"
                   style={{
                     width: 154,
                     paddingRight: 20
                   }}
                   height={48}
-                  text={'Add Media'}
+                  text="Add Media"
                   color="widget"
                   loading={uploading}
                 />
@@ -142,7 +141,7 @@ function GalleryInput({ value, handleChange }: Props) {
         </Dropzone>
       </div>
 
-      <Modal visible={showError ? true : false}>
+      <Modal visible={!!showError}>
         <div
           style={{
             display: 'flex',
@@ -153,7 +152,7 @@ function GalleryInput({ value, handleChange }: Props) {
           }}
         >
           <div style={{ marginBottom: 20 }}>{showError}</div>
-          <Button onClick={() => setShowError('')} text={'Okay'} color={'primary'} />
+          <Button onClick={() => setShowError('')} text="Okay" color="primary" />
         </div>
       </Modal>
     </>

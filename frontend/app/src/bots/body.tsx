@@ -1,21 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { EuiLoadingSpinner , EuiGlobalToastList } from '@elastic/eui';
+import MaterialIcon from '@material/react-material-icon';
+import { observer } from 'mobx-react-lite';
 import NoneSpace from '../people/utils/noneSpace';
 import { Button, Modal, SearchTextInput, Divider } from '../components/common';
 import { useStores } from '../store';
-import { EuiLoadingSpinner } from '@elastic/eui';
-import { useFuse, useScroll } from '../hooks';
+import { useFuse, useScroll , useIsMobile } from '../hooks';
 import { colors } from '../config/colors';
 import FadeLeft from '../components/animated/fadeLeft';
-import { useIsMobile } from '../hooks';
 import Bot from './bot';
 import Form from '../components/form';
 import { botSchema } from '../components/form/schema';
-import MaterialIcon from '@material/react-material-icon';
 import BotView from './botView';
 import BotSecret from './utils/botSecret';
-import { EuiGlobalToastList } from '@elastic/eui';
-import { observer } from 'mobx-react-lite';
 
 // avoid hook within callback warning by renaming hooks
 const getFuse = useFuse;
@@ -49,7 +47,7 @@ function BotBody() {
     setToasts([]);
   }
 
-  const c = colors['light'];
+  const c = colors.light;
   const isMobile = useIsMobile();
 
   const botSelectionAttribute = isMyBots ? 'id' : 'unique_name';
@@ -72,7 +70,7 @@ function BotBody() {
     v.tags = v.tags && v.tags.map((t) => t.value);
     v.price_per_use = parseInt(v.price_per_use);
 
-    const isEdit = v.id ? true : false;
+    const isEdit = !!v.id;
 
     let b: any = null;
 
@@ -80,7 +78,7 @@ function BotBody() {
       // edit
       alert('Bot content cannot be updated right now. Coming soon.');
       return;
-    } else {
+    } 
       // create
       try {
         b = await main.makeBot(v);
@@ -90,10 +88,10 @@ function BotBody() {
         }
         setShowCreate(false);
       } catch (e) {
-        console.log('e', e);
+        console.error('e', e);
         alert('Bot could not be saved.');
       }
-    }
+    
     loadBots();
   }
 
@@ -104,7 +102,7 @@ function BotBody() {
         addToast(editThisBot.name);
       }
     } catch (e) {
-      console.log('e', e);
+      console.error('e', e);
     }
 
     setEditThisBot(null);
@@ -181,12 +179,12 @@ function BotBody() {
         {!ui.meInfo && (
           <div style={{ marginTop: 50 }}>
             <NoneSpace
-              buttonText={'Get Started'}
-              buttonIcon={'arrow_forward'}
+              buttonText="Get Started"
+              buttonIcon="arrow_forward"
               action={() => ui.setShowSignIn(true)}
-              img={'bots_nonespace.png'}
-              text={'Discover Bots on Sphinx'}
-              sub={'Spice up your Sphinx experience with our diverse range of Sphinx bots'}
+              img="bots_nonespace.png"
+              text="Discover Bots on Sphinx"
+              sub="Spice up your Sphinx experience with our diverse range of Sphinx bots"
               style={{ height: 400 }}
             />
             <Divider />
@@ -230,8 +228,8 @@ function BotBody() {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             {ui.meInfo && (
               <Button
-                text={'Add a Bot'}
-                leadingIcon={'add'}
+                text="Add a Bot"
+                leadingIcon="add"
                 height={40}
                 color="primary"
                 onClick={() => setShowBotCreator(true)}
@@ -295,7 +293,7 @@ function BotBody() {
             zIndex: 10000,
             width: '100%'
           }}
-          isMounted={ui.selectingBot ? true : false}
+          isMounted={!!ui.selectingBot}
           dismountCallback={() => ui.setSelectedBot('')}
         >
           <BotView
@@ -303,7 +301,7 @@ function BotBody() {
             botUniqueName={ui.selectedBot}
             loading={loading}
             selectBot={(b) => selectBot(b[botSelectionAttribute])}
-            botView={true}
+            botView
           />
         </FadeLeft>
       </Body>
@@ -316,12 +314,12 @@ function BotBody() {
         {!ui.meInfo && (
           <div style={{ marginTop: 50 }}>
             <NoneSpace
-              buttonText={'Get Started'}
-              buttonIcon={'arrow_forward'}
+              buttonText="Get Started"
+              buttonIcon="arrow_forward"
               action={() => ui.setShowSignIn(true)}
-              img={'bots_nonespace.png'}
-              text={'Discover Bots on Sphinx'}
-              sub={'Spice up your Sphinx experience with our diverse range of Sphinx bots'}
+              img="bots_nonespace.png"
+              text="Discover Bots on Sphinx"
+              sub="Spice up your Sphinx experience with our diverse range of Sphinx bots"
               style={{ background: '#fff', height: 400 }}
             />
             <Divider />
@@ -342,7 +340,7 @@ function BotBody() {
             Explore
             <Link onClick={() => setShowDropdown(true)}>
               <div>{widgetLabel && widgetLabel.label}</div>
-              <MaterialIcon icon={'expand_more'} style={{ fontSize: 18, marginLeft: 5 }} />
+              <MaterialIcon icon="expand_more" style={{ fontSize: 18, marginLeft: 5 }} />
 
               {showDropdown && (
                 <div
@@ -387,15 +385,14 @@ function BotBody() {
             value={ui.searchText}
             style={{ width: 164, height: 40, border: '1px solid #DDE1E5', background: '#fff' }}
             onChange={(e) => {
-              console.log('handleChange', e);
               ui.setSearchText(e);
             }}
           />
         </div>
 
         <Button
-          text={'Add a Bot'}
-          leadingIcon={'add'}
+          text="Add a Bot"
+          leadingIcon="add"
           style={{ height: 48, minHeight: 48, margin: 20, marginTop: 0 }}
           color="primary"
           onClick={() => setShowBotCreator(true)}
@@ -416,7 +413,7 @@ function BotBody() {
           drift={40}
           overlayClick={() => ui.setSelectingBot('')}
           style={{ position: 'absolute', top: 0, right: 0, zIndex: 10000, width: '100%' }}
-          isMounted={ui.selectingBot ? true : false}
+          isMounted={!!ui.selectingBot}
           dismountCallback={() => ui.setSelectedBot('')}
         >
           <BotView
@@ -424,7 +421,7 @@ function BotBody() {
             botUniqueName={ui.selectedBot}
             loading={loading}
             selectBot={(b) => selectBot(b[botSelectionAttribute])}
-            botView={true}
+            botView
           />
         </FadeLeft>
       </Body>
@@ -479,13 +476,13 @@ function BotBody() {
               justifyContent: 'center'
             }}
           >
-            <Icon src={'/static/bots_create.svg'} />
+            <Icon src="/static/bots_create.svg" />
 
             <BotText>Share your awesome bot with other Sphinx chat users!</BotText>
             <Button
-              text={'Add a Bot'}
-              color={'primary'}
-              leadingIcon={'add'}
+              text="Add a Bot"
+              color="primary"
+              leadingIcon="add"
               height={50}
               width={200}
               onClick={() => {
@@ -495,8 +492,8 @@ function BotBody() {
             />
             <div style={{ height: 20 }} />
             <Button
-              text={'Learn about Bots'}
-              leadingIcon={'open_in_new'}
+              text="Learn about Bots"
+              leadingIcon="open_in_new"
               style={{ marginBottom: 20 }}
               height={50}
               width={200}
@@ -538,7 +535,7 @@ function BotBody() {
         </Modal>
 
         <Modal
-          visible={!showCreate && showSecret ? true : false}
+          visible={!!(!showCreate && showSecret)}
           close={() => {
             setShowSecret('');
             setEditThisBot(null);

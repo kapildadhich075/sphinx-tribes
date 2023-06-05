@@ -3,7 +3,7 @@ import { usePerson } from 'hooks';
 import { useHistory } from 'react-router-dom';
 import { useStores } from 'store';
 
-//TODO: mv into utils
+// TODO: mv into utils
 const host = getHost();
 function makeQR(pubkey: string) {
   return `sphinx.chat://?action=person&host=${host}&pubkey=${pubkey}`;

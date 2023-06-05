@@ -1,5 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react';
+import { EuiButtonIcon, EuiText } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
 import {
   Img,
   EyeDeleteContainerMobile,
@@ -10,7 +12,6 @@ import {
   DT,
   EyeDeleteTextContainerMobile
 } from './style';
-import { EuiButtonIcon, EuiText } from '@elastic/eui';
 import GithubStatusPill from '../parts/statusPill';
 import { colors } from '../../../config/colors';
 import NameTag from '../../utils/nameTag';
@@ -18,7 +19,6 @@ import { useStores } from '../../../store';
 import { formatPrice, satToUsd } from '../../../helpers';
 import { Button } from '../../../components/common';
 import { getHost } from '../../../config/host';
-import { observer } from 'mobx-react-lite';
 
 export default observer(MobileView);
 
@@ -49,13 +49,13 @@ function MobileView(props: any) {
   } = props;
 
   const { ui } = useStores();
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <div style={{ position: 'relative' }} onClick={onPanelClick} key={titleString}>
       {paid && (
         <Img
-          src={'/static/paid_ribbon.svg'}
+          src="/static/paid_ribbon.svg"
           style={{
             position: 'absolute',
             right: '-2.5px',
@@ -77,7 +77,7 @@ function MobileView(props: any) {
             <NameTag
               {...person}
               created={created}
-              widget={'wanted'}
+              widget="wanted"
               ticketUrl={ticketUrl}
               loomEmbedUrl={loomEmbedUrl}
               style={{
@@ -184,8 +184,7 @@ function MobileView(props: any) {
           >
             {labels.length > 0 ? (
               labels.map((x: any) => (
-                <>
-                  <div
+                <div
                     style={{
                       display: 'flex',
                       flexWrap: 'wrap',
@@ -198,7 +197,7 @@ function MobileView(props: any) {
                       marginRight: '3px',
                       marginBottom: '3px'
                     }}
-                  >
+                >
                     <div
                       style={{
                         fontSize: '10px',
@@ -207,17 +206,14 @@ function MobileView(props: any) {
                     >
                       {x.label}
                     </div>
-                  </div>
-                </>
+                </div>
               ))
             ) : (
-              <>
-                <div
+              <div
                   style={{
                     minHeight: '50px'
                   }}
-                />
-              </>
+              />
             )}
           </div>
           <EyeDeleteTextContainerMobile>
@@ -283,7 +279,7 @@ function MobileView(props: any) {
                     e.stopPropagation();
                     showModal();
                     setDeletePayload({
-                      created: created,
+                      created,
                       host: getHost(),
                       pubkey: person.owner_pubkey
                     });

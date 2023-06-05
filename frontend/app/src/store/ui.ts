@@ -25,51 +25,61 @@ class UiStore {
   }
 
   tags: EuiSelectableOption[] = initialTags;
+
   setTags(t: EuiSelectableOption[]) {
     this.tags = t;
   }
 
   searchText = '';
+
   setSearchText(s: string) {
     this.searchText = s.toLowerCase();
   }
 
   usdToSatsExchangeRate = 0;
+
   setUsdToSatsExchangeRate(n: number) {
     this.usdToSatsExchangeRate = n;
   }
 
   editMe = false;
+
   setEditMe(b: boolean) {
     this.editMe = b;
   }
 
   peoplePageNumber = 1;
+
   setPeoplePageNumber(n: number) {
     this.peoplePageNumber = n;
   }
 
   peoplePostsPageNumber = 1;
+
   setPeoplePostsPageNumber(n: number) {
     this.peoplePostsPageNumber = n;
   }
 
   peopleWantedsPageNumber = 1;
+
   setPeopleWantedsPageNumber(n: number) {
     this.peopleWantedsPageNumber = n;
   }
 
   peopleOffersPageNumber = 1;
+
   setPeopleOffersPageNumber(n: number) {
     this.peopleOffersPageNumber = n;
   }
 
   tribesPageNumber = 1;
+
   setTribesPageNumber(n: number) {
     this.tribesPageNumber = n;
   }
 
   selectedPerson = 0;
+
   setSelectedPerson(n: number | undefined) {
     if (n) this.selectedPerson = n;
   }
@@ -77,11 +87,13 @@ class UiStore {
   // this is for animations, if you deselect as a component is fading out,
   // it empties and looks broke for a second
   selectingPerson = 0;
+
   setSelectingPerson(n: number | undefined) {
     if (n) this.selectingPerson = n;
   }
 
   selectedBot = '';
+
   setSelectedBot(n: string) {
     this.selectedBot = n;
   }
@@ -89,46 +101,55 @@ class UiStore {
   // this is for animations, if you deselect as a component is fading out,
   // it empties and looks broke for a second
   selectingBot = '';
+
   setSelectingBot(n: string) {
     this.selectingBot = n;
   }
 
   toasts: any = [];
+
   setToasts(n: any) {
     this.toasts = n;
   }
 
   personViewOpenTab = '';
+
   setPersonViewOpenTab(s: string) {
     this.personViewOpenTab = s;
   }
 
   lastGithubRepo = '';
+
   setLastGithubRepo(s: string) {
     this.lastGithubRepo = s;
   }
 
   torFormBodyQR = '';
+
   setTorFormBodyQR(s: string) {
     this.torFormBodyQR = s;
   }
 
   openGithubIssues: any = [];
+
   setOpenGithubIssues(a: any) {
     this.openGithubIssues = a;
   }
 
   badgeList: any = [];
+
   setBadgeList(a: any) {
     this.badgeList = a;
   }
 
   language = '';
+
   setLanguage(s: string) {
     this.language = s;
   }
 
   @persist('object') meInfo: MeData = null;
+
   setMeInfo(t: MeData) {
     if (t) {
       if (t.photo_url && !t.img) t.img = t.photo_url;
@@ -139,11 +160,13 @@ class UiStore {
   }
 
   @persist('object') connection_string = '';
+
   setConnectionString(code: string) {
     this.connection_string = code;
   }
 
   showSignIn = false;
+
   setShowSignIn(b: boolean) {
     this.showSignIn = b;
   }

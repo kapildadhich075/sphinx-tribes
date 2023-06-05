@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import FadeLeft from '../animated/fadeLeft';
-import { IconButton } from '.';
-import { colors } from '../../config/colors';
-import { Portal } from './index';
 import { ModalProps } from 'components/interfaces';
+import FadeLeft from '../animated/fadeLeft';
+import { IconButton , Portal } from '.';
+import { colors } from '../../config/colors';
 
 export default function Modal(props: ModalProps) {
   const {
@@ -26,7 +25,7 @@ export default function Modal(props: ModalProps) {
     bigCloseImageStyle
   } = props;
 
-  const color = colors['light'];
+  const color = colors.light;
   const fillStyle = fill
     ? {
         height: '100%',
@@ -44,7 +43,7 @@ export default function Modal(props: ModalProps) {
         close={close || bigClose}
         overlayClick={overlayClick}
         dismountCallback={dismountCallback}
-        isMounted={visible ? true : false}
+        isMounted={!!visible}
         style={{
           ...style,
           position: 'absolute',
@@ -61,7 +60,7 @@ export default function Modal(props: ModalProps) {
       >
         <Env
           role="alertdialog"
-          aria-modal={true}
+          aria-modal
           style={{ ...fillStyle, ...envStyle }}
           color={color}
         >
@@ -92,7 +91,7 @@ export default function Modal(props: ModalProps) {
               }}
               onClick={bigCloseImage}
             >
-              <img src="/static/Close.svg" alt="close_svg" height={'100%'} width={'100%'} />
+              <img src="/static/Close.svg" alt="close_svg" height="100%" width="100%" />
             </div>
           )}
 
@@ -101,7 +100,7 @@ export default function Modal(props: ModalProps) {
               <Circ color={color}>
                 <IconButton
                   iconStyle={{ color: color.pureWhite }}
-                  icon={'chevron_left'}
+                  icon="chevron_left"
                   onClick={(e) => {
                     e.stopPropagation();
                     prevArrow();
@@ -114,7 +113,7 @@ export default function Modal(props: ModalProps) {
             <R color={color}>
               <Circ color={color}>
                 <IconButton
-                  icon={'chevron_right'}
+                  icon="chevron_right"
                   iconStyle={{ color: color.pureWhite }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -130,7 +129,7 @@ export default function Modal(props: ModalProps) {
               <CircL color={color}>
                 <IconButton
                   iconStyle={{ color: color.pureWhite }}
-                  icon={'chevron_left'}
+                  icon="chevron_left"
                   onClick={(e) => {
                     e.stopPropagation();
                     prevArrowNew();
@@ -143,7 +142,7 @@ export default function Modal(props: ModalProps) {
             <RNew color={color}>
               <CircR color={color}>
                 <IconButton
-                  icon={'chevron_right'}
+                  icon="chevron_right"
                   iconStyle={{ color: color.pureWhite }}
                   onClick={(e) => {
                     e.stopPropagation();

@@ -20,7 +20,7 @@ export default function NumberInput({
   let labeltext = label;
   if (error) labeltext = `${labeltext} (${error})`;
   const [active, setActive] = useState<boolean>(false);
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <OuterContainer color={color}>

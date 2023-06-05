@@ -8,7 +8,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useStores } from 'store';
 
-const color = colors['light'];
+const color = colors.light;
 const focusedDesktopModalStyles = widgetConfigs.wanted.modalStyle;
 const findPerson = (search) => (item) => {
   const { person, body } = item;
@@ -89,7 +89,7 @@ export const TicketModalPage = observer(({ setConnectPerson }: Props) => {
 
   if (isMobile) {
     return (
-      <Modal visible={search.created && search.owner_id} fill={true}>
+      <Modal visible={search.created && search.owner_id} fill>
         <FocusedView
           person={publicFocusPerson}
           personBody={connectPersonBody}
@@ -130,7 +130,7 @@ export const TicketModalPage = observer(({ setConnectPerson }: Props) => {
         selectedIndex={publicFocusIndex}
         config={widgetConfigs.wanted}
         goBack={goBack}
-        fromBountyPage={true}
+        fromBountyPage
         extraModalFunction={() => {
           goBack();
           if (ui.meInfo) {

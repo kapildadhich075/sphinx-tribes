@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { OfferViewProps } from 'people/interfaces';
 import { formatPrice, satToUsd } from '../../helpers';
 import { useIsMobile } from '../../hooks';
 import { Divider, Title } from '../../components/common';
 import GalleryViewer from '../utils/galleryViewer';
 import NameTag from '../utils/nameTag';
-import { OfferViewProps } from 'people/interfaces';
 
 export default function OfferView(props: OfferViewProps) {
   const { gallery, title, description, price, person, created, type } = props;
@@ -43,15 +43,15 @@ export default function OfferView(props: OfferViewProps) {
       <GalleryViewer
         cover
         showAll={false}
-        big={true}
+        big
         wrap={false}
-        selectable={true}
+        selectable
         gallery={gallery}
         style={{ maxHeight: 276, overflow: 'hidden' }}
       />
       <div>
         <Pad style={{ padding: 20, height: gallery ? '' : 411 }}>
-          <NameTag {...person} created={created} widget={'offer'} />
+          <NameTag {...person} created={created} widget="offer" />
           <DT>{title}</DT>
           <DD style={{ maxHeight: gallery ? 40 : '' }}>{description}</DD>
         </Pad>

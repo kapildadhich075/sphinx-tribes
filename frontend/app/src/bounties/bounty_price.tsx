@@ -1,9 +1,9 @@
 import { EuiText } from '@elastic/eui';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { PriceOuterContainer } from 'components/common';
 import { colors } from '../config/colors';
 import { DollarConverter, satToUsd } from '../helpers';
-import { PriceOuterContainer } from 'components/common';
 import { BountiesPriceProps } from './interfaces';
 
 const Session = [
@@ -25,8 +25,8 @@ const Session = [
   }
 ];
 
-const BountyPrice = (props: BountiesPriceProps) => {
-  const color = colors['light'];
+function BountyPrice(props: BountiesPriceProps) {
+  const color = colors.light;
   const [session, setSession] = useState<any>();
 
   useEffect(() => {
@@ -38,12 +38,11 @@ const BountyPrice = (props: BountiesPriceProps) => {
   }, [props]);
 
   return (
-    <>
-      <PriceContainer
+    <PriceContainer
         style={{
           ...props.style
         }}
-      >
+    >
         <div
           style={{
             display: 'flex',
@@ -113,10 +112,9 @@ const BountyPrice = (props: BountiesPriceProps) => {
             </EuiText>
           </SessionContainer>
         )}
-      </PriceContainer>
-    </>
+    </PriceContainer>
   );
-};
+}
 
 export default BountyPrice;
 

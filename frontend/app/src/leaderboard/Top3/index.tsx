@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 const color = colors.light;
 
-export const Top3 = () => {
+export function Top3() {
   const { leaderboard } = useStores();
   return (
     <Top3Container>
@@ -20,12 +20,12 @@ export const Top3 = () => {
       ))}
     </Top3Container>
   );
-};
+}
 
 type ItemProps = LeaderItem & {
   place: number;
 };
-const Item = ({ owner_pubkey, total_sats_earned, place }: ItemProps) => {
+function Item({ owner_pubkey, total_sats_earned, place }: ItemProps) {
   const { main } = useStores();
   const [person, setPerson] = useState<Person>();
 
@@ -65,7 +65,7 @@ const Item = ({ owner_pubkey, total_sats_earned, place }: ItemProps) => {
       <Podium place={place} />
     </ItemContainer>
   );
-};
+}
 
 const ItemContainer = styled.div`
   display: flex;

@@ -13,8 +13,11 @@ export class LeaderboardStore {
   private leaders: LeaderItem[] = [];
 
   public isLoading = false;
+
   public error: any;
+
   public total: Omit<LeaderItem, 'owner_pubkey'> | null = null;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -40,6 +43,7 @@ export class LeaderboardStore {
   get top3() {
     return this.sortedBySats.slice(0, 3);
   }
+
   get others() {
     return this.sortedBySats.slice(3);
   }

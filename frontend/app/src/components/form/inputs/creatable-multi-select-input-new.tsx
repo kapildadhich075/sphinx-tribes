@@ -16,7 +16,7 @@ const codingLanguages = GetValue(coding_languages);
 export default function CreatableMultiSelectInputNew({ error, label, handleChange }: Props) {
   let labeltext = label;
   if (error) labeltext = `${labeltext} (INCORRECT FORMAT)`;
-  const color = colors['light'];
+  const color = colors.light;
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
@@ -83,7 +83,7 @@ export default function CreatableMultiSelectInputNew({ error, label, handleChang
               boxShadow: `0px 1px 2px ${color.black100} `,
               fontWeight: '500'
             }}
-            endImageSrc={'/static/Skill_drop_down.svg'}
+            endImageSrc="/static/Skill_drop_down.svg"
             endingImageContainerStyle={{
               right: 0,
               top: -2
@@ -135,11 +135,11 @@ export default function CreatableMultiSelectInputNew({ error, label, handleChang
             >
               <EuiText className="labelText">{x.label}</EuiText>
               <SvgMask
-                src={'/static/label_cross.svg'}
+                src="/static/label_cross.svg"
                 bgcolor={x.color}
-                height={'23px'}
-                width={'16px'}
-                size={'8px'}
+                height="23px"
+                width="16px"
+                size="8px"
                 svgStyle={{
                   marginLeft: '2px',
                   marginTop: '1px'

@@ -20,7 +20,7 @@ export default function TextInput({
   let labeltext = label;
   if (error) labeltext = `${labeltext} (${error})`;
   const [active, setActive] = useState<boolean>(false);
-  const color = colors['light'];
+  const color = colors.light;
 
   const padStyle = prepend ? { paddingLeft: 0 } : {};
   return (
@@ -33,13 +33,13 @@ export default function TextInput({
         className={active ? 'euiFormRow_active' : (value ?? '') === '' ? '' : 'euiFormRow_filed'}
         border={borderType}
         label={labeltext}
-        isTextField={true}
+        isTextField
         error={error}
       >
         <R>
           <FieldText
             color={color}
-            name={'first'}
+            name="first"
             value={value || ''}
             readOnly={readOnly || false}
             onChange={(e) => handleChange(e.target.value)}
@@ -53,7 +53,7 @@ export default function TextInput({
             }}
             prepend={prepend}
             style={padStyle}
-            isTextField={true}
+            isTextField
           />
           {error && <E color={color} />}
         </R>

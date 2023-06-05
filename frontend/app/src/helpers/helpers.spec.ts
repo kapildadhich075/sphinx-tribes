@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+import moment from 'moment';
 import {
   extractGithubIssueFromUrl,
   extractRepoAndIssueFromIssueUrl,
@@ -6,8 +8,6 @@ import {
   calculateTimeLeft
 } from './helpers';
 import { uiStore } from '../store/ui';
-import crypto from 'crypto';
-import moment from 'moment';
 
 beforeAll(() => {
   uiStore.setUsdToSatsExchangeRate(10);

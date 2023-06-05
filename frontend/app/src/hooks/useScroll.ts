@@ -32,7 +32,7 @@ export function usePageScroll(goForward, goBackwards) {
         setLoadingBottom(false);
       }
     } catch (e) {
-      console.log('oops!', e);
+      console.error('e', e);
     }
   }
   return { handleScroll, loadingBottom, loadingTop: false };

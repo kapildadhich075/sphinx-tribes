@@ -1,14 +1,14 @@
 import { EuiText } from '@elastic/eui';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { isString } from 'lodash';
 import { colors } from '../config/colors';
 import { LanguageObject } from '../people/utils/language_label_style';
 import NameTag from '../people/utils/nameTag';
 import { BountiesDescriptionProps } from './interfaces';
-import { isString } from 'lodash';
 
-const BountyDescription = (props: BountiesDescriptionProps) => {
-  const color = colors['light'];
+function BountyDescription(props: BountiesDescriptionProps) {
+  const color = colors.light;
   const [dataValue, setDataValue] = useState([]);
   const [replitLink, setReplitLink] = useState('');
   const [descriptionImage, setDescriptionImage] = useState('');
@@ -38,8 +38,7 @@ const BountyDescription = (props: BountiesDescriptionProps) => {
   }, [props.codingLanguage]);
 
   return (
-    <>
-      <BountyDescriptionContainer style={{ ...props.style }}>
+    <BountyDescriptionContainer style={{ ...props.style }}>
         <Header>
           <div className="NameContainer">
             <NameTag
@@ -75,10 +74,10 @@ const BountyDescription = (props: BountiesDescriptionProps) => {
             <div className="DescriptionImage">
               <img
                 src={descriptionImage}
-                alt={'desc'}
+                alt="desc"
                 style={{ objectFit: 'cover' }}
-                height={'100%'}
-                width={'100%'}
+                height="100%"
+                width="100%"
               />
             </div>
           )}
@@ -95,10 +94,10 @@ const BountyDescription = (props: BountiesDescriptionProps) => {
               >
                 <img
                   style={{ marginRight: '5px' }}
-                  src={'/static/replit.png'}
-                  alt={'replit_image'}
-                  height={'15px'}
-                  width={'15px'}
+                  src="/static/replit.png"
+                  alt="replit_image"
+                  height="15px"
+                  width="15px"
                 />
                 <EuiText className="LanguageText">Replit</EuiText>
               </CodingLabels>
@@ -118,10 +117,9 @@ const BountyDescription = (props: BountiesDescriptionProps) => {
               </CodingLabels>
             ))}
         </LanguageContainer>
-      </BountyDescriptionContainer>
-    </>
+    </BountyDescriptionContainer>
   );
-};
+}
 
 export default BountyDescription;
 

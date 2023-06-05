@@ -4,7 +4,7 @@ import tags from './tags';
 
 export default function T(props: { type: string; iconOnly?: boolean }) {
   const { type } = props;
-  if (!tags[type]) return <></>;
+  if (!tags[type]) return;
   const Icon = tags[type].icon;
   const { color } = tags[type];
   return (

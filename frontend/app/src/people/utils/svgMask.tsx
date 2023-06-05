@@ -1,8 +1,8 @@
 import { SvgMaskProps } from 'people/interfaces';
 import React from 'react';
 
-export const SvgMask = (props: SvgMaskProps) => (
-  <div
+export function SvgMask(props: SvgMaskProps) {
+  return <div
     {...props}
     style={{
       ...props?.svgStyle,
@@ -12,5 +12,5 @@ export const SvgMask = (props: SvgMaskProps) => (
       backgroundColor: props?.bgcolor,
       maskSize: props?.size
     }}
-  />
-);
+         />
+}

@@ -1,15 +1,15 @@
 import MaterialIcon from '@material/react-material-icon';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useStores } from '../../store';
 import { observer } from 'mobx-react-lite';
 import { SearchTextInputProps } from 'components/interfaces';
+import { useStores } from '../../store';
 
 export default observer(SearchTextInput);
 function SearchTextInput(props: SearchTextInputProps) {
   const { ui } = useStores();
   const [searchValue, setSearchValue] = useState(ui.searchText || '');
-  const [expand, setExpand] = useState(ui.searchText ? true : false);
+  const [expand, setExpand] = useState(!!ui.searchText);
 
   const collapseStyles = props.small && !expand ? {} : {};
 
@@ -36,7 +36,7 @@ function SearchTextInput(props: SearchTextInputProps) {
           debounceValue = e.target.value;
           debounce(doDelayedValueUpdate, 300);
         }}
-        placeholder={'Search'}
+        placeholder="Search"
         style={{ ...props.style, ...collapseStyles }}
       />
       {searchValue ? (

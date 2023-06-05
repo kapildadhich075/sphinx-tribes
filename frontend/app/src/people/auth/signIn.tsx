@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useObserver } from 'mobx-react-lite';
-import { useStores } from '../../store';
+import { useObserver , observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+import { AuthProps } from 'people/interfaces';
+import { useStores } from '../../store';
 import { Divider } from '../../components/common';
 import IconButton from '../../components/common/icon_button';
 import { useIsMobile } from '../../hooks';
 import AuthQR from './authQR';
 import QR from '../utils/QR';
 import SphinxAppLoginDeepLink from './SphinxAppLoginDeepLink';
-import { observer } from 'mobx-react-lite';
-import { AuthProps } from 'people/interfaces';
 
 export default observer(SignIn);
 
@@ -58,7 +57,7 @@ function SignIn(props: AuthProps) {
       ) : (
         <>
           <Column>
-            {isMobile && <Imgg src={'/static/sphinx.png'} />}
+            {isMobile && <Imgg src="/static/sphinx.png" />}
 
             <Name>Welcome</Name>
 
@@ -84,48 +83,48 @@ function SignIn(props: AuthProps) {
 
             {page !== 'lnurl' && (
               <IconButton
-                text={'Login with Sphinx'}
+                text="Login with Sphinx"
                 height={48}
-                endingIcon={'exit_to_app'}
+                endingIcon="exit_to_app"
                 width={210}
                 style={{ marginTop: 20 }}
-                color={'primary'}
+                color="primary"
                 onClick={() => setShowSignIn(true)}
-                hovercolor={'#5881F8'}
-                activecolor={'#5078F2'}
-                shadowcolor={'rgba(97, 138, 255, 0.5)'}
+                hovercolor="#5881F8"
+                activecolor="#5078F2"
+                shadowcolor="rgba(97, 138, 255, 0.5)"
               />
             )}
 
             {page === 'lnurl' ? (
               <IconButton
-                text={'Back'}
+                text="Back"
                 height={48}
-                endingIcon={'login'}
+                endingIcon="login"
                 width={210}
                 style={{ marginTop: 20 }}
-                color={'primary'}
+                color="primary"
                 onClick={() => setPage('sphinx')}
-                hovercolor={'#5881F8'}
-                activecolor={'#5078F2'}
-                shadowcolor={'rgba(97, 138, 255, 0.5)'}
+                hovercolor="#5881F8"
+                activecolor="#5078F2"
+                shadowcolor="rgba(97, 138, 255, 0.5)"
               />
             ) : (
               !isMobile && (
                 <IconButton
-                  text={'Login with LNAUTH'}
+                  text="Login with LNAUTH"
                   height={48}
-                  endingIcon={'login'}
+                  endingIcon="login"
                   width={210}
                   style={{ marginTop: 20 }}
-                  color={'primary'}
+                  color="primary"
                   onClick={() => {
                     setPage('lnurl');
                     pollLnurl(pollCount);
                   }}
-                  hovercolor={'#5881F8'}
-                  activecolor={'#5078F2'}
-                  shadowcolor={'rgba(97, 138, 255, 0.5)'}
+                  hovercolor="#5881F8"
+                  activecolor="#5078F2"
+                  shadowcolor="rgba(97, 138, 255, 0.5)"
                 />
               )
             )}
@@ -134,15 +133,15 @@ function SignIn(props: AuthProps) {
           <Column style={{ paddingTop: 0 }}>
             <Description>I don't have Sphinx!</Description>
             <IconButton
-              text={'Get Sphinx'}
-              endingIcon={'launch'}
+              text="Get Sphinx"
+              endingIcon="launch"
               width={210}
               height={48}
-              buttonType={'text'}
+              buttonType="text"
               style={{ color: '#83878b', marginTop: '10px', border: '1px solid #83878b' }}
               onClick={() => redirect()}
-              hovercolor={'#fff'}
-              activecolor={'#fff'}
+              hovercolor="#fff"
+              activecolor="#fff"
               textStyle={{
                 color: '#000',
                 fontSize: '16px',

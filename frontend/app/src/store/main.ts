@@ -1,12 +1,12 @@
 import { makeAutoObservable, observable, action } from 'mobx';
+import memo from 'memo-decorator';
+import { persist } from 'mobx-persist';
+import { type } from 'os';
 import api from '../api';
 import { Extras } from '../components/form/inputs/widgets/interfaces';
 import { getHostIncludingDockerHosts } from '../config/host';
 import { randomString } from '../helpers';
 import { uiStore } from './ui';
-import memo from 'memo-decorator';
-import { persist } from 'mobx-persist';
-import { type } from 'os';
 
 export const queryLimit = 1000;
 
@@ -16,6 +16,7 @@ function makeTorSaveURL(host: string, key: string) {
 
 export class MainStore {
   tribes: Tribe[] = [];
+
   ownerTribes: Tribe[] = [];
 
   constructor() {
@@ -25,7 +26,7 @@ export class MainStore {
   async getTribes(queryParams?: any): Promise<Tribe[]> {
     let ta = [...uiStore.tags];
 
-    //make tags string for querys
+    // make tags string for querys
     ta = ta.filter((f) => f.checked);
     let tags = '';
     if (ta && ta.length) {
@@ -56,6 +57,7 @@ export class MainStore {
   }
 
   bots: Bot[] = [];
+
   myBots: Bot[] = [];
 
   async getBots(uniqueName?: string, queryParams?: any): Promise<any> {
@@ -65,7 +67,7 @@ export class MainStore {
     const info = uiStore.meInfo;
 
     if (uniqueName) {
-      b.forEach(function (t: Bot, i: number) {
+      b.forEach((t: Bot, i: number) => {
         if (t.unique_name === uniqueName) {
           b.splice(i, 1);
           b.unshift(t);
@@ -137,7 +139,7 @@ export class MainStore {
 
       return mergedBots;
     } catch (e) {
-      console.log('Error getMyBots', e);
+      console.error('Error getMyBots', e);
     }
   }
 
@@ -202,7 +204,7 @@ export class MainStore {
       }
       return openIssues;
     } catch (e) {
-      console.log('Error getOpenGithubIssues: ', e);
+      console.error('Error getOpenGithubIssues: ', e);
     }
   }
 
@@ -238,7 +240,7 @@ export class MainStore {
       if (!r) return; // tor user will return here
       return r;
     } catch (e) {
-      console.log('Error deleteBot: ', e);
+      console.error('Error deleteBot: ', e);
     }
   }
 
@@ -312,7 +314,7 @@ export class MainStore {
 
       return transferredBadge;
     } catch (e) {
-      console.log('Error awardBadge: ', e);
+      console.error('Error awardBadge: ', e);
     }
   }
 
@@ -329,7 +331,7 @@ export class MainStore {
       uiStore.setBadgeList(badgelist);
       return badgelist;
     } catch (e) {
-      console.log('Error getBadgeList: ', e);
+      console.error('Error getBadgeList: ', e);
     }
   }
 
@@ -345,7 +347,7 @@ export class MainStore {
 
       return balances;
     } catch (e) {
-      console.log('Error getBalances: ', e);
+      console.error('Error getBalances: ', e);
     }
   }
 
@@ -353,7 +355,7 @@ export class MainStore {
     await api.post('save', payload, {
       'Content-Type': 'application/json'
     });
-    return;
+    
   }
 
   async getTorSaveURL(method: string, path: string, body: any): Promise<string> {
@@ -379,7 +381,7 @@ export class MainStore {
       });
       torSaveURL = makeTorSaveURL(gotHost, key);
     } catch (e) {
-      console.log('Error postToCache getTorSaveURL: ', e);
+      console.error('Error postToCache getTorSaveURL: ', e);
     }
 
     return torSaveURL;
@@ -503,7 +505,7 @@ export class MainStore {
       }
       return ps;
     } catch (e) {
-      console.log('fetch failed getPeoplePosts: ', e);
+      console.error('fetch failed getPeoplePosts: ', e);
       return [];
     }
   }
@@ -552,7 +554,7 @@ export class MainStore {
       }
       return ps;
     } catch (e) {
-      console.log('fetch failed getPeopleWanteds: ', e);
+      console.error('fetch failed getPeopleWanteds: ', e);
       return [];
     }
   }
@@ -580,7 +582,7 @@ export class MainStore {
 
       return ps;
     } catch (e) {
-      console.log('fetch failed getPeopleWanteds: ', e);
+      console.error('fetch failed getPeopleWanteds: ', e);
       return [];
     }
   }
@@ -615,7 +617,7 @@ export class MainStore {
 
       return ps;
     } catch (e) {
-      console.log('fetch failed getPeopleOffers: ', e);
+      console.error('fetch failed getPeopleOffers: ', e);
       return [];
     }
   }
@@ -625,9 +627,9 @@ export class MainStore {
       if (queryParams.search) {
         // if search and no results, return nothing
         return [];
-      } else {
+      } 
         return currentList;
-      }
+      
     }
 
     if (queryParams && queryParams.resetPage) {
@@ -666,16 +668,16 @@ export class MainStore {
           const admin_keys = response?.pubkeys;
           if (admin_keys !== null) {
             return !!admin_keys.find((value) => value === self.owner_pubkey);
-          } else {
+          } 
             return false;
-          }
+          
         } catch (error) {
           return false;
         }
       };
 
       const isSuperAdmin = await getSuperAdmin();
-      const updateSelf = { ...self, ...p, isSuperAdmin: isSuperAdmin };
+      const updateSelf = { ...self, ...p, isSuperAdmin };
       uiStore.setMeInfo(updateSelf);
     }
   }
@@ -688,7 +690,7 @@ export class MainStore {
 
       return r;
     } catch (e) {
-      console.log('Error claimBadgeOnLiquid: ', e);
+      console.error('Error claimBadgeOnLiquid: ', e);
     }
   }
 
@@ -700,7 +702,7 @@ export class MainStore {
 
       return r;
     } catch (e) {
-      console.log('Error sendBadgeOnLiquid: ', e);
+      console.error('Error sendBadgeOnLiquid: ', e);
     }
   }
 
@@ -717,7 +719,7 @@ export class MainStore {
       }
       return j.response;
     } catch (e) {
-      console.log('Error refreshJwt: ', e);
+      console.error('Error refreshJwt: ', e);
       // could not refresh jwt, logout!
       return null;
     }
@@ -738,7 +740,7 @@ export class MainStore {
 
       return exchangeRate;
     } catch (e) {
-      console.log('Error getUsdToSatsExchangeRate: ', e);
+      console.error('Error getUsdToSatsExchangeRate: ', e);
       // could not refresh jwt, logout!
       return null;
     }
@@ -761,7 +763,7 @@ export class MainStore {
       const j = await r.json();
       return j;
     } catch (e) {
-      console.log('Error deleteProfile: ', e);
+      console.error('Error deleteProfile: ', e);
       // could not delete profile!
       return null;
     }
@@ -796,7 +798,7 @@ export class MainStore {
 
       await this.getSelf(body);
     } catch (e) {
-      console.log('Error saveProfile: ', e);
+      console.error('Error saveProfile: ', e);
     }
   }
 
@@ -814,7 +816,7 @@ export class MainStore {
 
     if (this.lnToken) {
       const response = await fetch(`${URL}/${path}`, {
-        method: method,
+        method,
         body: JSON.stringify({
           ...body
         }),
@@ -826,7 +828,7 @@ export class MainStore {
       });
 
       return [response, error];
-    } else {
+    } 
       // fork between tor users non authentiacted and not
       if (this.isTorSave() || info.url.startsWith('http://')) {
         this.submitFormViaApp(method, path, body);
@@ -834,7 +836,7 @@ export class MainStore {
       }
 
       const response = await fetch(`${URL}/${path}`, {
-        method: method,
+        method,
         body: JSON.stringify({
           // use docker host (tribes.sphinx), because relay will post to it
           host: getHostIncludingDockerHosts(),
@@ -847,7 +849,7 @@ export class MainStore {
       });
 
       return [response, error];
-    }
+    
   }
 
   async submitFormViaApp(method: string, path: string, body: any) {
@@ -855,7 +857,7 @@ export class MainStore {
       const torSaveURL = await this.getTorSaveURL(method, path, body);
       uiStore.setTorFormBodyQR(torSaveURL);
     } catch (e) {
-      console.log('Error submitFormViaApp: ', e);
+      console.error('Error submitFormViaApp: ', e);
     }
   }
 
@@ -878,7 +880,7 @@ export class MainStore {
           await this.saveProfile(clonedMeInfo);
           return [clonedEx, targetIndex];
         } catch (e) {
-          console.log('Error setExtrasPropertyAndSave', e);
+          console.error('Error setExtrasPropertyAndSave', e);
         }
       }
 
@@ -905,7 +907,7 @@ export class MainStore {
           await this.saveProfile(clonedMeInfo);
           return [clonedEx, targetIndex];
         } catch (e) {
-          console.log('Error setExtrasMultipleProperty', e);
+          console.error('Error setExtrasMultipleProperty', e);
         }
       }
 
@@ -947,7 +949,7 @@ export class MainStore {
         }
       ]);
     } catch (e) {
-      console.log('Error deleteFavorite', e);
+      console.error('Error deleteFavorite', e);
     }
   }
 
@@ -1002,14 +1004,14 @@ export class MainStore {
   }
 
   @observable
-  lnInvoice: string = '';
+  lnInvoice = '';
 
   @action setLnInvoice(invoice: string) {
     this.lnInvoice = invoice;
   }
 
   @observable
-  lnInvoiceStatus: boolean = false;
+  lnInvoiceStatus = false;
 
   @action setLnInvoiceStatus(status: boolean) {
     this.lnInvoiceStatus = status;

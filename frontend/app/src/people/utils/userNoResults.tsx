@@ -1,18 +1,18 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+import { NoResultProps } from 'people/interfaces';
 import { useStores } from '../../store';
 import PageLoadSpinner from './pageLoadSpinner';
-import { observer } from 'mobx-react-lite';
 import NoneSpace from './noneSpace';
-import { widgetConfigs } from '../utils/constants';
-import { NoResultProps } from 'people/interfaces';
+import { widgetConfigs } from "./constants";
 
 export default observer(NoResults);
 function NoResults(props: NoResultProps) {
   const tabs = widgetConfigs;
 
   if (props.loading) {
-    return <PageLoadSpinner show={true} />;
-  } else {
+    return <PageLoadSpinner show />;
+  } 
     return (
       <NoneSpace
         small
@@ -20,8 +20,8 @@ function NoResults(props: NoResultProps) {
           margin: 'auto',
           marginTop: '25%'
         }}
-        {...tabs['usertickets']?.noneSpace['noResult']}
+        {...tabs.usertickets?.noneSpace.noResult}
       />
     );
-  }
+  
 }

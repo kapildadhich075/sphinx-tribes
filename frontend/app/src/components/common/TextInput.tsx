@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TextInputProps } from 'components/interfaces';
 import { colors } from '../../config/colors';
 import { FieldEnv, FieldText } from '../form/inputs/index';
-import { TextInputProps } from 'components/interfaces';
 
 export default function TextInput({
   label,
@@ -14,10 +14,9 @@ export default function TextInput({
   prepend,
   style
 }: TextInputProps) {
-  const color = colors['light'];
+  const color = colors.light;
   return (
-    <>
-      <F label={label}>
+    <F label={label}>
         <R>
           <FieldText
             color={color}
@@ -31,8 +30,7 @@ export default function TextInput({
             style={style}
           />
         </R>
-      </F>
-    </>
+    </F>
   );
 }
 

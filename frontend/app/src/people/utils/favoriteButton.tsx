@@ -12,7 +12,7 @@ export default function Heart() {
 
   if (loading) {
     return <EuiLoadingSpinner />;
-  } else {
+  } 
     return (
       <MaterialIcon
         onClick={clickIt}
@@ -20,5 +20,5 @@ export default function Heart() {
         icon={selected ? 'favorite' : 'favorite_outline'}
       />
     );
-  }
+  
 }

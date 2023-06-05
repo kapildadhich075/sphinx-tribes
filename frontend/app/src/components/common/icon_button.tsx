@@ -7,9 +7,7 @@ import { IconButtonProps } from 'components/interfaces';
 function hexToRgba(hex: string, opacity = 1) {
   try {
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-      return r + r + g + g + b + b;
-    });
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
 
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     const rgb = result
@@ -105,7 +103,7 @@ export default function IconButton(props: IconButtonProps) {
       onClick={props.onClick}
     >
       <span style={{ ...props.textStyle }}>
-        {props.loading || props.submitting ? <EuiLoadingSpinner size="m" /> : <>{props.text}</>}
+        {props.loading || props.submitting ? <EuiLoadingSpinner size="m" /> : props.text}
       </span>
       {props.endingIcon && (
         <MaterialIcon
@@ -176,11 +174,11 @@ export default function IconButton(props: IconButtonProps) {
                 ...props.leadingImgStyle
               }}
             >
-              <img height={'100%'} width={'100%'} src={props.leadingImg} alt="leading" />
+              <img height="100%" width="100%" src={props.leadingImg} alt="leading" />
             </div>
           )}
           <span style={{ ...props.textStyle }}>
-            {props.loading || props.submitting ? <EuiLoadingSpinner size="m" /> : <>{props.text}</>}
+            {props.loading || props.submitting ? <EuiLoadingSpinner size="m" /> : props.text}
           </span>
           {props.endingIcon && (
             <MaterialIcon
@@ -200,7 +198,7 @@ export default function IconButton(props: IconButtonProps) {
                 ...props.endingImgStyle
               }}
             >
-              <img height={'100%'} width={'100%'} src={props.endingImg} alt="leading" />
+              <img height="100%" width="100%" src={props.endingImg} alt="leading" />
             </div>
           )}
         </div>

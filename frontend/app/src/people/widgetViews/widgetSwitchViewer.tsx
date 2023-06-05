@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import OfferView from '../widgetViews/offerView';
-import WantedView from '../widgetViews/wantedView';
-import PostView from '../widgetViews/postView';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import OfferView from "./offerView";
+import WantedView from "./wantedView";
+import PostView from "./postView";
 import { useIsMobile } from '../../hooks';
 import { useStores } from '../../store';
 import { widgetConfigs } from '../utils/constants';
@@ -12,12 +13,11 @@ import { uiStore } from '../../store/ui';
 import DeleteTicketModal from './deleteModal';
 import { bountyHeaderFilter, bountyHeaderLanguageFilter } from '../utils/filterValidation';
 import { colors } from '../../config/colors';
-import { observer } from 'mobx-react-lite';
 
 export default observer(WidgetSwitchViewer);
 
 function WidgetSwitchViewer(props) {
-  const color = colors['light'];
+  const color = colors.light;
   const { main } = useStores();
   const isMobile = useIsMobile();
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
@@ -85,7 +85,7 @@ function WidgetSwitchViewer(props) {
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -95,7 +95,7 @@ function WidgetSwitchViewer(props) {
         await deleteTicket(deletePayload);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
     closeModal();
   };
@@ -166,7 +166,7 @@ function WidgetSwitchViewer(props) {
   return (
     <>
       {listItems}
-      <Spacer key={'spacer2'} />
+      <Spacer key="spacer2" />
 
       {showDeleteModal && (
         <DeleteTicketModal closeModal={closeModal} confirmDelete={confirmDelete} />
@@ -191,7 +191,7 @@ function WidgetSwitchViewer(props) {
           </div>
         </LoadMoreContainer>
       )}
-      <Spacer key={'spacer'} />
+      <Spacer key="spacer" />
     </>
   );
 }

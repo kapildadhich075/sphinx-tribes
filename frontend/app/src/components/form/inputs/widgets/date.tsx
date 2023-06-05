@@ -1,12 +1,12 @@
 import moment from 'moment';
 import { EuiDatePicker } from '@elastic/eui';
 import React, { memo, useState } from 'react';
-import { FieldEnv } from '..';
 import styled from 'styled-components';
+import { FieldEnv } from '..';
 import { colors } from '../../../../config/colors';
 
 function Date({ label, value, handleChange }: any) {
-  const color = colors['light'];
+  const color = colors.light;
   const [startDate, setStartDate] = useState(moment(value) ?? moment());
   const [isBorder, setIsBorder] = useState<boolean>(false);
 
@@ -16,10 +16,10 @@ function Date({ label, value, handleChange }: any) {
   };
 
   return (
-    <FieldEnv label={label} isTop={true} color={color}>
+    <FieldEnv label={label} isTop color={color}>
       <DataPicker
-        selectsEnd={true}
-        selectsStart={true}
+        selectsEnd
+        selectsStart
         selected={startDate}
         onChange={(e) => {
           handleChangeDate(e);

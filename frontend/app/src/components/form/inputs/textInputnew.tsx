@@ -12,7 +12,7 @@ export default function TextInputNew({
   prepend
 }: Props) {
   let labeltext = label;
-  const color = colors['light'];
+  const color = colors.light;
   if (error) labeltext = `${labeltext} (${error})`;
 
   const padStyle = prepend ? { paddingLeft: 0 } : {};

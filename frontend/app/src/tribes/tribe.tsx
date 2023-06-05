@@ -26,7 +26,7 @@ export default function Tribe({
   unique_name,
   preview
 }: any) {
-  const showTags = tags && tags.length && tags.length > 0 ? true : false;
+  const showTags = !!(tags && tags.length && tags.length > 0);
   const qrString = makeQR(uuid);
   const [copied, setCopied] = useState(false);
 
@@ -45,7 +45,7 @@ export default function Tribe({
       style={{ backgroundColor: '#1a2430' }}
       className="col-md-6 col-lg-6  mb-2"
       id={uuid}
-      title={''}
+      title=""
     >
       <Content
         onClick={() => select(selected ? '' : uuid, unique_name)}
@@ -83,7 +83,7 @@ export default function Tribe({
                 <div className="lighter-color">{lastActive}</div>
               </div>
               <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                {(member_count ? true : false) && (
+                {(!!member_count) && (
                   <>
                     <div className="uppercase">Members:</div>
                     <div className="lighter-color">{member_count}</div>
@@ -137,7 +137,7 @@ export default function Tribe({
                   <a
                     onClick={(e) => e.stopPropagation()}
                     href={`https://${preview}?tribe=${uuid}`}
-                    target={'_blank'}
+                    target="_blank"
                     className={`preview-btn ${!preview ? 'btn-disabled' : ''}`}
                     rel="noreferrer"
                   >

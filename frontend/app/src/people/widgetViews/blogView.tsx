@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BlogPost } from '../../components/form/inputs/widgets/interfaces';
 import moment from 'moment';
+import { BlogPost } from '../../components/form/inputs/widgets/interfaces';
 
 export default function BlogView(props: BlogPost) {
   const { title, markdown, gallery, created } = props;

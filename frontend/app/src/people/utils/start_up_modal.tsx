@@ -1,15 +1,14 @@
 import { EuiModal, EuiOverlayMask } from '@elastic/eui';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { StartUpModalProps } from 'people/interfaces';
 import IconButton from '../../components/common/icon_button';
 import { useStores } from '../../store';
 import QR from './QR';
 import api from '../../api';
-import { observer } from 'mobx-react-lite';
-import { StartUpModalProps } from 'people/interfaces';
 
-const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps) => {
+function StartUpModal({ closeModal, dataObject, buttonColor }: StartUpModalProps) {
   const { ui, main } = useStores();
   const [step, setStep] = useState(1);
   const [connection_string, setConnectionString] = useState('');
@@ -24,8 +23,8 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
     }
   }
 
-  const StepOne = () => (
-    <>
+  function StepOne() {
+  return <>
       <ModalContainer>
         <img
           src={
@@ -33,14 +32,14 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
               ? '/static/create_profile_blue.gif'
               : '/static/create_profile_green.gif'
           }
-          height={'274px'}
+          height="274px"
           alt=""
         />
       </ModalContainer>
       <ButtonContainer>
         <DirectionWrap style={{ justifyContent: 'space-around' }}>
           <IconButton
-            text={'I have Sphinx'}
+            text="I have Sphinx"
             width={150}
             height={48}
             style={{ marginTop: '20px' }}
@@ -60,7 +59,7 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
           />
 
           <IconButton
-            text={'Get Sphinx'}
+            text="Get Sphinx"
             width={150}
             height={48}
             style={{ marginTop: '20px', textDecoration: 'none' }}
@@ -79,11 +78,11 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
           />
         </DirectionWrap>
       </ButtonContainer>
-    </>
-  );
+         </>
+}
 
-  const StepTwo = () => (
-    <>
+  function StepTwo() {
+  return <>
       <ModalContainer>
         {connection_string ? (
           <QrContainer>
@@ -95,7 +94,7 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
             <p style={{ textAlign: 'center' }}>Download App</p>
             <AndroidIosButtonConatiner>
               <IconButton
-                text={'Android'}
+                text="Android"
                 width={100}
                 height={48}
                 style={{ marginTop: '20px', textDecoration: 'none' }}
@@ -112,7 +111,7 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
                 color={buttonColor}
               />
               <IconButton
-                text={'IOS'}
+                text="IOS"
                 width={100}
                 height={48}
                 style={{ marginTop: '20px', textDecoration: 'none' }}
@@ -132,8 +131,8 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
       </ModalContainer>
       <ButtonContainer>
         <IconButton
-          text={'Reveal Connection Code'}
-          endingIcon={'key'}
+          text="Reveal Connection Code"
+          endingIcon="key"
           width={250}
           height={48}
           style={{ marginTop: 20 }}
@@ -147,10 +146,10 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
         />
         <DirectionWrap>
           <IconButton
-            text={'Back'}
+            text="Back"
             width={210}
             height={48}
-            buttonType={'text'}
+            buttonType="text"
             style={{ color: '#83878b', marginTop: '20px', textDecoration: 'none' }}
             onClick={(e) => {
               e.stopPropagation();
@@ -167,10 +166,10 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
             color={buttonColor}
           />
           <IconButton
-            text={'Sign in'}
+            text="Sign in"
             width={210}
             height={48}
-            buttonType={'text'}
+            buttonType="text"
             style={{ color: '#83878b', marginTop: '20px', textDecoration: 'none' }}
             onClick={(e) => {
               e.stopPropagation();
@@ -188,14 +187,14 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
           />
         </DirectionWrap>
       </ButtonContainer>
-    </>
-  );
+         </>
+}
 
-  const StepThree = () => (
-    <ButtonContainer>
+  function StepThree() {
+  return <ButtonContainer>
       <IconButton
-        text={'Sign in'}
-        endingIcon={'arrow_forward'}
+        text="Sign in"
+        endingIcon="arrow_forward"
         width={210}
         height={48}
         style={{ marginTop: 0 }}
@@ -213,10 +212,10 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
       />
 
       <IconButton
-        text={'Back'}
+        text="Back"
         width={210}
         height={48}
-        buttonType={'text'}
+        buttonType="text"
         style={{ color: '#83878b', marginTop: '20px', textDecoration: 'none' }}
         onClick={(e) => {
           e.stopPropagation();
@@ -232,12 +231,11 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
         }}
         color={buttonColor}
       />
-    </ButtonContainer>
-  );
+         </ButtonContainer>
+}
 
   return (
-    <>
-      <EuiOverlayMask>
+    <EuiOverlayMask>
         <EuiModal
           onClose={(e) => {
             e?.stopPropagation();
@@ -257,10 +255,9 @@ const StartUpModal = ({ closeModal, dataObject, buttonColor }: StartUpModalProps
         >
           {step === 1 ? <StepOne /> : step === 2 ? <StepTwo /> : <StepThree />}
         </EuiModal>
-      </EuiOverlayMask>
-    </>
+    </EuiOverlayMask>
   );
-};
+}
 
 export default observer(StartUpModal);
 

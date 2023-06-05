@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PaidBountiesProps } from 'people/interfaces';
 import BountyDescription from '../../bounties/bounty_description';
 import BountyPrice from '../../bounties/bounty_price';
 import BountyProfileView from '../../bounties/bounty_profile_view';
 import { colors } from '../../config/colors';
-import { PaidBountiesProps } from 'people/interfaces';
 
-const PaidBounty = (props: PaidBountiesProps) => {
-  const color = colors['light'];
+function PaidBounty(props: PaidBountiesProps) {
+  const color = colors.light;
   return (
     <BountyContainer
       onClick={props.onPanelClick}
@@ -18,7 +18,7 @@ const PaidBounty = (props: PaidBountiesProps) => {
         {...props}
         title={props.title}
         codingLanguage={props.codingLanguage}
-        isPaid={true}
+        isPaid
       />
       <PriceUserContainer Price_User_Container_Border={color.primaryColor.P400}>
         <BountyPrice
@@ -34,8 +34,8 @@ const PaidBounty = (props: PaidBountiesProps) => {
         />
         <BountyProfileView
           assignee={props.assignee}
-          status={'COMPLETED'}
-          canViewProfile={true}
+          status="COMPLETED"
+          canViewProfile
           statusStyle={{
             width: '63px',
             height: '16px',
@@ -44,18 +44,18 @@ const PaidBounty = (props: PaidBountiesProps) => {
         />
       </PriceUserContainer>
       <img
-        src={'/static/paid_ribbon.svg'}
+        src="/static/paid_ribbon.svg"
         style={{
           position: 'sticky',
           width: '80px',
           height: '80px',
           right: '-1.5px'
         }}
-        alt={'paid_ribbon'}
+        alt="paid_ribbon"
       />
     </BountyContainer>
   );
-};
+}
 
 export default PaidBounty;
 

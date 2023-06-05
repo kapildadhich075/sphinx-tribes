@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { CountDownText, CountDownTimer, CountDownTimerWrap, InvoiceWrap, QrWrap } from './style';
-import { useStores } from '../../../../store';
 import QR from 'people/utils/QR';
-import { calculateTimeLeft } from '../../../../helpers';
 import QrBar from 'people/utils/QrBar';
 import { invoicePollTarget } from 'config';
+import { CountDownText, CountDownTimer, CountDownTimerWrap, InvoiceWrap, QrWrap } from './style';
+import { useStores } from '../../../../store';
+import { calculateTimeLeft } from '../../../../helpers';
 
 export default function Invoice(props: {
   startDate: Date;

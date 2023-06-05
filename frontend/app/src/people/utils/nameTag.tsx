@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { useStores } from '../../store';
 import { useHistory } from 'react-router';
-import { useIsMobile } from '../../hooks';
-import { colors } from '../../config/colors';
 import { observer } from 'mobx-react-lite';
 import { NameTagProps } from 'people/interfaces';
+import { useStores } from '../../store';
+import { useIsMobile } from '../../hooks';
+import { colors } from '../../config/colors';
 
 export default observer(NameTag);
 
@@ -14,13 +14,13 @@ function NameTag(props: NameTagProps) {
   const { owner_alias, owner_pubkey, img, created, id, style, widget, iconSize, textSize, isPaid } =
     props;
   const { ui } = useStores();
-  const color = colors['light'];
+  const color = colors.light;
 
   const history = useHistory();
 
   const isMobile = useIsMobile();
 
-  const isSelected = ui.selectedPerson === id ? true : false;
+  const isSelected = ui.selectedPerson === id;
 
   function selectPerson(e) {
     // don't select if already selected

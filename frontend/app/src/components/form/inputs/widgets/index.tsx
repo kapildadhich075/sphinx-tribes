@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import styled from 'styled-components';
 import Widget from './widget';
 import FocusedWidget from './focusedWidget';
 import FadeLeft from '../../../animated/fadeLeft';
-import styled from 'styled-components';
-import { useEffect } from 'react';
 
 async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -51,9 +50,7 @@ export default function Widgets(props: any) {
       </FadeLeft>
 
       <FadeLeft isMounted={showFocused} dismountCallback={() => setSelected(null)}>
-        <>
           <FocusedWidget {...props} setShowFocused={setShowFocused} item={selected} />
-        </>
       </FadeLeft>
     </Wrap>
   );

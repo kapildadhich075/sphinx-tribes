@@ -45,7 +45,7 @@ export default function Widget(props: WidgetProps) {
             onClick={(e) => {
               if (props.single) {
                 e.stopPropagation();
-                //delete state
+                // delete state
                 deleteSingleWidget();
               }
             }}

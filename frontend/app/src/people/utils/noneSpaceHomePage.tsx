@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconButton from '../../components/common/icon_button';
 import { NoneSpaceProps } from 'people/interfaces';
+import IconButton from '../../components/common/icon_button';
 
 export default function NoneSpaceHomePage(props: NoneSpaceProps) {
   if (props.banner) {
@@ -32,9 +32,9 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
               style={{ marginTop: 20 }}
               onClick={props.action1}
               color="primary"
-              hovercolor={'#5881F8'}
-              activecolor={'#5078F2'}
-              shadowcolor={'rgba(97, 138, 255, 0.5)'}
+              hovercolor="#5881F8"
+              activecolor="#5078F2"
+              shadowcolor="rgba(97, 138, 255, 0.5)"
               iconStyle={{
                 top: '13px',
                 right: '14px'
@@ -51,9 +51,9 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
               style={{ marginTop: 20, marginLeft: 10 }}
               onClick={props.action2}
               color="success"
-              hovercolor={'#3CBE88'}
-              activecolor={'#2FB379'}
-              shadowcolor={'rgba(73, 201, 152, 0.5)'}
+              hovercolor="#3CBE88"
+              activecolor="#2FB379"
+              shadowcolor="rgba(73, 201, 152, 0.5)"
             />
           )}
         </ButtonContainer>
@@ -73,17 +73,15 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
         ...props.style
       }}
     >
-      <>
-        <H
+      <H
           style={{
             fontSize: '40px',
             fontFamily: 'Barlow'
           }}
-        >
+      >
           {props.text}
-        </H>
+      </H>
         <C>{props.sub}</C>
-      </>
       <ButtonContainerMobile>
         {props.buttonText1 && (
           <IconButton
@@ -94,9 +92,9 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
             style={{ marginTop: 40 }}
             onClick={props.action1}
             color="primary"
-            hovercolor={'#5881F8'}
-            activecolor={'#5078F2'}
-            shadowcolor={'rgba(97, 138, 255, 0.5)'}
+            hovercolor="#5881F8"
+            activecolor="#5078F2"
+            shadowcolor="rgba(97, 138, 255, 0.5)"
           />
         )}
         {props.buttonText2 && (
@@ -108,9 +106,9 @@ export default function NoneSpaceHomePage(props: NoneSpaceProps) {
             style={{ marginTop: 20 }}
             onClick={props.action2}
             color="success"
-            hovercolor={'#5881F8'}
-            activecolor={'#5078F2'}
-            shadowcolor={'rgba(97, 138, 255, 0.5)'}
+            hovercolor="#5881F8"
+            activecolor="#5078F2"
+            shadowcolor="rgba(97, 138, 255, 0.5)"
           />
         )}
       </ButtonContainerMobile>

@@ -6,11 +6,11 @@ import WidgetSwitchViewer from 'people/widgetViews/widgetSwitchViewer';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 import { colors } from '../../config/colors';
 import { useIsMobile, usePageScroll } from '../../hooks';
 import { useStores } from '../../store';
 
-import { observer } from 'mobx-react-lite';
 // avoid hook within callback warning by renaming hooks
 
 const getPageScroll = usePageScroll;
@@ -24,7 +24,7 @@ function BodyComponent() {
   const [scrollValue, setScrollValue] = useState<boolean>(false);
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({});
   const [checkboxIdToSelectedMapLanguage, setCheckboxIdToSelectedMapLanguage] = useState({});
-  const color = colors['light'];
+  const color = colors.light;
   const { peopleWantedsPageNumber } = ui;
 
   const history = useHistory();
@@ -84,7 +84,7 @@ function BodyComponent() {
     try {
       await main.getPeopleWanteds({ page: newPage });
     } catch (e) {
-      console.log('load failed', e);
+      console.error('load failed', e);
     }
   }
 
@@ -152,7 +152,7 @@ function BodyComponent() {
             checkboxIdToSelectedMap={checkboxIdToSelectedMap}
             checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
             onPanelClick={onPanelClick}
-            fromBountyPage={true}
+            fromBountyPage
             selectedWidget={selectedWidget}
             loading={loading}
           />
@@ -189,7 +189,6 @@ function BodyComponent() {
         checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
       />
 
-      <>
         <div
           style={{
             width: '100%',
@@ -215,14 +214,13 @@ function BodyComponent() {
               checkboxIdToSelectedMap={checkboxIdToSelectedMap}
               checkboxIdToSelectedMapLanguage={checkboxIdToSelectedMapLanguage}
               onPanelClick={onPanelClick}
-              fromBountyPage={true}
+              fromBountyPage
               selectedWidget={selectedWidget}
               loading={loading}
             />
           </div>
           <PageLoadSpinner noAnimate show={loadingBottom} />
         </div>
-      </>
       {toastsEl}
     </Body>
   );

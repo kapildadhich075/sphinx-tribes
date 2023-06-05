@@ -4,15 +4,17 @@ import FavoriteButton from '../../../utils/favoriteButton';
 import { Button } from '../../../../components/common';
 import { sendToRedirect } from '../../../../helpers';
 
-export const Heart = () => <FavoriteButton />;
+export function Heart() {
+  return <FavoriteButton />
+}
 
-export const AddToFavorites = (props: any) => {
+export function AddToFavorites(props: any) {
   if (props.tribe && props.tribe !== 'none') {
     return (
       <Button
-        text={'Add to Favorites'}
-        color={'white'}
-        icon={'favorite_outline'}
+        text="Add to Favorites"
+        color="white"
+        icon="favorite_outline"
         iconSize={18}
         iconStyle={{ left: 14 }}
         style={{
@@ -26,39 +28,39 @@ export const AddToFavorites = (props: any) => {
       />
     );
   }
-  return <></>;
-};
+  
+}
 
-export const ViewGithub = (props: any) => {
+export function ViewGithub(props: any) {
   const { ticketUrl, repo, issue } = props;
 
   if (ticketUrl) {
     return (
       <Button
-        text={'Original Ticket'}
-        color={'white'}
-        endingIcon={'launch'}
+        text="Original Ticket"
+        color="white"
+        endingIcon="launch"
         iconSize={14}
         style={{ fontSize: 14, height: 48, width: '100%', marginBottom: 20 }}
         onClick={() => {
-          const repoUrl = ticketUrl ? ticketUrl : `https://github.com/${repo}/issues/${issue}`;
+          const repoUrl = ticketUrl || `https://github.com/${repo}/issues/${issue}`;
           sendToRedirect(repoUrl);
         }}
       />
     );
   }
 
-  return <></>;
-};
+  
+}
 
-export const CopyLink = (props: any) => {
+export function CopyLink(props: any) {
   const { isCopied, handleCopyUrl } = props;
 
   return (
     <Button
       text={isCopied ? 'Copied' : 'Copy Link'}
-      color={'white'}
-      icon={'content_copy'}
+      color="white"
+      icon="content_copy"
       iconSize={18}
       iconStyle={{ left: 14 }}
       style={{
@@ -71,16 +73,16 @@ export const CopyLink = (props: any) => {
       onClick={handleCopyUrl}
     />
   );
-};
+}
 
-export const ShareOnTwitter = (props: any) => {
+export function ShareOnTwitter(props: any) {
   const { titleString, labels, createdURL, owner_idURL } = props;
 
   return (
     <Button
-      text={'Share to Twitter'}
-      color={'white'}
-      icon={'share'}
+      text="Share to Twitter"
+      color="white"
+      icon="share"
       iconSize={18}
       iconStyle={{ left: 14 }}
       style={{
@@ -98,18 +100,18 @@ export const ShareOnTwitter = (props: any) => {
       }}
     />
   );
-};
+}
 
-export const ViewTribe = (props: any) => {
+export function ViewTribe(props: any) {
   const { tribe, tribeInfo } = props;
 
   if (tribe && tribe !== 'none') {
     return (
       <Button
-        text={'View Tribe'}
-        color={'white'}
+        text="View Tribe"
+        color="white"
         leadingImgUrl={tribeInfo?.img || ' '}
-        endingIcon={'launch'}
+        endingIcon="launch"
         iconSize={14}
         imgStyle={{ position: 'absolute', left: 10 }}
         style={{ fontSize: 14, height: 48, width: '100%', marginBottom: 20 }}
@@ -121,5 +123,5 @@ export const ViewTribe = (props: any) => {
     );
   }
 
-  return <></>;
-};
+  
+}

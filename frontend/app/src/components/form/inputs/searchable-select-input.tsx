@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { EuiIcon } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
 import type { Props } from './propsType';
 import { FieldEnv, Note } from './index';
 import { SearchableSelect } from '../../common';
 import { useStores } from '../../../store';
 import { colors } from '../../../config/colors';
-import { observer } from 'mobx-react-lite';
 
 export default observer(SearchableSelectInput);
 function SearchableSelectInput({
@@ -22,7 +22,7 @@ function SearchableSelectInput({
   const labeltext = label;
 
   const { main, ui } = useStores();
-  const color = colors['light'];
+  const color = colors.light;
 
   const [opts, setOptions] = useState(options);
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ function SearchableSelectInput({
             }
           }
         } catch (e) {
-          console.log('e', e);
+          console.error('e', e);
         }
         setLoading(false);
       }
@@ -75,7 +75,7 @@ function SearchableSelectInput({
       <FieldEnv
         color={color}
         label={labeltext}
-        isTop={true}
+        isTop
         style={{
           border: isBorder ? `1px solid ${color.grayish.G600} ` : `1px solid ${color.pureWhite}`
         }}

@@ -1,9 +1,9 @@
 import MaterialIcon from '@material/react-material-icon';
 import React, { CSSProperties, ComponentProps, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 import { colors } from '../../config/colors';
 import { useStores } from '../../store';
-import { observer } from 'mobx-react-lite';
 
 type SearchTextInputProps = ComponentProps<'input'> &
   InputProps & {
@@ -25,10 +25,10 @@ function SearchBar({
   iconStyle = {},
   ...props
 }: SearchTextInputProps & InputProps) {
-  const color = colors['light'];
+  const color = colors.light;
   const { ui } = useStores();
   const [searchValue, setSearchValue] = useState(ui.searchText || '');
-  const [_, setExpand] = useState(ui.searchText ? true : false);
+  const [_, setExpand] = useState(!!ui.searchText);
 
   function doDelayedValueUpdate() {
     onChange(debounceValue);

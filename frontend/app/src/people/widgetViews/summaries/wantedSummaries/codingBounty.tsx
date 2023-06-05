@@ -1,5 +1,10 @@
 /* eslint-disable func-style */
 import React, { useState } from 'react';
+import { EuiText, EuiFieldText } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
+import moment from 'moment';
+import { invoicePollTarget } from 'config';
+import { calculateTimeLeft } from 'helpers';
 import {
   AssigneeProfile,
   Creator,
@@ -21,7 +26,6 @@ import {
   AwardBottomContainer,
   BountyTime
 } from './style';
-import { EuiText, EuiFieldText } from '@elastic/eui';
 import { Button, Divider, Modal } from '../../../../components/common';
 import { colors } from '../../../../config/colors';
 import { renderMarkdown } from '../../../utils/renderMarkdown';
@@ -33,12 +37,8 @@ import BountyProfileView from '../../../../bounties/bounty_profile_view';
 import ButtonSet from '../../../../bounties/bountyModal_button_set';
 import BountyPrice from '../../../../bounties/bounty_price';
 import InvitePeopleSearch from '../../../../components/form/inputs/widgets/PeopleSearch';
-import { observer } from 'mobx-react-lite';
 import { CodingBountiesProps } from '../../../interfaces';
-import moment from 'moment';
 import Invoice from './invoice';
-import { invoicePollTarget } from 'config';
-import { calculateTimeLeft } from 'helpers';
 
 export default observer(MobileView);
 function MobileView(props: CodingBountiesProps) {
@@ -88,7 +88,7 @@ function MobileView(props: CodingBountiesProps) {
     createdURL,
     created
   } = props;
-  const color = colors['light'];
+  const color = colors.light;
 
   const { ui, main } = useStores();
   const [pollCount, setPollCount] = useState(0);
@@ -173,7 +173,7 @@ function MobileView(props: CodingBountiesProps) {
               <>
                 {bountyPaid && (
                   <Img
-                    src={'/static/paid_ribbon.svg'}
+                    src="/static/paid_ribbon.svg"
                     style={{
                       position: 'absolute',
                       right: -4,
@@ -185,8 +185,7 @@ function MobileView(props: CodingBountiesProps) {
                   />
                 )}
                 {bountyPaid && (
-                  <>
-                    <PaidStatusPopover
+                  <PaidStatusPopover
                       color={color}
                       isPaidStatusPopOver={isPaidStatusPopOver}
                       isPaidStatusBadgeInfo={isPaidStatusBadgeInfo}
@@ -194,7 +193,7 @@ function MobileView(props: CodingBountiesProps) {
                         opacity: isPaidStatusPopOver ? 1 : 0,
                         transition: 'all ease 1s'
                       }}
-                    >
+                  >
                       <div
                         className="PaidStatusContainer"
                         style={{
@@ -207,8 +206,8 @@ function MobileView(props: CodingBountiesProps) {
                           <img
                             src="/static/verified_check_icon.svg"
                             alt="check icon"
-                            height={'100%'}
-                            width={'100%'}
+                            height="100%"
+                            width="100%"
                           />
                         </div>
                         <EuiText className="PaidStatus">Bounty Paid</EuiText>
@@ -224,20 +223,19 @@ function MobileView(props: CodingBountiesProps) {
                           <img
                             src="/static/green_checked_icon.svg"
                             alt=""
-                            height={'100%'}
-                            width={'100%'}
+                            height="100%"
+                            width="100%"
                           />
                         </div>
                         <img
                           src={awardDetails?.image !== '' && awardDetails.image}
                           alt="award_icon"
-                          height={'40px'}
-                          width={'40px'}
+                          height="40px"
+                          width="40px"
                         />
                         <EuiText className="badgeText">Badge Awarded</EuiText>
                       </div>
-                    </PaidStatusPopover>
-                  </>
+                  </PaidStatusPopover>
                 )}
 
                 <CreatorDescription paid={bountyPaid} color={color}>
@@ -246,12 +244,12 @@ function MobileView(props: CodingBountiesProps) {
                       <div>{nametag}</div>
                       <div className="CreatorDescriptionExtraButton">
                         <ImageButton
-                          buttonText={'Edit'}
+                          buttonText="Edit"
                           ButtonContainerStyle={{
                             width: '117px',
                             height: '40px'
                           }}
-                          leadingImageSrc={'/static/editIcon.svg'}
+                          leadingImageSrc="/static/editIcon.svg"
                           leadingImageContainerStyle={{
                             left: 320
                           }}
@@ -263,7 +261,7 @@ function MobileView(props: CodingBountiesProps) {
                             width: '117px',
                             height: '40px'
                           }}
-                          leadingImageSrc={'/static/Delete.svg'}
+                          leadingImageSrc="/static/Delete.svg"
                           leadingImageContainerStyle={{
                             left: 450
                           }}
@@ -309,8 +307,8 @@ function MobileView(props: CodingBountiesProps) {
                         <img
                           src="/static/unassigned_profile.svg"
                           alt=""
-                          height={'100%'}
-                          width={'100%'}
+                          height="100%"
+                          width="100%"
                         />
                       </div>
                     )}
@@ -333,7 +331,7 @@ function MobileView(props: CodingBountiesProps) {
                             padding: 0
                             // marginTop: '48px'
                           }}
-                          isNameClickable={true}
+                          isNameClickable
                           UserImageStyle={{
                             width: '48px',
                             height: '48px',
@@ -361,8 +359,8 @@ function MobileView(props: CodingBountiesProps) {
                             <img
                               src="/static/assignee_close.png"
                               alt="cross_icon"
-                              height={'100%'}
-                              width={'100%'}
+                              height="100%"
+                              width="100%"
                             />
                           </div>
                         )}
@@ -370,7 +368,7 @@ function MobileView(props: CodingBountiesProps) {
                     ) : (
                       <div className="UnassignedPersonalDetailContainer">
                         <ImageButton
-                          buttonText={'Not Assigned'}
+                          buttonText="Not Assigned"
                           ButtonContainerStyle={{
                             width: '159px',
                             height: '48px',
@@ -381,7 +379,7 @@ function MobileView(props: CodingBountiesProps) {
                             color: color.grayish.G50,
                             width: '114px'
                           }}
-                          endImageSrc={'/static/addIcon.svg'}
+                          endImageSrc="/static/addIcon.svg"
                           endingImageContainerStyle={{
                             right: '34px',
                             fontSize: '12px'
@@ -461,9 +459,7 @@ function MobileView(props: CodingBountiesProps) {
                   <div className="buttonSet">
                     <ButtonSet
                       githubShareAction={() => {
-                        const repoUrl = ticketUrl
-                          ? ticketUrl
-                          : `https://github.com/${repo}/issues/${issue}`;
+                        const repoUrl = ticketUrl || `https://github.com/${repo}/issues/${issue}`;
                         sendToRedirect(repoUrl);
                       }}
                       copyURLAction={handleCopyUrl}
@@ -495,9 +491,9 @@ function MobileView(props: CodingBountiesProps) {
                           background: color.pureWhite,
                           color: color.borderGreen1
                         }}
-                        text={'Mark Unpaid'}
+                        text="Mark Unpaid"
                         loading={saving === 'paid'}
-                        endingImg={'/static/mark_unpaid.svg'}
+                        endingImg="/static/mark_unpaid.svg"
                         textStyle={{
                           width: '130px',
                           display: 'flex',
@@ -512,16 +508,16 @@ function MobileView(props: CodingBountiesProps) {
                       />
                     ) : (
                       <IconButton
-                        color={'success'}
+                        color="success"
                         width={220}
                         height={48}
                         style={{
                           bottom: '0',
                           marginLeft: '36px'
                         }}
-                        text={'Mark Paid'}
+                        text="Mark Paid"
                         loading={saving === 'paid'}
-                        endingImg={'/static/mark_paid.svg'}
+                        endingImg="/static/mark_paid.svg"
                         textStyle={{
                           width: '130px',
                           display: 'flex',
@@ -554,10 +550,10 @@ function MobileView(props: CodingBountiesProps) {
               >
                 <div className="imageContainer">
                   <img
-                    height={'12px'}
-                    width={'8px'}
-                    src={'/static/back_button_image.svg'}
-                    alt={'back_button_icon'}
+                    height="12px"
+                    width="8px"
+                    src="/static/back_button_image.svg"
+                    alt="back_button_icon"
                   />
                 </div>
                 <EuiText className="TopHeaderText">Back to Bounty</EuiText>
@@ -568,14 +564,14 @@ function MobileView(props: CodingBountiesProps) {
               <div className="AssignedProfile">
                 <BountyProfileView
                   assignee={assignee}
-                  status={'Assigned'}
+                  status="Assigned"
                   canViewProfile={false}
                   statusStyle={{
                     width: '66px',
                     height: '16px',
                     background: color.statusAssigned
                   }}
-                  isNameClickable={true}
+                  isNameClickable
                   UserProfileContainerStyle={{
                     height: 80,
                     width: 235,
@@ -604,7 +600,7 @@ function MobileView(props: CodingBountiesProps) {
                   <EuiText className="InputContainerLeadingText">$@</EuiText>
                   <EuiFieldText
                     className="InputContainerTextField"
-                    type={'number'}
+                    type="number"
                     value={bountyPrice}
                     onChange={(e) => {
                       setBountyPrice(e.target.value);
@@ -616,10 +612,10 @@ function MobileView(props: CodingBountiesProps) {
               </div>
               <div className="BottomButton">
                 <IconButton
-                  color={'primary'}
+                  color="primary"
                   width={120}
                   height={42}
-                  text={'Next'}
+                  text="Next"
                   textStyle={{
                     width: '100%',
                     display: 'flex',
@@ -648,10 +644,10 @@ function MobileView(props: CodingBountiesProps) {
                 >
                   <div className="imageContainer">
                     <img
-                      height={'12px'}
-                      width={'8px'}
-                      src={'/static/back_button_image.svg'}
-                      alt={'back_button_icon'}
+                      height="12px"
+                      width="8px"
+                      src="/static/back_button_image.svg"
+                      alt="back_button_icon"
                     />
                   </div>
                   <EuiText className="TopHeaderText">Back</EuiText>
@@ -677,7 +673,7 @@ function MobileView(props: CodingBountiesProps) {
                     <input
                       type="radio"
                       id={award.id}
-                      name={'award'}
+                      name="award"
                       value={award.id}
                       checked={selectedAward === award.id}
                       style={{
@@ -687,7 +683,7 @@ function MobileView(props: CodingBountiesProps) {
                       }}
                     />
                     <div className="awardImageContainer">
-                      <img src={award.label_icon} alt="icon" height={'100%'} width={'100%'} />
+                      <img src={award.label_icon} alt="icon" height="100%" width="100%" />
                     </div>
                     <EuiText className="awardLabelText">{award.label}</EuiText>
                   </div>
@@ -695,7 +691,7 @@ function MobileView(props: CodingBountiesProps) {
               </div>
               <AwardBottomContainer color={color}>
                 <IconButton
-                  color={'success'}
+                  color="success"
                   width={220}
                   height={48}
                   style={{
@@ -704,7 +700,7 @@ function MobileView(props: CodingBountiesProps) {
                   }}
                   text={selectedAward === '' ? 'Skip and Mark Paid' : 'Mark Paid'}
                   loading={isMarkPaidSaved}
-                  endingImg={'/static/mark_paid.svg'}
+                  endingImg="/static/mark_paid.svg"
                   textStyle={{
                     width: '130px',
                     display: 'flex',
@@ -743,7 +739,7 @@ function MobileView(props: CodingBountiesProps) {
 
           {assigneeValue && (
             <Modal
-              visible={true}
+              visible
               envStyle={{
                 borderRadius: '10px',
                 background: color.pureWhite,
@@ -763,7 +759,7 @@ function MobileView(props: CodingBountiesProps) {
                 <EuiText className="autoCompleteHeaderText">Invite Developer</EuiText>
                 <InvitePeopleSearch
                   peopleList={peopleList}
-                  isProvidingHandler={true}
+                  isProvidingHandler
                   handleAssigneeDetails={(value) => {
                     handleAssigneeDetails(value);
                   }}
@@ -779,7 +775,7 @@ function MobileView(props: CodingBountiesProps) {
         <NormalUser>
           {bountyPaid && (
             <Img
-              src={'/static/paid_ribbon.svg'}
+              src="/static/paid_ribbon.svg"
               style={{
                 position: 'absolute',
                 right: -4,
@@ -826,14 +822,14 @@ function MobileView(props: CodingBountiesProps) {
               <>
                 <BountyProfileView
                   assignee={assignee}
-                  status={'Completed'}
+                  status="Completed"
                   canViewProfile={false}
                   statusStyle={{
                     width: '66px',
                     height: '16px',
                     background: color.statusCompleted
                   }}
-                  isNameClickable={true}
+                  isNameClickable
                   UserProfileContainerStyle={{
                     height: 48,
                     width: 235,
@@ -874,9 +870,7 @@ function MobileView(props: CodingBountiesProps) {
                 <ButtonSet
                   showGithubBtn={!!ticketUrl}
                   githubShareAction={() => {
-                    const repoUrl = ticketUrl
-                      ? ticketUrl
-                      : `https://github.com/${repo}/issues/${issue}`;
+                    const repoUrl = ticketUrl || `https://github.com/${repo}/issues/${issue}`;
                     sendToRedirect(repoUrl);
                   }}
                   copyURLAction={handleCopyUrl}
@@ -899,14 +893,14 @@ function MobileView(props: CodingBountiesProps) {
               <>
                 <BountyProfileView
                   assignee={assignee}
-                  status={'ASSIGNED'}
+                  status="ASSIGNED"
                   canViewProfile={false}
                   statusStyle={{
                     width: '55px',
                     height: '16px',
                     background: color.statusAssigned
                   }}
-                  isNameClickable={true}
+                  isNameClickable
                   UserProfileContainerStyle={{
                     height: 48,
                     width: 235,
@@ -947,9 +941,7 @@ function MobileView(props: CodingBountiesProps) {
                 <ButtonSet
                   showGithubBtn={!!ticketUrl}
                   githubShareAction={() => {
-                    const repoUrl = ticketUrl
-                      ? ticketUrl
-                      : `https://github.com/${repo}/issues/${issue}`;
+                    const repoUrl = ticketUrl || `https://github.com/${repo}/issues/${issue}`;
                     sendToRedirect(repoUrl);
                   }}
                   copyURLAction={handleCopyUrl}
@@ -979,14 +971,14 @@ function MobileView(props: CodingBountiesProps) {
                     <img
                       src="/static/unassigned_profile.svg"
                       alt=""
-                      height={'100%'}
-                      width={'100%'}
+                      height="100%"
+                      width="100%"
                     />
                   </div>
                   <div className="UnassignedPersonalDetailContainer">
                     <IconButton
-                      text={'I can help'}
-                      endingIcon={'arrow_forward'}
+                      text="I can help"
+                      endingIcon="arrow_forward"
                       width={153}
                       height={48}
                       onClick={props.extraModalFunction}
@@ -994,7 +986,7 @@ function MobileView(props: CodingBountiesProps) {
                       hovercolor={color.button_secondary.hover}
                       activecolor={color.button_secondary.active}
                       shadowcolor={color.button_secondary.shadow}
-                      iconSize={'16px'}
+                      iconSize="16px"
                       iconStyle={{
                         top: '16px',
                         right: '14px'
@@ -1026,9 +1018,7 @@ function MobileView(props: CodingBountiesProps) {
                 <ButtonSet
                   showGithubBtn={!!ticketUrl}
                   githubShareAction={() => {
-                    const repoUrl = ticketUrl
-                      ? ticketUrl
-                      : `https://github.com/${repo}/issues/${issue}`;
+                    const repoUrl = ticketUrl || `https://github.com/${repo}/issues/${issue}`;
                     sendToRedirect(repoUrl);
                   }}
                   copyURLAction={handleCopyUrl}

@@ -1,5 +1,6 @@
 import { Person } from 'store/main';
 import { people } from './persons';
+
 export const person: Person = people[0];
 export const assignee: Person = people[1];
 
@@ -33,6 +34,6 @@ export const userAssignedTickets = [
       one_sentence_summary: 'Trying this',
       estimate_session_length: 'More than 3 hours'
     },
-    person: person
+    person
   }
 ];

@@ -29,7 +29,7 @@ export default function TextAreaInput({
   borderType
 }: Props) {
   let labeltext = label;
-  const color = colors['light'];
+  const color = colors.light;
   if (error) labeltext = `${labeltext} (${error})`;
   const [active, setActive] = useState<boolean>(false);
   return (

@@ -3,6 +3,10 @@ import { EuiCheckboxGroup, EuiPopover, EuiText } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import IconButton from 'components/common/icon_button';
+import { useHistory } from 'react-router-dom';
+import { BountyHeaderProps } from 'people/interfaces';
 import { colors } from '../../config/colors';
 import { useIsMobile } from '../../hooks';
 import { SearchBar } from '../../components/common/index';
@@ -10,23 +14,19 @@ import { useStores } from '../../store';
 import { PostBounty } from './postBounty';
 import { filterCount } from '../utils/ExtraFunctions';
 import { GetValue, coding_languages, status } from '../utils/language_label_style';
-import { observer } from 'mobx-react-lite';
-import IconButton from 'components/common/icon_button';
-import { useHistory } from 'react-router-dom';
-import { BountyHeaderProps } from 'people/interfaces';
 
 const Status = GetValue(status);
 const Coding_Languages = GetValue(coding_languages);
 
-const BountyHeader = ({
+function BountyHeader({
   selectedWidget,
   scrollValue,
   onChangeStatus,
   onChangeLanguage,
   checkboxIdToSelectedMap,
   checkboxIdToSelectedMapLanguage
-}: BountyHeaderProps) => {
-  const color = colors['light'];
+}: BountyHeaderProps) {
+  const color = colors.light;
   const { main, ui } = useStores();
   const isMobile = useIsMobile();
   const [peopleList, setPeopleList] = useState<Array<any> | null>(null);
@@ -48,7 +48,7 @@ const BountyHeader = ({
           setDeveloperCount(responseNew?.developer_count || 0);
           setActiveBounty(responseNew?.bounties_count);
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       } else {
         setPeopleList(null);
@@ -63,9 +63,8 @@ const BountyHeader = ({
     );
   }, [checkboxIdToSelectedMapLanguage, checkboxIdToSelectedMap]);
 
+				if(!isMobile){
   return (
-    <>
-      {!isMobile ? (
         <div
           style={{
             display: 'flex',
@@ -216,10 +215,10 @@ const BountyHeader = ({
                       }}
                     >
                       <img
-                        height={'23px'}
-                        width={'23px'}
+                        height="23px"
+                        width="23px"
                         src={val?.img || '/static/person_placeholder.png'}
-                        alt={''}
+                        alt=""
                         style={{
                           borderRadius: '50%'
                         }}
@@ -239,8 +238,8 @@ const BountyHeader = ({
               </EuiText>
             </D>
           </BountyHeaderDesk>
-        </div>
-      ) : (
+        </div>)
+} return( 
         <BountyHeaderMobile>
           <LargeActionContainer>
             <SearchBar
@@ -364,10 +363,10 @@ const BountyHeader = ({
                     }}
                   >
                     <img
-                      height={'20px'}
-                      width={'20px'}
+                      height="20px"
+                      width="20px"
                       src={val?.img || '/static/person_placeholder.png'}
-                      alt={''}
+                      alt=""
                       style={{
                         borderRadius: '50%'
                       }}
@@ -387,10 +386,10 @@ const BountyHeader = ({
             </DevelopersContainerMobile>
           </ShortActionContainer>
         </BountyHeaderMobile>
-      )}
-    </>
+      
   );
-};
+
+}
 
 export default observer(BountyHeader);
 

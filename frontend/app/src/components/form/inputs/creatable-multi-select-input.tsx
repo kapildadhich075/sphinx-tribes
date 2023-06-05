@@ -18,7 +18,7 @@ export default function CreatableMultiSelectInput({
 }: Props) {
   let labeltext = label;
   if (error) labeltext = `${labeltext} (INCORRECT FORMAT)`;
-  const color = colors['light'];
+  const color = colors.light;
 
   const [isTop, setIsTop] = useState<boolean>(false);
 
@@ -37,7 +37,6 @@ export default function CreatableMultiSelectInput({
             writeMode={type === 'multiselectwrite'}
             value={value}
             onChange={(e) => {
-              console.log('onChange', e);
               handleChange(e);
               setIsTop(true);
             }}

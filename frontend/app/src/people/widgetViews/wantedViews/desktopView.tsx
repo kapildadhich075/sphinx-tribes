@@ -1,7 +1,9 @@
 /* eslint-disable func-style */
 import React from 'react';
-import { Img, P, B, DT, DWrap, DescriptionCodeTask, Pad } from './style';
 import { EuiButtonIcon, EuiText } from '@elastic/eui';
+import { observer } from 'mobx-react-lite';
+import { WantedViewsProps } from 'people/interfaces';
+import { Img, P, B, DT, DWrap, DescriptionCodeTask, Pad } from './style';
 import GithubStatusPill from '../parts/statusPill';
 import { colors } from '../../../config/colors';
 import NameTag from '../../utils/nameTag';
@@ -10,8 +12,6 @@ import { formatPrice, satToUsd } from '../../../helpers';
 import { Button, Divider } from '../../../components/common';
 import { getHost } from '../../../config/host';
 import { renderMarkdown } from '../../utils/renderMarkdown';
-import { observer } from 'mobx-react-lite';
-import { WantedViewsProps } from 'people/interfaces';
 
 export default observer(DesktopView);
 
@@ -45,13 +45,13 @@ function DesktopView(props: WantedViewsProps) {
   } = props;
 
   const { ui } = useStores();
-  const color = colors['light'];
+  const color = colors.light;
 
   return (
     <div key={key} onClick={onPanelClick}>
       {paid && (
         <Img
-          src={'/static/paid_ribbon.svg'}
+          src="/static/paid_ribbon.svg"
           style={{
             position: 'absolute',
             top: -1,
@@ -74,7 +74,7 @@ function DesktopView(props: WantedViewsProps) {
             <NameTag
               {...person}
               created={created}
-              widget={'wanted'}
+              widget="wanted"
               ticketUrl={ticketUrl}
               loomEmbedUrl={loomEmbedUrl}
             />
@@ -161,8 +161,7 @@ function DesktopView(props: WantedViewsProps) {
           >
             {labels && labels.length > 0 ? (
               labels.map((x: any) => (
-                <>
-                  <div
+                <div
                     style={{
                       display: 'flex',
                       flexWrap: 'wrap',
@@ -175,7 +174,7 @@ function DesktopView(props: WantedViewsProps) {
                       marginRight: '3px',
                       marginBottom: '3px'
                     }}
-                  >
+                >
                     <div
                       style={{
                         fontSize: '10px',
@@ -184,17 +183,14 @@ function DesktopView(props: WantedViewsProps) {
                     >
                       {x.label}
                     </div>
-                  </div>
-                </>
+                </div>
               ))
             ) : (
-              <>
-                <div
+              <div
                   style={{
                     minHeight: '50px'
                   }}
-                />
-              </>
+              />
             )}
           </div>
           <Divider
@@ -222,7 +218,7 @@ function DesktopView(props: WantedViewsProps) {
                       overflow: 'hidden'
                     }}
                   >
-                    <img src={val} alt="wanted preview" height={'100%'} width={'100%'} />
+                    <img src={val} alt="wanted preview" height="100%" width="100%" />
                   </div>
                 ))}
               </div>
@@ -325,7 +321,7 @@ function DesktopView(props: WantedViewsProps) {
                   if (showModal) showModal();
                   if (setDeletePayload)
                     setDeletePayload({
-                      created: created,
+                      created,
                       host: getHost(),
                       pubkey: person.owner_pubkey
                     });

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useStores } from '../../store';
 import styled from 'styled-components';
 import { EuiHeader, EuiHeaderSection } from '@elastic/eui';
-import { useIsMobile } from '../../hooks';
 import { useHistory, useLocation } from 'react-router-dom';
 import MaterialIcon from '@material/react-material-icon';
+import { observer } from 'mobx-react-lite';
+import { useStores } from '../../store';
+import { useIsMobile } from '../../hooks';
 import { Modal, Button } from '../../components/common';
 
 import SignIn from '../auth/signIn';
 import api from '../../api';
 import TorSaveQR from '../utils/torSaveQR';
 import IconButton from '../../components/common/icon_button';
-import { observer } from 'mobx-react-lite';
 import { PostModal } from '../widgetViews/postBounty/PostModal';
 import StartUpModal from '../utils/start_up_modal';
 
@@ -59,7 +59,7 @@ function Header() {
         setShowWelcome(true);
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
@@ -107,7 +107,7 @@ function Header() {
           await main.getSelf(null);
         }
       } catch (e) {
-        console.log('e', e);
+        console.error('e', e);
       }
     })();
   }, []);
@@ -141,7 +141,7 @@ function Header() {
 
               <Corner>
                 <Button
-                  text={'Get Sphinx'}
+                  text="Get Sphinx"
                   color="transparent"
                   onClick={(e) => {
                     e.preventDefault();
@@ -165,7 +165,7 @@ function Header() {
                   />
                 ) : (
                   <Button
-                    icon={'account_circle'}
+                    icon="account_circle"
                     style={{ minWidth: 38, width: 38, marginRight: 10, height: 37 }}
                     color="primary"
                     onClick={() => ui.setShowSignIn(true)}
@@ -255,7 +255,7 @@ function Header() {
             <PostModal
               isOpen={isOpenPostModal}
               onClose={() => setIsOpenPostModal(false)}
-              widget={'wanted'}
+              widget="wanted"
               onSucces={() => {
                 history.goBack();
                 window.location.reload();
@@ -267,8 +267,8 @@ function Header() {
             {isOpenStartUpModel && (
               <StartUpModal
                 closeModal={() => setIsOpenStartupModal(false)}
-                dataObject={'createWork'}
-                buttonColor={'success'}
+                dataObject="createWork"
+                buttonColor="success"
               />
             )}
             {ui.meInfo ? (
@@ -283,7 +283,7 @@ function Header() {
             ) : (
               <LoginBtn onClick={() => ui.setShowSignIn(true)}>
                 <span>Sign in</span>
-                <MaterialIcon icon={'login'} style={{ fontSize: 18 }} />
+                <MaterialIcon icon="login" style={{ fontSize: 18 }} />
               </LoginBtn>
             )}
           </Corner>
@@ -314,7 +314,7 @@ function Header() {
       </Modal>
 
       {/* you logged in modal  */}
-      <Modal visible={ui.meInfo && showWelcome ? true : false}>
+      <Modal visible={!!(ui.meInfo && showWelcome)}>
         <div>
           <Column>
             <Imgg
@@ -328,7 +328,7 @@ function Header() {
                 right: '85px'
               }}
             >
-              <img height={'32px'} width={'32px'} src="/static/badges/verfied_mark.png" alt="" />
+              <img height="32px" width="32px" src="/static/badges/verfied_mark.png" alt="" />
             </div>
 
             <T>
@@ -343,19 +343,19 @@ function Header() {
             </Welcome>
 
             <IconButton
-              text={'Continue'}
-              endingIcon={'arrow_forward'}
+              text="Continue"
+              endingIcon="arrow_forward"
               height={48}
-              width={'100%'}
-              color={'primary'}
+              width="100%"
+              color="primary"
               onClick={() => {
                 // switch from welcome modal to edit modal
                 setShowWelcome(false);
                 goToEditSelf();
               }}
-              hovercolor={'#5881F8'}
-              activecolor={'#5078F2'}
-              shadowcolor={'rgba(97, 138, 255, 0.5)'}
+              hovercolor="#5881F8"
+              activecolor="#5078F2"
+              shadowcolor="rgba(97, 138, 255, 0.5)"
             />
           </Column>
         </div>

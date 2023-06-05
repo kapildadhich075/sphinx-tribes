@@ -2,8 +2,8 @@ import { Button, IconButton } from 'components/common';
 import { PeopleMobileeHeaderProps } from 'people/interfaces';
 import React from 'react';
 
-export const HeaderMobile = ({ goBack, canEdit, logout, onEdit }: PeopleMobileeHeaderProps) => (
-  <div
+export function HeaderMobile({ goBack, canEdit, logout, onEdit }: PeopleMobileeHeaderProps) {
+  return <div
     style={{
       position: 'absolute',
       top: 20,
@@ -13,7 +13,7 @@ export const HeaderMobile = ({ goBack, canEdit, logout, onEdit }: PeopleMobileeH
       width: '100%',
       padding: '0 20px'
     }}
-  >
+         >
     <IconButton onClick={goBack} icon="arrow_back" />
     {canEdit ? (
       <>
@@ -28,7 +28,7 @@ export const HeaderMobile = ({ goBack, canEdit, logout, onEdit }: PeopleMobileeH
             border: 'none',
             marginLeft: 'auto'
           }}
-          leadingIcon={'edit'}
+          leadingIcon="edit"
           iconSize={15}
         />
         <Button
@@ -51,5 +51,5 @@ export const HeaderMobile = ({ goBack, canEdit, logout, onEdit }: PeopleMobileeH
     ) : (
       <div />
     )}
-  </div>
-);
+         </div>
+}

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
+import { OfferViewProps } from 'people/interfaces';
 import { Link, Paragraph, Title } from '../../components/common';
 import GalleryViewer from '../utils/galleryViewer';
 import NameTag from '../utils/nameTag';
-import { OfferViewProps } from 'people/interfaces';
 
 export default function PostView(props: OfferViewProps) {
   const { title, content, created, gallery, person } = props;
@@ -17,7 +17,7 @@ export default function PostView(props: OfferViewProps) {
     <Wrap style={{ maxHeight: expand ? '' : 472 }}>
       <Pad>
         <Title>{title}</Title>
-        <NameTag {...person} created={created} widget={'post'} />
+        <NameTag {...person} created={created} widget="post" />
         {/* // : <Date>{created && moment.unix(created).format('LLL')} </Date>} */}
         <Paragraph
           style={{
@@ -44,9 +44,9 @@ export default function PostView(props: OfferViewProps) {
       <GalleryViewer
         cover
         showAll={false}
-        big={true}
+        big
         wrap={false}
-        selectable={true}
+        selectable
         gallery={gallery}
         style={{ maxHeight: 291, overflow: 'hidden' }}
       />
