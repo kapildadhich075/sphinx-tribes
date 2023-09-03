@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { EuiButton, EuiLoadingSpinner } from '@elastic/eui';
+import { EuiButton, EuiButtonIcon, EuiLoadingSpinner } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
 import { IconButtonProps } from 'components/interfaces';
 
@@ -8,9 +8,10 @@ interface ButtonHoverProps {
   hovercolor?: string;
   activecolor?: string;
   shadowcolor?: string;
+  iconType?: string;
 }
 
-const B = styled(EuiButton)<ButtonHoverProps>`
+const B = styled(EuiButtonIcon) <ButtonHoverProps>`
   position: relative;
   border-radius: 100px;
   height: 36px;
@@ -27,6 +28,7 @@ const B = styled(EuiButton)<ButtonHoverProps>`
   text-transform: none !important;
   transform: none !important;
   text-decoration: none !important;
+  background: red !important;
   box-shadow: ${(p: any) => (p.shadowcolor ? `0px 2px 10px ${p.shadowcolor}` : 'none')} !important;
 
   &:hover {
@@ -86,10 +88,10 @@ function hexToRgba(hex: string, opacity: any = 1) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     const rgb = result
       ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-        }
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      }
       : null;
 
     return rgb ? `rgba(${rgb?.r}, ${rgb?.g}, ${rgb?.b}, ${opacity})` : undefined;
@@ -195,6 +197,7 @@ export default function IconButton(props: IconButtonProps) {
   ) : (
     <B
       id={id}
+      iconType={'menu' || ''}
       style={{
         ...colors[color],
         padding: props.icon && '0 0 0 15px',
@@ -212,7 +215,7 @@ export default function IconButton(props: IconButtonProps) {
       onClick={props.onClick}
     >
       <div>
-        {props.icon && (
+        {/* {props.icon && (
           <div
             style={{
               display: 'flex',
@@ -229,7 +232,7 @@ export default function IconButton(props: IconButtonProps) {
               style={{ fontSize: props.iconSize ? props.iconSize : 30, ...iconStyle }}
             />
           </div>
-        )}
+        )} */}
 
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {props.leadingIcon && (
