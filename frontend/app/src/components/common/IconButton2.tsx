@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { EuiButton, EuiButtonIcon, EuiLoadingSpinner } from '@elastic/eui';
+import { EuiButton, EuiLoadingSpinner } from '@elastic/eui';
 import MaterialIcon from '@material/react-material-icon';
 import { IconButtonProps } from 'components/interfaces';
 
@@ -8,10 +8,9 @@ interface ButtonHoverProps {
   hovercolor?: string;
   activecolor?: string;
   shadowcolor?: string;
-  iconType?: string;
 }
 
-const B = styled(EuiButtonIcon) <ButtonHoverProps>`
+const B = styled(EuiButton) <ButtonHoverProps>`
   position: relative;
   border-radius: 100px;
   height: 36px;
@@ -28,7 +27,6 @@ const B = styled(EuiButtonIcon) <ButtonHoverProps>`
   text-transform: none !important;
   transform: none !important;
   text-decoration: none !important;
-  background: red !important;
   box-shadow: ${(p: any) => (p.shadowcolor ? `0px 2px 10px ${p.shadowcolor}` : 'none')} !important;
 
   &:hover {
@@ -197,7 +195,6 @@ export default function IconButton(props: IconButtonProps) {
   ) : (
     <B
       id={id}
-      iconType={'menu' || ''}
       style={{
         ...colors[color],
         padding: props.icon && '0 0 0 15px',
@@ -215,7 +212,7 @@ export default function IconButton(props: IconButtonProps) {
       onClick={props.onClick}
     >
       <div>
-        {/* {props.icon && (
+        {props.icon && (
           <div
             style={{
               display: 'flex',
@@ -232,7 +229,7 @@ export default function IconButton(props: IconButtonProps) {
               style={{ fontSize: props.iconSize ? props.iconSize : 30, ...iconStyle }}
             />
           </div>
-        )} */}
+        )}
 
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {props.leadingIcon && (

@@ -1,5 +1,6 @@
-import { Button, IconButton } from 'components/common';
+import { Button } from 'components/common';
 import { AboutView } from 'people/widgetViews/AboutView';
+import { EuiButtonIcon } from '@elastic/eui';
 import React, { useState } from 'react';
 import ConnectCard from 'people/utils/ConnectCard';
 import { observer } from 'mobx-react-lite';
@@ -55,19 +56,19 @@ export const UserInfoDesktopView = observer(({ setShowSupport }: UserInfoProps) 
         <div style={{ height: 35 }} />
 
         <Img src={userImg}>
-          <IconButton
-            iconStyle={{ color: '#5F6368' }}
-            style={{
-              zIndex: 2,
-              width: '40px',
-              height: '40px',
-              padding: 0,
-              background: '#ffffff',
-              border: '1px solid #D0D5D8',
-              boxSizing: 'border-box',
-              borderRadius: 4
-            }}
-            icon={'qr_code_2'}
+          <EuiButtonIcon style={{
+            color: "#000000",
+            background: '#FFFFFF',
+            zIndex: 2,
+            width: '40px',
+            height: '40px',
+            padding: 0,
+            border: '1px solid #D0D5D8',
+            boxSizing: 'border-box',
+            borderRadius: 4
+          }}
+            iconSize="m"
+            iconType="spacesApp"
             onClick={() => setShowQR(true)}
           />
         </Img>
