@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { EuiButtonIcon } from '@elastic/eui';
 import { ModalProps } from 'components/interfaces';
 import FadeLeft from '../animated/FadeLeft';
 import { colors } from '../../config/colors';
@@ -131,11 +132,11 @@ export default function Modal(props: ModalProps) {
   const color = colors['light'];
   const fillStyle = fill
     ? {
-        minHeight: '100%',
-        height: 'auto',
-        width: '100%',
-        borderRadius: 0
-      }
+      minHeight: '100%',
+      height: 'auto',
+      width: '100%',
+      borderRadius: 0
+    }
     : {};
 
   return (
@@ -231,9 +232,14 @@ export default function Modal(props: ModalProps) {
           {prevArrowNew && (
             <LNew color={color}>
               <CircL color={color}>
-                <IconButton
-                  iconStyle={{ color: color.pureWhite }}
-                  icon={'chevron_left'}
+                <EuiButtonIcon
+                  iconType="arrowLeft"
+                  color="primary"
+                  size="m"
+                  style={{
+                    color: color.black500,
+                    width: "50px"
+                  }}
                   onClick={(e: any) => {
                     e.stopPropagation();
                     prevArrowNew();
@@ -245,9 +251,14 @@ export default function Modal(props: ModalProps) {
           {nextArrowNew && (
             <RNew color={color}>
               <CircR color={color}>
-                <IconButton
-                  icon={'chevron_right'}
-                  iconStyle={{ color: color.pureWhite }}
+                <EuiButtonIcon
+                  iconType="arrowRight"
+                  color="primary"
+                  size="m"
+                  style={{
+                    color: color.black500,
+                    width: "50px"
+                  }}
                   onClick={(e: any) => {
                     e.stopPropagation();
                     nextArrowNew();
